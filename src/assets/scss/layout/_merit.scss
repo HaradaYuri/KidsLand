@@ -1,0 +1,36 @@
+@use '../global' as *;
+.merit {
+  padding: 40px 0;
+  background-color: $bgColorDark;
+
+  // container
+  &__container {
+    max-width: 1170px;
+  }
+  &__box {
+    padding: 0 15px;
+    text-align: left;
+
+    &-title {
+      color: $primary;
+      margin: 5px 0;
+    }
+  }
+
+  // desc
+  &__desc {
+    width: 1170px;
+    max-width: calc(100% - 40px);
+    background-color: #fff;
+    padding: 40px 20px;
+    margin: 40px auto;
+    border: 2px solid $primary;
+    border-radius: 5px;
+
+    gap: 10px;
+
+    &-title{
+      color: $primary;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@use '../global' as *;
+.flex {
+  &-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &-col {
+    @include centerFlex;
+    flex-direction: column;
+  }
+
+  &-rc {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    & > * {
+      flex: 1;
+    }
+
+    @include mq(pc) {
+      flex-direction: column;
+      width: 80%;
+    }
+  }
+}

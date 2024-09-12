@@ -1,0 +1,78 @@
+@use '../global' as *;
+
+.header {
+  top: 0;
+  position: fixed;
+  z-index: 1000;
+
+  width: 100%;
+  height: 75px;
+  padding: 0 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: $bgColorLight;
+
+  @include mq(sp) {
+    height: 100px;
+    padding: 0 5%;
+  }
+
+  // logo
+  &__logo {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+
+    @include mq(sp) {
+      flex-direction: column-reverse;
+    }
+
+    &-link {
+      z-index: 3000;
+      display: flex;
+    }
+
+    &-image {
+      width: 128px;
+
+      @include mq(sp) {
+      }
+    }
+
+    &-text {
+      margin-left: 8px;
+      margin-top: 16px;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      @include mq(pc) {
+      }
+    }
+  }
+
+  &__btn {
+    & * {
+      color: #fff;
+    }
+    
+    @include mq(sp) {
+      @include centerFlex;
+      width: 100px;
+      height: 100%;
+  
+      position: absolute;
+      right: 0px;
+      top: 0;
+      background-color: #da6b64;
+    }
+  }
+}
+
+// TOP header
+.top__header {
+  background-color: transparent;
+}

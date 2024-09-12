@@ -1,0 +1,30 @@
+// color
+$primary: #ebb94d;
+$accentDark: #016ea9;
+$accentLight: #da6b64;
+;
+
+$textColorLight: #ffffff;
+$textColorDark: #333333;
+
+$bgColorLight: #ffffff;
+$bgColorDark: #fef5e0;
+// #ececec
+
+// font-family
+$font-main: serif;
+$font-jpM: '游明朝体', 'Yu Mincho', '游明朝', 'YuMincho', 'Times New Roman',
+  serif;
+$font-jpG: '游ゴシック体', 'YuGothic', '游ゴシック Medium', 'Yu Gothic Medium',
+  '游ゴシック', 'Yu Gothic', 'Helvetica', 'Arial', sans-serif;
+$font-en: 'Marcellus', serif;
+$font-design: 'annabelle-jf', 'Parisienne', sans-serif;
+
+$breakpoint: (
+  xs: 'screen and (max-width: 374px)',
+  sp: 'screen and (max-width: 767px)',
+  pc: 'screen and (max-width: 992px)',
+  xl: 'screen and (max-width: 1367px)',
+);
+
+$transition: all 0.3s ease;

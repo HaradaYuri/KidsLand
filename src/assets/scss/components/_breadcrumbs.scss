@@ -1,0 +1,28 @@
+@use '../global' as *;
+@use '../global/' as *;
+
+.breadcrumbs {
+  padding: 20px 2%;
+
+  @include mq(sp) {
+    padding: 4px 20px;
+  }
+
+  & * {
+    color: $primary;
+  }
+
+  & p {
+    font-family: $font-jpG;
+    font-size: 18px;
+    line-height: 1.67em;
+
+    letter-spacing: 1.8px;
+    opacity: 0.8;
+
+    @include mq(sp) {
+      font-size: 14px;
+      letter-spacing: 1.4px;
+    }
+  }
+}

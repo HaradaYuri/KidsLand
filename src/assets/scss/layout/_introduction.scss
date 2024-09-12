@@ -1,0 +1,18 @@
+@use '../global' as *;
+.introduction {
+  padding: 40px 0;
+  
+  background-image: url('../images/introbottom.jpg');
+  background-position: center;
+  background-size: cover;
+
+  &__text {
+    margin-bottom: 2.4rem;
+    span {
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: $primary;
+      text-decoration-thickness: 4px;
+    }
+  }
+}

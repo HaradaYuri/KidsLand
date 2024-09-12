@@ -1,0 +1,6 @@
+{
+  "core": "WordPress/WordPress",
+  "themes": ["./wordpress/wp-content/themes/my-theme"],
+  "port": 8888,
+  "testsPort": 8889
+}

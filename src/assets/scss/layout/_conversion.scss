@@ -1,0 +1,23 @@
+@use '../global' as *;
+
+.conversion {
+  width: 100%;
+  height: 560px;
+  padding: 30px 0;
+
+  @include centerFlex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: $primary;
+
+  &__text {
+    color: #fff;
+  }
+
+  code {
+    padding: 2px 4px;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+  }
+}

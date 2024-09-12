@@ -1,0 +1,56 @@
+@use '../global' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-main;
+  line-height: 1.5;
+  text-align: center;
+
+  background-color: $bgColorLight;
+  overflow-x: hidden;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+picture {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  transition: $transition;
+  color: $textColorDark;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+span {
+  color: $textColorDark;
+}
+
+

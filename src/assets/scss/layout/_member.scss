@@ -1,0 +1,46 @@
+@use '../global' as *;
+
+.member {
+  padding: 60px 0 40px;
+  background-image: url('../images/teacherbg.jpg');
+  background-size: cover;
+  background-position: center;
+
+  & * {
+    color: #fff;
+  }
+
+  &__container {
+    max-width: 1170px;
+    gap: 30px;
+  }
+
+  &__box {
+    position: relative;
+    margin-top: 200px;
+
+    img {
+      width: 200px;
+
+      @include centerAbsolute;
+      top: -70px;
+      z-index: 10;
+      border-radius: 50%;
+    }
+  }
+
+  &__inner {
+    min-height: 391px;
+    padding: 40px;
+
+    border: 3px solid #fff;
+
+    @include mq(pc) {
+      min-height: auto;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+}
