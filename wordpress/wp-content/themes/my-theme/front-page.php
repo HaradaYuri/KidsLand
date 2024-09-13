@@ -1,3 +1,4 @@
+<?php get_header(); ?>
 <!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="./assets/images/vite.svg">
@@ -15,8 +16,8 @@
     <meta property="og:image:height" content="630">
 
     <!-- css -->
-    
-    
+    <!--?php wp_enqueue_style('style-0', get_template_directory_uri() . '/https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css'); ?-->
+    <!--?php wp_enqueue_style('style-1', get_template_directory_uri() . '/./assets/style/style.scss'); ?-->
 
     <!-- font -->
   </head>
@@ -28,7 +29,7 @@
       <div class="header__logo">
         <h1>
           <a href="#" class="header__logo-link">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/isaralogo.png" alt="iSara ロゴ" class="header__logo-image">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/isaralogo.png" alt="iSara ロゴ" class="header__logo-image">
           </a>
         </h1>
         <h2 class="header__logo-text">バンコクのノマドエンジニア育成講座</h2>
@@ -46,7 +47,7 @@
     <section class="fv">
       <div class="fv__content">
         <p class="fv__title">プログラミングで<br>人生の安定を手にいれよう</p>
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/isaralogolarge.png" alt="iSara ロゴ" class="fv__logo">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/isaralogolarge.png" alt="iSara ロゴ" class="fv__logo">
         <p class="fv__subtitle">
           バンコクのノマドエンジニア育成講座<br>iSara[イサラ]
         </p>
@@ -119,35 +120,35 @@
           </p>
           <div class="about__inner">
             <div class="about__block">
-              <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/skill.jpg" alt="">
+              <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/skill.jpg" alt="">
               <p class="about__block-text txts">
                 基礎的な<br>
                 プログラミングスキル
               </p>
             </div>
             <div class="about__block">
-              <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/sales.jpg" alt="">
+              <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/sales.jpg" alt="">
               <p class="about__block-text txts">
                 案件獲得に必要な<br>
                 営業力
               </p>
             </div>
             <div class="about__block">
-              <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/document.jpg" alt="">
+              <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/document.jpg" alt="">
               <p class="about__block-text txts">
                 見積もり作成から<br>
                 納品までの知識
               </p>
             </div>
             <div class="about__block">
-              <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/plusone.jpg" alt="">
+              <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/plusone.jpg" alt="">
               <p class="about__block-text txts">
                 自分の付加価値を<br>
                 高めるスキル
               </p>
             </div>
             <div class="about__block">
-              <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/connection.jpg" alt="">
+              <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/connection.jpg" alt="">
               <p class="about__block-text txts">
                 フリーランス同士の<br>
                 つながり
@@ -213,16 +214,16 @@
 
         <div class="learning__container">
           <div class="learning__block">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/salesskill.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/salesskill.jpg" alt="alt">
           </div>
           <div class="learning__block">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/knowledge.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/knowledge.jpg" alt="alt">
           </div>
           <div class="learning__block">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/skillup.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/skillup.jpg" alt="alt">
           </div>
           <div class="learning__block">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/freelanceconnection.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/freelanceconnection.jpg" alt="alt">
           </div>
         </div>
         <p class="learning__desc bold txts">これらを教えるのがiSaraです。</p>
@@ -240,21 +241,21 @@
 
         <div class="merit__container flex-rc">
           <div class="merit__box">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/learnfromfreelancer.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/learnfromfreelancer.jpg" alt="alt">
             <p class="merit__box-title txtm">現役フリーランスから学べる</p>
             <p class="merit__box-text txts">
               他のプログラミングスクールとは違い、実際にフリーランスとして活動しているエンジニアが直接講師を勤めます。
             </p>
           </div>
           <div class="merit__box">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/learnfromprojects.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/learnfromprojects.jpg" alt="alt">
             <p class="merit__box-title txtm">実践を通じて学べる</p>
             <p class="merit__box-text txts">
               フリーランスにとって最短の学習方法は「実践」。iSaraでは実案件を通して学びます。現役フリーランサーの案件サポートに加え、クラウドソーシングを活用。初心者の自分じゃ無理と思うかもですが、現役フリーランスがサポートしますので大丈夫。
             </p>
           </div>
           <div class="merit__box">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/actuallyfree.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/actuallyfree.jpg" alt="alt">
             <p class="merit__box-title txtm">授業料が実質０円</p>
             <p class="merit__box-text txts">
               講座費用258,000円以上の金額が稼げるまで「永久サポート延長」があります。
@@ -293,7 +294,7 @@
 
         <div class="member__container flex-rc">
           <div class="member__box">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/keisuke_someya.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/keisuke_someya.jpg" alt="alt">
             <div class="member__inner">
               <p class="txts">フリーランス講師</p>
               <p class="txts">染谷 佳佑</p>
@@ -304,7 +305,7 @@
             </div>
           </div>
           <div class="member__box">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/yuki.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/yuki.jpg" alt="alt">
             <div class="member__inner">
               <p class="txts">フリーランス講師</p>
               <p class="txts">成田 雄輝</p>
@@ -316,7 +317,7 @@
             </div>
           </div>
           <div class="member__box">
-            <img loading="lazy" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/manabu.jpg" alt="alt">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/manabu.jpg" alt="alt">
             <div class="member__inner">
               <p class="txts">フリーランスエンジニア</p>
               <p class="txts">坂内 学</p>
@@ -388,5 +389,11 @@
     <!-- footer /ends here -->
 
     <!-- scripts -->
+    <!--?php wp_enqueue_script('script-0', get_template_directory_uri() . '/https://code.jquery.com/jquery-3.7.1.min.js', array(), null, true); ?-->
+    <!--?php wp_enqueue_script('script-1', get_template_directory_uri() . '/https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array(), null, true); ?-->
+    <!--?php wp_enqueue_script('script-2', get_template_directory_uri() . '/https://kit.fontawesome.com/bb1ec9ad9e.js', array(), null, true); ?-->
+    <!--?php wp_enqueue_script('script-3', get_template_directory_uri() . '/./main.js', array(), null, true); ?-->
+  
 
 </body></html>
+<?php get_footer(); ?>

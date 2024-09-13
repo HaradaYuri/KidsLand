@@ -1,3 +1,4 @@
-<?php wp_footer(); ?>
-</body>
+<!-- ここに <footer> コンテンツを追加 -->
+  <?php wp_footer(); ?>
+  </body>
 </html>

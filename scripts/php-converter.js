@@ -1,3 +1,139 @@
+import * as cheerio from 'cheerio';
+import fs from 'fs/promises';
+import path from 'path';
+
+export async function phpConverter({ srcDir, distDir, wpThemeDir }) {
+  // HTMLファイルをPHPに変換
+  const htmlFiles = await fs.readdir(srcDir);
+  for (const file of htmlFiles) {
+    if (path.extname(file) === '.html') {
+      const htmlContent = await fs.readFile(path.join(srcDir, file), 'utf-8');
+      const phpContent = await convertHTMLToPHP(htmlContent);
+      const phpFilename =
+        file === 'index.html'
+          ? 'front-page.php'
+          : path.basename(file, '.html') + '.php';
+      await createOrUpdateFile(path.join(wpThemeDir, phpFilename), phpContent);
+    }
+  }
+
+  // WordPressテーマファイルの生成
+  await createOrUpdateFile(
+    path.join(wpThemeDir, 'style.css'),
+    generateStyleCSS()
+  );
+  await createOrUpdateFile(
+    path.join(wpThemeDir, 'functions.php'),
+    generateFunctionsPHP()
+  );
+  await createHeaderFile(wpThemeDir);
+  await createFooterFile(wpThemeDir);
+
+  console.log('WordPress theme files have been generated and updated.');
+}
+
+// header.phpを作成する関数
+async function createHeaderFile(wpThemeDir) {
+  const headerContent = `
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <!-- ここに <head> コンテンツを追加  -->
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+  `.trim();
+
+  await createOrUpdateFile(path.join(wpThemeDir, 'header.php'), headerContent);
+}
+
+// footer.phpを作成する関数
+async function createFooterFile(wpThemeDir) {
+  const footerContent = `
+  <!-- ここに <footer> コンテンツを追加 -->
+  <?php wp_footer(); ?>
+  </body>
+</html>
+  `.trim();
+
+  await createOrUpdateFile(path.join(wpThemeDir, 'footer.php'), footerContent);
+}
+
+async function convertHTMLToPHP(htmlContent) {
+  const $ = cheerio.load(htmlContent);
+
+  // スタイルシートとスクリプトの参照を更新
+  $('link[rel="stylesheet"]').each((i, elem) => {
+    const href = $(elem).attr('href');
+    $(elem).replaceWith(
+      `<?php wp_enqueue_style('style-${i}', get_template_directory_uri() . '/${href}'); ?>`
+    );
+  });
+
+  $('script').each((i, elem) => {
+    const src = $(elem).attr('src');
+    if (src) {
+      $(elem).replaceWith(
+        `<?php wp_enqueue_script('script-${i}', get_template_directory_uri() . '/${src}', array(), null, true); ?>`
+      );
+    }
+  });
+
+  // 画像パスの更新
+  $('img').each((i, elem) => {
+    const src = $(elem).attr('src');
+    $(elem).attr('src', `<?php echo get_template_directory_uri(); ?>/${src}`);
+  });
+
+  // PHPヘッダーとフッターの追加
+  const phpContent = `<?php get_header(); ?>\n${$.html()}\n<?php get_footer(); ?>`;
+
+  return phpContent;
+}
+
+async function createOrUpdateFile(filePath, content) {
+  try {
+    const existingContent = await fs.readFile(filePath, 'utf-8');
+    if (existingContent !== content) {
+      await fs.writeFile(filePath, content);
+      console.log(`Updated ${path.basename(filePath)}`);
+    } else {
+      console.log(`${path.basename(filePath)} is up to date`);
+    }
+  } catch {
+    await fs.writeFile(filePath, content);
+    console.log(`Created ${path.basename(filePath)}`);
+  }
+}
+
+async function copyDir(src, dest) {
+  await fs.mkdir(dest, { recursive: true });
+  const entries = await fs.readdir(src, { withFileTypes: true });
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      await copyDir(srcPath, destPath);
+    } else {
+      await fs.copyFile(srcPath, destPath);
+    }
+  }
+}
+
+function generateStyleCSS(themeName = 'My Theme') {
+  return `
+/*
+Theme Name: ${themeName}
+Author: Name
+Description: Text
+Version: 1.0
+*/
+  `.trim();
+}
+
+function generateFunctionsPHP() {
+  return `
 <?php
 if (!defined('ABSPATH')) exit;
 
@@ -135,3 +271,7 @@ function custom_excerpt_more($more) {
     return '...';
 }
 add_filter('excerpt_more', 'custom_excerpt_more');
+
+
+  `.trim();
+}
