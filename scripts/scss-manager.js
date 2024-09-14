@@ -1,11 +1,11 @@
+// scss-manager.js
 import fs from 'fs';
 import path from 'path';
 import chokidar from 'chokidar';
 
 /**
  * SCSSマネージャープラグイン
- * SCSSファイルの自動管理と最適化を行うViteプラグイン
- * @param {Object} options - プラグインのオプション
+ * @param {Object} options
  * @param {string} options.scssDir - SCSSファイルのルートディレクトリ
  * @param {string} options.globalFile - グローバルSCSSファイルのパス
  * @returns {Object} Viteプラグインオブジェクト
@@ -13,7 +13,7 @@ import chokidar from 'chokidar';
 export function scssManager(options = {}) {
   const {
     scssDir = path.join(process.cwd(), 'src', 'assets', 'scss'),
-    globalFile = 'global/_index.scss',
+    globalFile = 'global',
   } = options;
 
   const stylePath = path.join(scssDir, 'style.scss');
@@ -24,13 +24,10 @@ export function scssManager(options = {}) {
    */
   function addGlobalUseToScss(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
-    const globalUseStatement = `@use '${path.relative(
-      path.dirname(filePath),
-      path.join(scssDir, globalFile)
-    )}' as *;`;
+    const desiredGlobalUseStatement = `@use '../global' as *;`;
 
-    if (!content.includes(globalUseStatement)) {
-      const updatedContent = globalUseStatement + '\n' + content;
+    if (!content.includes(desiredGlobalUseStatement)) {
+      const updatedContent = desiredGlobalUseStatement + '\n' + content;
       fs.writeFileSync(filePath, updatedContent, 'utf8');
       console.log(`Added global use to ${filePath}`);
     }
@@ -38,8 +35,8 @@ export function scssManager(options = {}) {
 
   /**
    * ディレクトリ内のSCSSファイルのインデックスを更新
-   * @param {string} dirPath - 対象ディレクトリのパス
-   * @returns {boolean} 更新が行われたかどうか
+   * @param {string} dirPath
+   * @returns {boolean}
    */
   function updateIndex(dirPath) {
     const files = fs.readdirSync(dirPath);
@@ -207,7 +204,6 @@ export function scssManager(options = {}) {
         });
     },
     buildStart() {
-      // ビルド開始時に初期更新を実行
       initialUpdate();
     },
   };

@@ -1,13 +1,12 @@
 @use '../global' as *;
-@use "../global" as *;
 
 .category {
-    @include centerFlex;
-    width: 96px;
-    height: 26px;
+  @include centerFlex;
+  width: 96px;
+  height: 26px;
 
-    background: $primary 0% 0% no-repeat padding-box;
-    letter-spacing: 0px;
-    color: #ffffff;
-    border-radius: 5px;
+  background: $primary 0% 0% no-repeat padding-box;
+  letter-spacing: 0px;
+  color: #ffffff;
+  border-radius: 5px;
 }

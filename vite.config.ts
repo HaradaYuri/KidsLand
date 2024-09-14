@@ -5,6 +5,7 @@ import VitePluginWebpAndPath from 'vite-plugin-webp-and-path';
 
 import { scssManager } from './scripts/scss-manager.js';
 import { phpConverter } from './scripts/php-converter.js';
+import { updateWebpPaths } from './scripts/update-webp.js';
 
 // プロジェクトのルートディレクトリと出力ディレクトリを設定
 const root = resolve(__dirname, 'src');
@@ -84,6 +85,14 @@ export default defineConfig(({ command, mode }) => {
               'wordpress/wp-content/themes/my-theme'
             ),
           });
+        },
+      },
+      {
+        name: 'vite-plugin-update-webp-paths',
+        closeBundle() {
+          if (isWP) {
+            updateWebpPaths(outDir, root);
+          }
         },
       },
     ],
