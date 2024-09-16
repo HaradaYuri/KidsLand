@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite';
+import { defineConfig, ConfigEnv, UserConfig } from 'vite';
 import { resolve } from 'path';
 import { globSync } from 'glob';
+import type { OutputOptions, OutputAsset } from 'rollup';
 import VitePluginWebpAndPath from 'vite-plugin-webp-and-path';
 
 import { scssManager } from './scripts/scss-manager.js';
@@ -21,7 +22,7 @@ const commonInputs = {
   ),
 };
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   const isProduction = command === 'build';
   const isWP = mode === 'wp';
 
@@ -40,27 +41,34 @@ export default defineConfig(({ command, mode }) => {
       emptyOutDir: true,
       manifest: true,
       rollupOptions: {
-        input: commonInputs,
+        input: {
+          main: resolve(__dirname, 'src/main.js'),
+          ...Object.fromEntries(
+            globSync('src/assets/images/**/*.{jpg,jpeg,png,gif,svg}').map(
+              (file) => [file.replace(/^src\//, ''), resolve(__dirname, file)]
+            )
+          ),
+        },
         output: {
-          // JS、CSS、画像ファイルの出力先を設定
-          entryFileNames: 'assets/js/[name].[hash].js',
-          chunkFileNames: 'assets/js/[name].[hash].js',
-          assetFileNames: ({ name }) => {
-            if (/\.(css|scss)$/.test(name ?? '')) {
-              return 'assets/css/[name].[hash][extname]';
+          entryFileNames: 'assets/js/[name].js',
+          chunkFileNames: 'assets/js/[name]-[hash].js',
+          assetFileNames: (assetInfo: OutputAsset): string => {
+            const extType = assetInfo.name
+              ? assetInfo.name.split('.').at(-1)
+              : '';
+            if (extType && /png|jpe?g|svg|gif|avif|webp|ico/i.test(extType)) {
+              return `assets/images/[name][extname]`;
             }
-            if (/\.(png|jpe?g|gif|svg|webp)$/.test(name ?? '')) {
-              return 'assets/images/[name].[hash][extname]';
+            if (extType && /css|scss/.test(extType)) {
+              return `assets/css/[name][extname]`;
             }
-            return 'assets/[name].[hash][extname]';
+            return `assets/[ext]/[name][extname]`;
           },
         },
       },
-      // 本番環境でのみコード最小化を行う
       minify: isProduction,
-      // 開発環境でのみソースマップを生成
       sourcemap: !isProduction,
-    },
+    } as OutputOptions,
 
     // プラグインの設定
     plugins: [
