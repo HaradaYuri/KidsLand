@@ -13,13 +13,6 @@ export function updateWebpPaths(wpThemeDir, srcDir) {
     );
   };
 
-  const transformHTMLContent = (content) => {
-    return content.replace(
-      /(src=["'])(?:\.\.\/)*assets\/images\/([^"']+)\.(jpg|jpeg|png|gif)(["'])/gi,
-      '$1assets/images/$2.webp$4'
-    );
-  };
-
   const transformSCSSContent = (content, filePath) => {
     return content.replace(
       /url\(['"]?(.+?\.)(jpe?g|png|gif)(['"]?)\)/gi,
@@ -38,20 +31,18 @@ export function updateWebpPaths(wpThemeDir, srcDir) {
     );
   };
 
-  const processFiles = (dir, isHTML = false) => {
+  const processFiles = (dir) => {
     const files = fs.readdirSync(dir);
     files.forEach((file) => {
       const filePath = path.resolve(dir, file);
       const stat = fs.statSync(filePath);
       if (stat.isDirectory()) {
-        processFiles(filePath, isHTML);
+        processFiles(filePath);
       } else {
         const ext = path.extname(file).toLowerCase();
         let content = fs.readFileSync(filePath, 'utf-8');
-        if (ext === '.php' && !isHTML) {
+        if (ext === '.php') {
           content = transformPHPContent(content);
-        } else if (ext === '.html' && isHTML) {
-          content = transformHTMLContent(content);
         } else if (ext === '.scss' || ext === '.sass') {
           content = transformSCSSContent(content, filePath);
         }
@@ -68,8 +59,8 @@ export function updateWebpPaths(wpThemeDir, srcDir) {
   }
 
   if (fs.existsSync(srcDir)) {
-    processFiles(srcDir, true);
-    console.log("src/HTML and SCSS files' img paths updated successfully.");
+    processFiles(srcDir);
+    console.log("src/SCSS files' img paths updated successfully.");
   } else {
     console.warn('src directory not found:', srcDir);
   }

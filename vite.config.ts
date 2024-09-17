@@ -73,10 +73,11 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     // プラグインの設定
     plugins: [
       VitePluginWebpAndPath({
-        targetDir: outDir,
+        targetDir: resolve(outDir, '/assets/images'),
         imgExtensions: 'jpg,jpeg,png',
-        textExtensions: 'html,css,js,php',
+        textExtensions: 'css,js,php',
         quality: 80,
+        enableLogs: true,
       }),
       scssManager({
         scssDir: 'src/assets/scss',
@@ -107,9 +108,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
 
     // CSS関連の設定
     css: {
-      // 開発時のソースマップ生成を有効化
       devSourcemap: true,
-      // SCSSのグローバル変数として現在のモードを追加
       preprocessorOptions: {
         scss: {
           additionalData: `$env: ${mode};`,
