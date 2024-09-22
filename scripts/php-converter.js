@@ -34,6 +34,7 @@ export async function phpConverter({ srcDir, distDir, wpThemeDir }) {
   );
   await createHeaderFile(wpThemeDir);
   await createFooterFile(wpThemeDir);
+  await createIndexFile(wpThemeDir);
 
   console.log('WordPress theme files have been generated and updated.');
 }
@@ -100,6 +101,18 @@ async function createFooterFile(wpThemeDir) {
   );
 }
 
+async function createIndexFile(wpThemeDir) {
+  const indexContent = `
+
+  `.trim();
+
+  await createOrUpdateFile(
+    path.join(wpThemeDir, 'index.php'),
+    indexContent,
+    false
+  );
+}
+
 async function convertHTMLToPHP(htmlContent) {
   const $ = cheerio.load(htmlContent);
 
@@ -120,16 +133,29 @@ async function convertHTMLToPHP(htmlContent) {
     }
   });
 
-  // 画像パスの更新
+  // convert images path to WebP
   $('img').each((i, elem) => {
     const src = $(elem).attr('src');
-    $(elem).attr('src', `<?php echo get_template_directory_uri(); ?>/${src}`);
+    const webpSrc = convertToWebP(src);
+
+    $(elem).attr(
+      'src',
+      `<?php echo get_template_directory_uri(); ?>/${webpSrc}`
+    );
   });
 
   // PHPヘッダーとフッターの追加
   const phpContent = `<?php get_header(); ?>\n${$.html()}\n<?php get_footer(); ?>`;
 
   return phpContent;
+}
+
+function convertToWebP(src) {
+  const ext = path.extname(src).toLowerCase();
+  if (ext === '.jpg' || ext === '.jpeg' || ext === '.png') {
+    return src.replace(ext, '.webp');
+  }
+  return src;
 }
 
 async function copyDir(src, dest) {

@@ -2,25 +2,18 @@ import { defineConfig, ConfigEnv, UserConfig } from 'vite';
 import { resolve } from 'path';
 import { globSync } from 'glob';
 import type { OutputOptions, OutputAsset } from 'rollup';
-import VitePluginWebpAndPath from 'vite-plugin-webp-and-path';
+import { imageToWebpPlugin } from 'vite-plugin-image-to-webp';
+
+import fs from 'fs/promises';
+import path from 'path';
+import react from '@vitejs/plugin-react';
 
 import { scssManager } from './scripts/scss-manager.js';
 import { phpConverter } from './scripts/php-converter.js';
-import { updateWebpPaths } from './scripts/update-webp.js';
+import { cssConverter } from './scripts/css-converter.js';
 
-// プロジェクトのルートディレクトリと出力ディレクトリを設定
 const root = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'wordpress/wp-content/themes/my-theme');
-
-// メインJSファイルと画像ファイルを入力として設定
-const commonInputs = {
-  main: resolve(root, 'main.js'),
-  ...Object.fromEntries(
-    globSync('src/assets/images/**/*.{jpg,jpeg,png,gif,svg,webp}').map(
-      (file) => [`images/${file.split('/').pop()}`, file]
-    )
-  ),
-};
 
 export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   const isProduction = command === 'build';
@@ -35,11 +28,10 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       origin: isWP ? undefined : 'http://localhost:5173',
     },
 
-    // ビルド設定
     build: {
       outDir,
       emptyOutDir: true,
-      manifest: true,
+      manifest: false,
       rollupOptions: {
         input: {
           main: resolve(__dirname, 'src/main.js'),
@@ -70,43 +62,49 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       sourcemap: !isProduction,
     } as OutputOptions,
 
-    // プラグインの設定
     plugins: [
-      VitePluginWebpAndPath({
-        targetDir: resolve(outDir, '/assets/images'),
-        imgExtensions: 'jpg,jpeg,png',
-        textExtensions: 'css,js,php',
-        quality: 80,
-        enableLogs: true,
-      }),
       scssManager({
         scssDir: 'src/assets/scss',
         globalFile: 'global/_index.scss',
       }),
       {
-        name: 'vite-plugin-php-converter',
-        closeBundle() {
-          return phpConverter({
-            srcDir: root,
-            distDir: outDir,
-            wpThemeDir: resolve(
-              __dirname,
-              'wordpress/wp-content/themes/my-theme'
-            ),
-          });
-        },
+        ...imageToWebpPlugin({
+          imageFormats: ['jpg', 'jpeg', 'png', 'gif'],
+          webpQuality: { quality: 80 },
+          destinationFolder:
+            'wordpress/wp-content/themes/my-theme/assets/images',
+        }),
       },
       {
-        name: 'vite-plugin-update-webp-paths',
-        closeBundle() {
-          if (isWP) {
-            updateWebpPaths(outDir, root);
+        name: 'wordpress-theme-converter',
+        closeBundle: async () => {
+          try {
+            // Convert HTML to PHP
+            // Generate WordPress theme files
+            // Convert image paths in PHP to WebP
+            await phpConverter({
+              srcDir: root,
+              distDir: outDir,
+              wpThemeDir: outDir,
+            });
+
+            // Convert image paths in CSS to WebP
+            await cssConverter(outDir);
+
+            console.log(
+              'WordPress theme conversion, image path processing, and CSS conversion completed successfully.'
+            );
+          } catch (error) {
+            console.error(
+              'Error during WordPress theme conversion, image path processing, or CSS conversion:',
+              error
+            );
+            throw error;
           }
         },
       },
     ],
 
-    // CSS関連の設定
     css: {
       devSourcemap: true,
       preprocessorOptions: {
@@ -116,12 +114,10 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       },
     },
 
-    // 依存関係の最適化設定
     optimizeDeps: {
       exclude: ['fsevents'],
     },
 
-    // グローバルに利用可能な環境変数を定義
     define: {
       'process.env.NODE_ENV': JSON.stringify(
         isProduction ? 'production' : 'development'
