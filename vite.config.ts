@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { globSync } from 'glob';
 import type { OutputOptions, OutputAsset } from 'rollup';
 import { imageToWebpPlugin } from 'vite-plugin-image-to-webp';
+import liveReload from 'vite-plugin-live-reload';
 
 import fs from 'fs/promises';
 import path from 'path';
@@ -31,7 +32,7 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     build: {
       outDir,
       emptyOutDir: true,
-      manifest: false,
+      manifest: true,
       rollupOptions: {
         input: {
           main: resolve(__dirname, 'src/main.js'),
@@ -41,20 +42,36 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
             )
           ),
         },
+        // output: {
+        //   entryFileNames: 'assets/js/[name].js',
+        //   chunkFileNames: 'assets/js/[name]-[hash].js',
+        //   assetFileNames: (assetInfo: OutputAsset): string => {
+        //     const extType = assetInfo.name
+        //       ? assetInfo.name.split('.').at(-1)
+        //       : '';
+        //     if (extType && /png|jpe?g|svg|gif|avif|webp|ico/i.test(extType)) {
+        //       return `assets/images/[name][extname]`;
+        //     }
+        //     if (extType && /css|scss/.test(extType)) {
+        //       return `assets/css/[name][extname]`;
+        //     }
+        //     return `assets/[ext]/[name][extname]`;
+        //   },
+        // },
         output: {
-          entryFileNames: 'assets/js/[name].js',
+          entryFileNames: 'assets/js/[name].[hash].js',
           chunkFileNames: 'assets/js/[name]-[hash].js',
           assetFileNames: (assetInfo: OutputAsset): string => {
             const extType = assetInfo.name
               ? assetInfo.name.split('.').at(-1)
               : '';
             if (extType && /png|jpe?g|svg|gif|avif|webp|ico/i.test(extType)) {
-              return `assets/images/[name][extname]`;
+              return `assets/images/[name].[hash][extname]`;
             }
             if (extType && /css|scss/.test(extType)) {
-              return `assets/css/[name][extname]`;
+              return `assets/css/[name].[hash][extname]`;
             }
-            return `assets/[ext]/[name][extname]`;
+            return `assets/[ext]/[name].[hash][extname]`;
           },
         },
       },
@@ -63,6 +80,11 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
     } as OutputOptions,
 
     plugins: [
+      liveReload([
+        `${outDir}/**/*.php`,
+        `${outDir}/**/*.css`,
+        `${outDir}/**/*.js`,
+      ]),
       scssManager({
         scssDir: 'src/assets/scss',
         globalFile: 'global/_index.scss',
@@ -105,14 +127,14 @@ export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
       },
     ],
 
-    css: {
-      devSourcemap: true,
-      preprocessorOptions: {
-        scss: {
-          additionalData: `$env: ${mode};`,
-        },
-      },
-    },
+    // css: {
+    //   devSourcemap: true,
+    //   preprocessorOptions: {
+    //     scss: {
+    //       additionalData: `$env: ${mode};`,
+    //     },
+    //   },
+    // },
 
     optimizeDeps: {
       exclude: ['fsevents'],

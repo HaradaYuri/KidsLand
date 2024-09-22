@@ -17,7 +17,7 @@
 
     <!-- css -->
     <!--?php wp_enqueue_style('style-0', get_template_directory_uri() . '/https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css'); ?-->
-    <!--?php wp_enqueue_style('style-1', get_template_directory_uri() . '/./assets/style/style.scss'); ?-->
+    <!-- <link rel="stylesheet" href="./assets/style/style.scss" /> -->
 
     <!-- font -->
   </head>
