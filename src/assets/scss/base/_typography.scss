@@ -1,45 +1,47 @@
 @use '../global' as *;
 
-.txtl {
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 40px;
-  letter-spacing: 0.1em;
-
-  @include mq(sp) {
-  }
+.txts-en {
+  font-family: $font-en;
+  font-weight: 900;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: 0.2em;
+  text-align: center;
 }
+
+// .txtl {
+//   font-size: 28px;
+//   font-weight: 600;
+//   line-height: 40px;
+//   letter-spacing: 0.1em;
+
+//   @include mq(sp) {
+//   }
+// }
 
 .txtm {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
+  font-family: $font-main;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.2em;
+  text-align: center;
 
   @include mq(sp) {
-  }
-}
-
-.txtm300 {
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 1.5;
-  letter-spacing: 0.1em;
-
-  @include mq(sp) {
+    font-size: 16px;
+    text-align: left;
   }
 }
 
 .txts {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.5;
-  letter-spacing: 0.15em;
-
-  &.bold {
-    font-weight: 600;
-  }
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.1em;
+  text-align: left;
 
   @include mq(sp) {
+    font-size: 14px;
   }
 }

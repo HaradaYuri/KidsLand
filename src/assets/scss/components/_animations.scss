@@ -1,23 +1,23 @@
 @use '../global' as *;
 
-@keyframes fadeIn {
-  0% {
+// fadeUp
+.fadeUp {
+  animation-name: fadeUpAnime;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeUpAnime {
+  from {
     opacity: 0;
+    transform: translateY(100px);
   }
-  100% {
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.fadeIn {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+.fadeUpTrigger {
+  opacity: 0;
 }

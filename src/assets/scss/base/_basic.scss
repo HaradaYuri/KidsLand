@@ -16,7 +16,6 @@ html {
 
 body {
   font-family: $font-main;
-  line-height: 1.5;
   text-align: center;
 
   background-color: $bgColorLight;
@@ -36,7 +35,7 @@ picture {
 a {
   text-decoration: none;
   transition: $transition;
-  color: $textColorDark;
+  color: $textColor;
 
   &:hover,
   &:focus {
@@ -50,5 +49,5 @@ h3,
 p,
 a,
 span {
-  color: $textColorDark;
+  color: $textColor;
 }
