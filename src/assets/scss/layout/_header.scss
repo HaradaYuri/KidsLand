@@ -1,21 +1,45 @@
 @use '../global' as *;
 
 .header {
+  width: 100%;
+  height: 252px;
+  padding-top: 96px;
+  @include centerAbsolute;
+
   &__nav {
+    width: 100%;
+    height: 252px;
     background-image: url(../images/header.png);
+    background-size: cover;
+    background-position: center;
+
+    @include mq(sp) {
+      background-image: url(../images/header-sp.png);
+    }
   }
 
   &__list {
-    width: min(calc((1280 / 1440) * 100vw), 1280px);
-    height: 120px;
-    margin: auto;
+    width: calc((1280 / 1440) * 100vw);
+    margin: 0 auto;
+    padding-top: 96px;
 
     @include centerFlex;
+
+    @include mq(xl) {
+      width: 100%;
+    }
+    @include mq(sp) {
+      display: none;
+    }
   }
 
   &__item {
     position: relative;
+    height: 120px;
 
+    @include centerFlex;
+
+    // 縦線
     &::before {
       content: '';
       position: absolute;
@@ -37,19 +61,23 @@
     }
   }
 
+  // 丸ぽち
   &__circle,
   &__circle--right {
     position: absolute;
     top: 0;
-    left: -3.3px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: $textColor;
 
     &:nth-child(odd) {
-      top: 100%;
+      top: 95%;
     }
+  }
+
+  &__circle {
+    left: -3.3px;
   }
 
   &__circle--right {
@@ -57,7 +85,7 @@
   }
 
   &__link {
-    width: 150px;
+    width: min(calc((150 / 1440) * 100vw), 150px);
     margin: 0 6.6px;
 
     display: flex;
@@ -65,7 +93,7 @@
     align-items: center;
 
     &--logo {
-      width: 280px;
+      width: min(calc((280 / 1440) * 100vw), 280px);
     }
   }
 

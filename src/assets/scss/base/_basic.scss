@@ -18,8 +18,16 @@ body {
   font-family: $font-main;
   text-align: center;
 
+  background-image: url(../images/bg.png);
   background-color: $bgColorLight;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   overflow-x: hidden;
+  @include mq(sp) {
+    background-image: url(../images/bg-sp.png);
+  }
 }
 
 img {
