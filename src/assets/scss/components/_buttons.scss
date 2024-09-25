@@ -2,63 +2,66 @@
 
 .btn {
   &-primary {
+    position: relative;
     @include centerFlex;
-
     cursor: pointer;
+
+    width: 240px;
+    height: 60px;
+    margin: auto;
+
+    background-color: $bgColorLight;
+    border-radius: 30px;
+    border: 2px solid #55000c;
+
     color: $textColor;
-    padding: 11px 40px;
-    background-color: $accentLight;
-    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.1em;
 
-    &:hover,
-    &:focus {
-    }
-
-    @include mq(sp) {
-    }
-  }
-
-  &-conversion {
-    max-width: 1028px;
-    width: 100%;
-    @include centerFlex;
-
-    cursor: pointer;
-    padding: 30px 120px;
-    background-color: #da6b64;
-    border-radius: 50px;
-    color: #fff;
-
-    text-decoration: line-through;
-  }
-
-  &-topback {
-    width: 80px;
-    height: 80px;
-
-    position: fixed;
-    z-index: 3000;
-    bottom: 60px;
-    right: 2.7%;
-
-    @include centerFlex;
-    cursor: pointer;
+    // &:hover,
+    // &:focus {
+    // }
 
     @include mq(sp) {
-      width: 40px;
-      height: 40px;
-
-      bottom: 88px;
-      right: 6.7%;
     }
 
     i {
-      font-size: 36px;
-      color: #abb8c3;
-
-      @include mq(sp) {
-        font-size: 20px;
-      }
+      position: absolute;
+      font-size: 20px;
+      top: 30%;
+      right: 24px;
     }
   }
+
+  // &-topback {
+  //   width: 80px;
+  //   height: 80px;
+
+  //   position: fixed;
+  //   z-index: 3000;
+  //   bottom: 60px;
+  //   right: 2.7%;
+
+  //   @include centerFlex;
+  //   cursor: pointer;
+
+  //   @include mq(sp) {
+  //     width: 40px;
+  //     height: 40px;
+
+  //     bottom: 88px;
+  //     right: 6.7%;
+  //   }
+
+  //   i {
+  //     font-size: 36px;
+  //     color: #abb8c3;
+
+  //     @include mq(sp) {
+  //       font-size: 20px;
+  //     }
+  //   }
+  // }
 }

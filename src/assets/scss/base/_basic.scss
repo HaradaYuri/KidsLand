@@ -8,6 +8,7 @@
   padding: 0;
   border: 0;
   vertical-align: baseline;
+
 }
 
 html {
@@ -21,7 +22,7 @@ body {
   background-image: url(../images/bg.png);
   background-color: $bgColorLight;
   background-size: cover;
-  background-position: center;
+  background-position: center 0px;
   background-repeat: no-repeat;
 
   overflow-x: hidden;

@@ -1,0 +1,15 @@
+@use '../global' as *;
+
+.welcome {
+  margin-top: 116px;
+
+  &__title{
+    margin-bottom: 64px;
+  }
+
+  &__text{
+    &:first-of-type{
+      margin-bottom: 16px;
+    }
+  }
+}

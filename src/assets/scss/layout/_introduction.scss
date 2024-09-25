@@ -1,0 +1,37 @@
+@use '../global' as *;
+.introduction {
+  margin-top: 120px;
+
+  &__title {
+    margin-bottom: 72px;
+  }
+
+  &__prefectures {
+    width: 1080px;
+    margin: auto;
+    margin-bottom: 54px;
+
+    @include centerFlex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  &__block {
+    @include centerFlex;
+    width: 320px;
+    height: 60px;
+
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: 2px solid #ffedf0;
+
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.1em;
+  }
+
+  &__btn{
+    margin: auto;
+  }
+}

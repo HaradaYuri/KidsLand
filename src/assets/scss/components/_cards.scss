@@ -1,0 +1,69 @@
+@use '../global' as *;
+.cards {
+  &__container {
+    width: 1080px;
+    margin: auto;
+
+    @include centerFlex;
+    flex-wrap: wrap;
+    gap: 51px;
+  }
+
+  &-letter {
+    width: 320px;
+    height: 280px;
+
+    border-radius: 20px;
+    background-color: $bgColorLight;
+
+    img {
+      height: 135px;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .text__block {
+      margin: 12px;
+
+      & > * {
+        color: $textDark;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        text-align: left;
+      }
+
+      &-title {
+        margin-bottom: 12px;
+
+        font-size: 18px;
+        line-height: 27px;
+        text-align: left;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &-desc {
+        margin-bottom: 12px;
+
+        font-size: 16px;
+        line-height: 24px;
+        text-align: left;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &-date {
+        font-size: 14px;
+        line-height: 21px;
+        text-align: right;
+      }
+    }
+  }
+}

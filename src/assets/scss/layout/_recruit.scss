@@ -1,0 +1,48 @@
+@use '../global' as *;
+.recruit {
+  height: 634px;
+
+  background-image: url(../images/top-recruit__bg.png);
+  background-size: cover;
+  background-position: center;
+
+  @include mq(sp) {
+    background-image: url(../images/top-recruit__bg-sp.png);
+  }
+
+  &__container {
+    margin: 5px auto 0;
+
+    width: 1080px;
+    height: 483px;
+    border-radius: 40px;
+    background-color: rgb(255, 255, 255,0.9);
+    // opacity: 0.9;
+
+    & * {
+      opacity: unset;
+    }
+  }
+  &__title {
+    margin-top: 64px;
+  }
+  &__text {
+    margin-top: 48px;
+    letter-spacing: 0.1em;
+  }
+
+  &__btn-wrapper {
+    gap: 36px;
+  }
+
+  &__btn {
+    margin: 39px 0 0;
+
+    &:first-child {
+      background-color: $secondary;
+    }
+    &:last-child {
+      background-color: $accentLight;
+    }
+  }
+}

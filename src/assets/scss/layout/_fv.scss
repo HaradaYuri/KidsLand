@@ -1,10 +1,93 @@
 @use '../global' as *;
 
 .fv {
+  position: relative;
+  margin-top: 200px;
+
   &__image {
     width: calc((1280 / 1440) * 100vw);
     height: 540px;
 
     border-radius: 120px;
+  }
+
+  &__title {
+    &-text {
+      position: absolute;
+      top: 244px;
+      left: 176px;
+      z-index: 10;
+
+      font-family: $font-design;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 2;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+
+    &-image {
+      width: 516px;
+      height: 413.61px;
+
+      position: absolute;
+      top: 110px;
+      left: 116px;
+
+      // filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.8));
+
+      filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2))
+        drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.5))
+        drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.5));
+    }
+  }
+
+  // news
+  &__news {
+    position: absolute;
+    bottom: 34px;
+    right: 32px;
+
+    width: 240px;
+    height: 120px;
+    padding: 16px 16px 18px;
+
+    border-radius: 20px;
+    background-color: #fff7b8;
+    filter: drop-shadow(4px 4px 20px rgba(0, 0, 0, 0.1));
+
+    font-weight: 400;
+    letter-spacing: 0.1em;
+
+    &-header {
+      margin-bottom: 8px;
+
+      font-size: 20px;
+      line-height: 1;
+      text-align: left;
+    }
+
+    &-title {
+      margin-bottom: 4px;
+
+      font-size: 14px;
+      line-height: 21px;
+      text-align: left;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      
+    }
+
+    &-date {
+      // letter-spacing: 0.04em;
+
+      font-size: 12px;
+      line-height: 12px;
+      text-align: right;
+    }
   }
 }

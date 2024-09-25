@@ -2,8 +2,7 @@
 
 .flex {
   &-row {
-    display: flex;
-    justify-content: space-between;
+    @include centerFlex;
     flex-wrap: wrap;
   }
 
@@ -13,14 +12,14 @@
   }
 
   &-rc {
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
+    // margin: auto;
+
+    @include centerFlex;
     flex-wrap: wrap;
 
-    & > * {
-      flex: 1;
-    }
+    // & > * {
+    //   flex: 1;
+    // }
 
     @include mq(pc) {
       flex-direction: column;
