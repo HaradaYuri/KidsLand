@@ -17,6 +17,7 @@
     background-size: cover;
   }
   @include mq(sp) {
+    // position: relative;
     height: 154px;
 
     background-image: url(../images/header-sp.png);

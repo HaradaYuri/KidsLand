@@ -44,33 +44,100 @@
     }
   }
 
-  // &-topback {
-  //   width: 80px;
-  //   height: 80px;
+  &-topback {
+    width: 72px;
+    height: 72px;
 
-  //   position: fixed;
-  //   z-index: 3000;
-  //   bottom: 60px;
-  //   right: 2.7%;
+    position: fixed;
+    z-index: 3000;
+    bottom: 30px;
+    right: 2.2%;
 
-  //   @include centerFlex;
-  //   cursor: pointer;
+    @include centerFlex;
+    cursor: pointer;
 
-  //   @include mq(sp) {
-  //     width: 40px;
-  //     height: 40px;
+    border-radius: 50px;
+    background-color: $bgColorLight;
+    box-shadow: 4px 4px 30px 0px #0000000d;
 
-  //     bottom: 88px;
-  //     right: 6.7%;
-  //   }
+    @include mq(sp) {
+      width: 48px;
+      height: 48px;
 
-  //   i {
-  //     font-size: 36px;
-  //     color: #abb8c3;
+      bottom: 14px;
+      right: 3.7%;
+    }
 
-  //     @include mq(sp) {
-  //       font-size: 20px;
-  //     }
-  //   }
-  // }
+    i {
+      font-size: 36px;
+      color: $textColor;
+
+      @include mq(sp) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  // menu for SP
+  &-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    width: 48px;
+    height: 48px;
+
+    border: 2px solid $textColor;
+    border-radius: 50%;
+    background-color: transparent;
+
+    cursor: pointer;
+    overflow: hidden;
+
+    &__icon {
+      margin-top: 8px;
+    }
+
+    &__line {
+      width: 25px;
+      height: 2px;
+      background-color: $textColor;
+      margin-top: 6px;
+      transition: all 0.3s ease;
+    }
+
+    &__text {
+      transition: opacity 0.3s ease;
+    }
+
+    &--active {
+      .btn-menu__line {
+        &:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+      }
+
+      .btn-menu__text {
+        opacity: 0;
+      }
+
+      &::after {
+        content: 'closed';
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+        color: #800000;
+      }
+    }
+  }
 }
