@@ -12,16 +12,10 @@
   }
 
   &-rc {
-    // margin: auto;
-
     @include centerFlex;
     flex-wrap: wrap;
 
-    // & > * {
-    //   flex: 1;
-    // }
-
-    @include mq(pc) {
+    @include mq(sp) {
       flex-direction: column;
       width: 80%;
     }

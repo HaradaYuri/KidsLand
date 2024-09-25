@@ -2,13 +2,32 @@
 
 .fv {
   position: relative;
+  margin: 0 auto;
   margin-top: 200px;
+  max-width: 1440px;
+
+  @include mq(sp) {
+    margin-top: 126px;
+  }
 
   &__image {
-    width: calc((1280 / 1440) * 100vw);
+    margin: auto;
+    width: min(calc((1280 / 1440) * 100vw), 1280px);
     height: 540px;
 
     border-radius: 120px;
+
+    background-image: url(../images/fv.png);
+    background-size: cover;
+    background-position: center;
+
+    @include mq(sp) {
+      background-image: url(../images/fv-sp.png);
+
+      width: min(calc((300 / 375) * 100vw), 300px);
+      height: 540px;
+      border-radius: 60px;
+    }
   }
 
   &__title {
@@ -24,6 +43,21 @@
       line-height: 2;
       letter-spacing: 0.1em;
       text-align: left;
+
+      @include mq(sp) {
+        font-size: 24px;
+
+        top: 89px;
+        left: 70px;
+      }
+
+      span {
+        font-size: 36px;
+
+        @include mq(sp) {
+          font-size: 20px;
+        }
+      }
     }
 
     &-image {
@@ -34,11 +68,17 @@
       top: 110px;
       left: 116px;
 
-      // filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.8));
-
       filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2))
         drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.5))
         drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.5));
+
+      @include mq(sp) {
+        width: 272px;
+        height: 218px;
+
+        top: 28px;
+        left: 50px;
+      }
     }
   }
 
@@ -46,6 +86,7 @@
   &__news {
     position: absolute;
     bottom: 34px;
+    left: auto;
     right: 32px;
 
     width: 240px;
@@ -59,12 +100,25 @@
     font-weight: 400;
     letter-spacing: 0.1em;
 
+    @include mq(sp) {
+      height: 110px;
+
+      bottom: 24px;
+      left: 25px;
+      right: auto;
+
+    }
+
     &-header {
       margin-bottom: 8px;
 
       font-size: 20px;
       line-height: 1;
       text-align: left;
+
+      @include mq(sp) {
+        font-size: 16px;
+      }
     }
 
     &-title {
@@ -79,15 +133,21 @@
       -webkit-line-clamp: 2;
       overflow: hidden;
       text-overflow: ellipsis;
-      
+
+      @include mq(sp) {
+        font-size: 12px;
+        line-height: 18px;
+      }
     }
 
     &-date {
-      // letter-spacing: 0.04em;
-
       font-size: 12px;
-      line-height: 12px;
+      line-height: 1;
       text-align: right;
+
+      @include mq(sp) {
+        font-size: 10px;
+      }
     }
   }
 }

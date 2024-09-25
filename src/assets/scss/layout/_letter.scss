@@ -2,7 +2,6 @@
 
 .letter {
   position: relative;
-  height: 1064px;
   margin-top: 108px;
   padding-bottom: 120px;
 
@@ -10,6 +9,11 @@
   background-size: cover;
   background-position: center 50px;
   background-repeat: no-repeat;
+
+  @include mq(sp) {
+    margin-top: 80px;
+    padding-bottom: 80px;
+  }
 
   &::before,
   &::after {
@@ -29,6 +33,10 @@
   &::before {
     top: 49px;
     z-index: -1;
+
+    @include mq(sp) {
+      top: 40px;
+    }
   }
   &::after {
     top: 100%;
@@ -37,6 +45,10 @@
   &__title {
     margin-bottom: 42px;
 
+    @include mq(sp) {
+      margin-bottom: 62px;
+
+    }
     img {
       z-index: 10;
     }
@@ -44,6 +56,9 @@
 
   &__cards {
     margin-bottom: 62px;
+    @include mq(sp) {
+      margin-bottom: 37px;
+    }
   }
 
   &__btn {

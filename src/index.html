@@ -59,6 +59,7 @@
     </a> -->
 
     <header class="header">
+      <!-- header for PC -->
       <nav class="header__nav">
         <ul class="header__list">
           <li class="header__item">
@@ -153,19 +154,26 @@
             </a>
           </li>
         </ul>
+
+        <!-- header for SP -->
+        <h1>
+          <img
+            src="./assets/images/logo.png"
+            alt="桜のこもれびキッズランド"
+            class="header__logo-sp"
+          />
+        </h1>
       </nav>
     </header>
 
     <!-- fv starts here -->
     <section class="fv">
-      <img
-        src="./assets/images/fv.png"
-        alt="一人ひとりの輝きが、未来を彩る"
-        class="fv__image"
-      />
+      <div class="fv__image"></div>
 
       <div class="fv__title">
-        <h2 class="fv__title-text">一人ひとりの輝きが、<br />未来を彩る</h2>
+        <h2 class="fv__title-text">
+          一人ひとり<span>の</span>輝きが、<br />未来を彩る
+        </h2>
         <img src="./assets/images/Vector.svg" alt="" class="fv__title-image" />
       </div>
 
@@ -198,14 +206,17 @@
 
         <p class="welcome__text txtm">
           「こもれび」とは<br />
-          風に揺れる木の葉によって生み出される光と影の揺らめきを表すことばです。<br />
+          風に揺れる木の葉によって生み出される<br class="sp"/>
+          光と影の揺らめきを表すことばです。<br />
           それはその瞬間に一度だけ存在します。
         </p>
         <p class="welcome__text txtm">
           桜のこもれびキッズランドは、<br />
-          子どもたち一人ひとりが独自の輝きを放つように、<br />
+          子どもたち一人ひとりが<br class="sp">
+          独自の輝きを放つように、<br />
           大切な個性を伸ばす場所です。<br />
-          温かく包み込むような雰囲気の中で、安心して成長できる環境を提供し、<br />
+          温かく包み込むような雰囲気の中で、<br class="sp">
+          安心して成長できる環境を提供し、<br />
           笑顔あふれる毎日をお約束します。<br />
         </p>
       </section>
@@ -379,7 +390,8 @@
           </div>
 
           <p class="recruit__text txtm">
-            桜のこもれびキッズランドで働いてみませんか？
+            桜のこもれびキッズランドで<br class="sp">
+            働いてみませんか？
           </p>
 
           <div class="recruit__btn-wrapper flex-rc">
@@ -400,7 +412,7 @@
     <!-- main /ends here -->
 
     <!-- footer starts here -->
-    <footer class="footer flex-col">
+    <footer class="footer">
       <img
         loading="lazy"
         src="./assets/images/logo.png"
@@ -412,7 +424,7 @@
         <ul class="footer__list">
           <li class="footer__item">
             <a href="page-about.html" class="footer__link">
-              <span class="footer__text">わたしたちのこと</span>
+              <span class="footer__text">私たちのこと</span>
             </a>
           </li>
           <li class="footer__item">
@@ -440,7 +452,6 @@
               <span class="footer__text">お問い合わせ</span>
             </a>
           </li>
-
           <li class="footer__item">
             <a href="page-sitemap.html" class="footer__link">
               <span class="footer__text">サイトマップ</span>
@@ -451,11 +462,12 @@
               <span class="footer__text">プライバシーポリシー</span>
             </a>
           </li>
-
-
         </ul>
       </nav>
-      <p>&copy;桜のこもれびキッズランド All Rights Reserved.</p>
+
+      <p class="footer__copyright">
+        <span>&copy;</span>桜のこもれびキッズランド All Rights Reserved.
+      </p>
     </footer>
     <!-- footer /ends here -->
 

@@ -1,21 +1,52 @@
 @use '../global' as *;
 
 .footer {
-  height: 170px;
+  height: 306px;
+  background: linear-gradient(180deg, #fffef3 0%, #fff7b8 100%);
 
-  position: relative;
-  padding: 40px;
-  background-color: #ececec;
-  text-align: center;
+  &__logo {
+    width: 240px;
+    margin-top: 48px;
+  }
+  &__nav {
+  }
 
-  span {
+  &__list {
     margin: auto;
-    margin-left: 8px;
+    margin-top: 40px;
+    width: min(calc((970 / 1440) * 100vw), 970px);
 
-    font-size: 27px;
-    line-height: 35px;
+    @include centerFlex;
+    flex-wrap: wrap;
+    gap: 24px 0;
+  }
 
-    @include mq(pc) {
+  &__item {
+  }
+
+  &__link {
+    padding: 0 26px;
+    display: block;
+  }
+
+  &__text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    letter-spacing: 0.1em;
+  }
+
+  &__copyright {
+    margin-top: 48px;
+    color: $textDark;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.8px;
+    letter-spacing: 0.1em;
+
+    & span {
+      font-size: 24px;
+      vertical-align: top;
     }
   }
 }
