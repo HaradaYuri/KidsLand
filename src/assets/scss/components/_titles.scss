@@ -102,5 +102,16 @@
       line-height: 1;
       text-transform: capitalize;
     }
+
+    &-jp-sub {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.1em;
+
+      span{
+
+      }
+    }
   }
 }

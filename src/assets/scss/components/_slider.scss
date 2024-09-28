@@ -1,0 +1,23 @@
+@use '../global' as *;
+
+.slider {
+  width: 100%;
+  margin: 0 auto;
+
+  &__item {
+    margin: 0 6px;
+
+    img {
+      width: 240px;
+      height: auto;
+      border-radius: 20px;
+
+      // object-fit: cover;
+    }
+  }
+}
+
+/* Slick のデフォルトスタイルの一部をオーバーライド */
+// .slick-list {
+//   margin: 0 -10px;
+// }

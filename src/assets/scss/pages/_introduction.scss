@@ -1,4 +1,6 @@
 @use '../global' as *;
+
+// taxonomy-introduction
 .p-introduction {
   // bg-pink-dash
   padding-bottom: 80px;
@@ -96,6 +98,11 @@
         background-color: $primary;
         color: $bgColorLight;
       }
+
+      // for prefecture
+      &--small {
+        width: 150px;
+      }
     }
   }
 
@@ -114,6 +121,64 @@
 
     @include mq(sp) {
       margin-top: 0;
+    }
+  }
+}
+// taxonomy-introduction /ends here
+
+// single-introduction
+.introduction-content {
+  margin: auto;
+  margin-top: 113px;
+  max-width: 1110px;
+  padding: 0 14px;
+
+  @include mq(pc) {
+    max-width: 700px;
+  }
+
+  @include mq(sp) {
+    margin-top: 90px;
+  }
+
+  img {
+    max-width: 800px;
+    border-radius: 40px;
+
+    @include mq(sp) {
+      width: min(calc((345 / 375) * 100vw), 500px);
+      border-radius: 20px;
+    }
+
+    @include mq(xs) {
+      width: 310px;
+    }
+  }
+  &__heading {
+    margin-top: 32px;
+
+    color: $textColor;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.2em;
+
+    @include mq(sp) {
+      margin-top: 22px;
+
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
+
+  &__text {
+    margin-top: 16px;
+    @include mq(pc) {
+      text-align: left;
+    }
+    @include mq(sp) {
+      margin-top: 13px;
+      font-size: 16px;
     }
   }
 }

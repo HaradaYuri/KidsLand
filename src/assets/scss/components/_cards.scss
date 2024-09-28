@@ -1,7 +1,8 @@
 @use '../global' as *;
 .cards {
   &__container {
-    max-width: 1080px;
+    // max-width: 1080px;
+    max-width: 1120px;
     margin: auto;
     padding: 0 20px;
 
@@ -38,7 +39,6 @@
       }
     }
   }
-  
 
   // letter
   &-letter {
@@ -169,6 +169,17 @@
 
     background-color: $secondary;
 
+    // color depends on the data-type
+    &[data-type='authorized'] {
+      background-color: $secondary;
+    }
+    &[data-type='small-scale'] {
+      background-color: $accentLight;
+    }
+    &[data-type='small-scale-a'] {
+      background-color: #edf4ff;
+    }
+
     img {
       width: 296px;
       height: 180px;
@@ -193,7 +204,6 @@
         letter-spacing: 0.1em;
 
         @include mq(sp) {
-          
           font-size: 18px;
           line-height: 27px;
         }
