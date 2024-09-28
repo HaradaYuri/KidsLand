@@ -45,6 +45,8 @@
   }
 
   &-topback {
+    opacity: 0;
+
     width: 72px;
     height: 72px;
 
@@ -59,6 +61,7 @@
     border-radius: 50px;
     background-color: $bgColorLight;
     box-shadow: 4px 4px 30px 0px #0000000d;
+
 
     @include mq(sp) {
       width: 48px;
@@ -80,40 +83,53 @@
 
   // menu for SP
   &-menu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    display: none;
 
-    width: 48px;
-    height: 48px;
+    @include mq(sp) {
+      display: block;
 
-    border: 2px solid $textColor;
-    border-radius: 50%;
-    background-color: transparent;
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 10000;
 
-    cursor: pointer;
-    overflow: hidden;
+      width: 48px;
+      height: 48px;
 
-    &__icon {
-      margin-top: 8px;
+      border: 1px solid $textColor;
+      border-radius: 50%;
+      background-color: transparent;
+
+      cursor: pointer;
+      overflow: hidden;
     }
 
     &__line {
       width: 25px;
       height: 2px;
       background-color: $textColor;
-      margin-top: 6px;
+      margin-top: 4px;
       transition: all 0.3s ease;
     }
 
     &__text {
+      letter-spacing: 0;
       transition: opacity 0.3s ease;
     }
 
-    &--active {
+    &__text--closed {
+      display: none;
+    }
+
+    &.active {
+      font-family: $font-main;
+
       .btn-menu__line {
+        width: 32px;
+
         &:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
+          transform: translateY(5px) rotate(25deg);
+          margin-top: 1px;
         }
 
         &:nth-child(2) {
@@ -121,22 +137,19 @@
         }
 
         &:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+          transform: translateY(-6px) rotate(-25deg);
+          margin-top: 3px;
         }
       }
 
       .btn-menu__text {
         opacity: 0;
-      }
+        display: none;
 
-      &::after {
-        content: 'closed';
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 14px;
-        color: #800000;
+        &--closed {
+          opacity: 1;
+          display: block;
+        }
       }
     }
   }

@@ -1,9 +1,16 @@
 @use '../global' as *;
 
+.xl {
+  display: none;
+  @include mq(xl) {
+    display: block;
+  }
+}
+
 .pc {
-  display: block;
-  @include mq(sp) {
-    display: none;
+  display: none;
+  @include mq(pc) {
+    display: block;
   }
 }
 

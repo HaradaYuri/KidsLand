@@ -5,6 +5,7 @@
   margin: 0 auto;
   margin-top: 200px;
   max-width: 1440px;
+  overflow-x: hidden;
 
   @include mq(sp) {
     margin-top: 126px;
@@ -24,7 +25,7 @@
     @include mq(sp) {
       background-image: url(../images/fv-sp.png);
 
-      width: min(calc((300 / 375) * 100vw), 300px);
+      width: min(calc((300 / 375) * 100vw), 450px);
       height: 540px;
       border-radius: 60px;
     }
@@ -44,6 +45,12 @@
       letter-spacing: 0.1em;
       text-align: left;
 
+      @include mq(pc) {
+        top: 200px;
+        left: 47px;
+        font-size: 38px;
+      }
+
       @include mq(sp) {
         font-size: 24px;
 
@@ -53,6 +60,10 @@
 
       span {
         font-size: 36px;
+
+        @include mq(pc) {
+          font-size: 34px;
+        }
 
         @include mq(sp) {
           font-size: 20px;
@@ -71,6 +82,12 @@
       filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2))
         drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.5))
         drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.5));
+
+      @include mq(pc) {
+        left: 20px;
+        width: 410px;
+        height: 330px;
+      }
 
       @include mq(sp) {
         width: 272px;
@@ -106,7 +123,6 @@
       bottom: 24px;
       left: 25px;
       right: auto;
-
     }
 
     &-header {
@@ -150,4 +166,16 @@
       }
     }
   }
+}
+
+.page-fv {
+  width: 100%;
+  height: 100vh;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  visibility: hidden;
 }

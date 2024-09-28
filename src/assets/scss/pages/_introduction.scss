@@ -1,0 +1,119 @@
+@use '../global' as *;
+.p-introduction {
+  // bg-pink-dash
+  padding-bottom: 80px;
+
+  @include mq(sp) {
+    margin-top: 66px;
+  }
+
+  // tabs
+  .search__tabs {
+    margin-top: 60px;
+
+    @include centerFlex;
+    gap: 8px;
+
+    @include mq(sp) {
+      margin-top: 68px;
+    }
+
+    .search__tab {
+      padding-top: 7px;
+      width: 149px;
+      height: 50px;
+
+      border-radius: 12px 12px 0px 0px;
+      border: 1px solid $primary;
+      border-bottom: none;
+      background-color: $bgColorLight;
+      color: $primary;
+
+      @include mq(sp) {
+        width: 120px;
+        height: 40px;
+
+        line-height: 1;
+      }
+
+      &.active {
+        background-color: $primary;
+        color: $bgColorLight;
+      }
+
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.8px;
+        letter-spacing: 0.1em;
+
+        color: inherit;
+
+        @include mq(sp) {
+          font-size: 12px;
+          line-height: 14.4px;
+        }
+      }
+    }
+  }
+
+  // filters
+  .search__filters {
+    margin-bottom: 10px;
+    width: 100%;
+
+    @include centerFlex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    @include mq(pc) {
+      justify-content: center;
+    }
+
+    @include mq(sp) {
+      margin-bottom: 3px;
+      justify-content: flex-start;
+    }
+
+    .search__filter {
+      @include centerFlex;
+
+      width: 200px;
+      height: 35px;
+
+      border-radius: 8px;
+      border: 1px solid $primary;
+      background-color: $bgColorLight;
+      color: $primary;
+
+      @include mq(sp) {
+        width: 150px;
+        height: 33px;
+      }
+
+      &.active {
+        background-color: $primary;
+        color: $bgColorLight;
+      }
+    }
+  }
+
+  // cards
+  .introduction__cards {
+    // width: auto;
+    padding: 60px 40px;
+    @include mq(sp) {
+      padding: 24px 12px;
+    }
+  }
+
+  // pagination
+  .pagination {
+    margin-top: 13px;
+
+    @include mq(sp) {
+      margin-top: 0;
+    }
+  }
+}

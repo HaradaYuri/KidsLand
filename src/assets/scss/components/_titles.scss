@@ -53,3 +53,54 @@
     letter-spacing: 0.2em;
   }
 }
+
+.page-heading {
+  margin-top: 300px;
+
+  @include mq(sp) {
+    margin-top: 188px;
+  }
+
+  &__container {
+    position: relative;
+    margin: auto;
+    @include centerFlex;
+
+    width: min(calc((1080 / 1440) * 100vw), 1080px);
+    min-width: 750px;
+    height: 160px;
+
+    background-image: url(../images/page-heading.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include mq(sp) {
+      background-image: url(../images/page-heading-sp.svg);
+
+      width: min(calc((345 / 375) * 100vw), 345px);
+      min-width: 300px;
+      height: 120px;
+    }
+  }
+  &__text {
+    &-jp {
+      margin-bottom: 16px;
+
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.1em;
+
+      @include mq(sp) {
+        margin-bottom: 12px;
+        font-size: 20px;
+      }
+    }
+
+    &-en {
+      line-height: 1;
+      text-transform: capitalize;
+    }
+  }
+}

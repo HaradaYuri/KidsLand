@@ -13,15 +13,37 @@
   background-position: center;
 
   background-repeat: repeat-x;
+
   @include mq(xl) {
     background-size: cover;
   }
-  @include mq(sp) {
-    // position: relative;
-    height: 154px;
 
+  @include mq(sp) {
+    height: 154px;
     background-image: url(../images/header-sp.png);
     background-size: contain;
+    overflow: hidden;
+  }
+
+  &__nav {
+    &.active {
+      @include mq(sp) {
+        position: fixed;
+        top: 427px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: min(calc((345 / 375) * 100vw), 600px);
+
+        border-radius: 40px;
+        background: #ffffffcc;
+        backdrop-filter: blur(5px);
+      }
+
+      @include mq(xs) {
+        width: 100%;
+      }
+    }
   }
 
   &__list {
@@ -36,6 +58,21 @@
     }
     @include mq(sp) {
       display: none;
+    }
+
+    &.active {
+      @include mq(sp) {
+        display: flex;
+        gap: 32px 15px;
+        flex-wrap: wrap;
+        padding: 150px 15px;
+      }
+
+      @include mq(xs) {
+        gap: 18px 8px;
+        padding: 0;
+        padding-top: 150px;
+      }
     }
   }
 
@@ -53,6 +90,10 @@
       left: 0%;
       height: 100%;
       border: 0.9px dashed $textColor;
+
+      @include mq(sp) {
+        display: none;
+      }
     }
 
     &:last-child {
@@ -63,6 +104,16 @@
         right: 0%;
         height: 100%;
         border: 0.8px dashed $textColor;
+
+        @include mq(sp) {
+          display: none;
+        }
+      }
+    }
+
+    &--logo {
+      @include mq(sp) {
+        display: none;
       }
     }
   }
@@ -79,6 +130,10 @@
 
     &:nth-child(odd) {
       top: 95%;
+    }
+
+    @include mq(sp) {
+      display: none;
     }
   }
 
@@ -98,11 +153,19 @@
     flex-direction: column;
     align-items: center;
 
+    @include mq(sp) {
+      width: 150px;
+      height: 119px;
+      margin: 0;
+
+      border-radius: 12px;
+      border: 1px solid $textColor;
+
+      justify-content: center;
+    }
+
     &--logo {
       width: min(calc((280 / 1440) * 100vw), 280px);
-
-      @include mq(sp) {
-      }
     }
   }
 
@@ -114,6 +177,18 @@
 
   &__logo {
     width: 100%;
+
+    &-sp {
+      display: none;
+
+      @include mq(sp) {
+        display: block;
+
+        margin: 47px auto 0;
+        width: 200px;
+        height: 63.37px;
+      }
+    }
   }
 
   &__text {
@@ -124,15 +199,4 @@
     letter-spacing: 0.04em;
   }
 
-  &__logo-sp {
-    display: none;
-    
-    @include mq(sp) {
-      display: block;
-
-      margin: 47px auto 0;
-      width: 200px;
-      height: 63.37px;
-    }
-  }
 }

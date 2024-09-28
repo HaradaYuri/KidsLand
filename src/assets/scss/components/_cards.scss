@@ -3,16 +3,44 @@
   &__container {
     max-width: 1080px;
     margin: auto;
+    padding: 0 20px;
 
     @include centerFlex;
     flex-wrap: wrap;
     gap: 51px;
 
     @include mq(sp) {
+      padding: 0 15px;
       gap: 25px;
     }
-  }
 
+    // bg == bgColorLight
+    &--bgL {
+      width: calc((1080 / 1440) * 100vw);
+      gap: 20px;
+
+      padding: 60px 40px;
+      border-radius: 40px;
+      background-color: $bgColorLight;
+
+      @include mq(pc) {
+        min-width: 85vw;
+      }
+
+      @include mq(sp) {
+        width: min(calc((345 / 375) * 100vw), 600px);
+        min-width: auto;
+        border-radius: 30px;
+      }
+
+      @include mq(xs) {
+        width: 100%;
+      }
+    }
+  }
+  
+
+  // letter
   &-letter {
     width: 320px;
     height: 280px;
@@ -22,6 +50,10 @@
 
     @include mq(sp) {
       width: 300px;
+    }
+
+    @include mq(xs) {
+      width: 280px;
     }
 
     img {
@@ -77,6 +109,111 @@
         font-size: 14px;
         line-height: 21px;
         text-align: right;
+      }
+    }
+  }
+  // letter /ends here
+
+  // yprogram
+  &-yprogram {
+    width: 320px;
+    height: 264px;
+
+    padding: 12px;
+    border-radius: 20px;
+
+    background-color: $secondary;
+
+    img {
+      width: 296px;
+      height: 180px;
+
+      border-radius: 20px;
+    }
+
+    .text__block {
+      text-align: left;
+      margin-left: 6px;
+      margin-top: 8px;
+
+      @include mq(sp) {
+        margin-left: 0;
+      }
+
+      &-month {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0.1em;
+      }
+
+      &-desc {
+        margin-top: 7px;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: 0.1em;
+      }
+    }
+  }
+  // yprogram /ends here
+
+  // introduction
+  &-introduction {
+    width: 320px;
+    height: 272px;
+
+    padding: 12px;
+    border-radius: 20px;
+
+    background-color: $secondary;
+
+    img {
+      width: 296px;
+      height: 180px;
+
+      border-radius: 20px;
+    }
+
+    .card__content {
+      margin-top: 8px;
+      text-align: left;
+
+      @include mq(sp) {
+        margin-left: 0;
+      }
+
+      &-title {
+        margin-top: 8px;
+
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0.1em;
+
+        @include mq(sp) {
+          
+          font-size: 18px;
+          line-height: 27px;
+        }
+      }
+
+      .card__infos {
+        display: flex;
+        gap: 8px;
+
+        .card__info {
+          padding: 4px 8px;
+
+          border-radius: 8px;
+          background-color: $bgColorLight;
+
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1;
+          letter-spacing: 0.1em;
+        }
       }
     }
   }
