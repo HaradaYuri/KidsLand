@@ -182,3 +182,57 @@
     }
   }
 }
+
+// inside(slider)
+.inside {
+  margin-top: 125px;
+  @include mq(sp) {
+    margin-top: 80px;
+  }
+}
+
+// message
+.message {
+  margin-top: 115px;
+  @include mq(sp) {
+    margin-top: 80px;
+  }
+  
+  &__container {
+    margin: 0 auto;
+    margin-top: 54px;
+    padding: 15px;
+    gap: 32px;
+
+    @include mq(sp) {
+      width: 100%;
+      margin-top: 34px;
+    }
+  }
+  &__img {
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+
+    @include mq(sp) {
+      width: 200px;
+      height: 266.67px;
+    }
+  }
+  &__text {
+    max-width: 468px;
+    text-align: left;
+    padding-top: 10px;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 0.1em;
+
+    @include mq(sp) {
+      width: 100%;
+      padding-top: 0;
+      font-size: 14px;
+    }
+  }
+}
