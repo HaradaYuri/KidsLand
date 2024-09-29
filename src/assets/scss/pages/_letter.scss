@@ -1,0 +1,236 @@
+@use '../global' as *;
+.p-letter {
+  &__container {
+    margin-top: 160px;
+    padding: 0 60px;
+    padding-bottom: 120px;
+
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 32px;
+
+    @include mq(sp) {
+      margin-top: 112px;
+      padding: 0 15px;
+      padding-bottom: 90px;
+    }
+  }
+
+  // main(flex left)
+  &__main {
+    flex-basis: 100%;
+  }
+
+  // search
+  &__search {
+    text-align: left;
+    border-bottom: 2px solid $textDark;
+
+    .search__title {
+      margin-bottom: 8px;
+
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 28.8px;
+      letter-spacing: 0.1em;
+
+      @include mq(sp) {
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      .fa-magnifying-glass {
+        margin-right: -10px;
+      }
+    }
+
+    .search__chose {
+      margin-bottom: 12px;
+      justify-content: flex-start;
+      gap: 8px;
+
+      @include mq(sp) {
+        align-items: flex-start;
+      }
+
+      &-inner {
+        gap: 8px;
+        flex-wrap: nowrap;
+      }
+
+      &-btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 0 16px;
+        width: 240px;
+        height: 36px;
+
+        border-radius: 8px;
+        background-color: $bgColorLight;
+        border: 1px solid $textDark;
+        color: $textDark;
+
+        &--nursery {
+          width: 200px;
+        }
+
+        .fa-chevron-down {
+          font-size: 12px;
+        }
+
+        &--search {
+          @include centerFlex;
+          width: 36px;
+          height: 36px;
+          background-color: $textColor;
+          color: $bgColorLight;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  // cards__container RESET
+  &__cards {
+    margin-top: 32px;
+    padding: 0;
+    gap: 30px;
+
+    @include mq(sp) {
+      gap: 20px;
+    }
+
+    .cards-letter {
+      width: 300px;
+
+      .text__block {
+        &-title {
+          @include mq(sp) {
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+
+        &-desc {
+          @include mq(sp) {
+            font-size: 14px;
+            line-height: 21px;
+          }
+        }
+        
+        &-date {
+          @include mq(sp) {
+            font-size: 12px;
+            line-height: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  // pagination
+  .pagination {
+    margin-top: 32px;
+
+    @include mq(sp) {
+      &__item {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+
+  // archive(flex right)
+  &__archive {
+    height: 100%;
+    padding-left: 24px;
+
+    flex-basis: 33.3%;
+    text-align: left;
+    border-left: 1px solid $textColor;
+
+    @include mq(sp) {
+      padding-left: 12px;
+      border: none;
+      border-top: 1px solid $textColor;
+
+      flex-basis: auto;
+    }
+
+    .archive__title {
+      margin-top: 10px;
+
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 36px;
+      letter-spacing: 0.2em;
+
+      @include mq(sp) {
+        font-size: 20px;
+        line-height: 30px;
+      }
+    }
+
+    .archive__year {
+      margin-top: 10px;
+
+      padding: 0 14px;
+      position: relative;
+
+      color: $textColor;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.1em;
+
+      @include mq(sp) {
+        margin-left: 4px;
+        font-size: 14px;
+        line-height: 21px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 4px;
+        height: 100%;
+        border-radius: 2px;
+        background-color: $primary;
+      }
+    }
+
+    .archive__month-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 12px 18px;
+
+      margin-top: 10px;
+
+      @include mq(sp) {
+        padding: 0 8px;
+      }
+
+      .archive__month {
+        padding: 4px 12px;
+
+        border-radius: 8px;
+        background-color: $bgColorLight;
+
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: 0.1em;
+
+        @include mq(sp) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
