@@ -1,0 +1,375 @@
+@use '../global' as *;
+
+// single-introduction starts here
+.single-introduction {
+  .contact {
+    margin-top: 0;
+  }
+
+  .letter {
+    @include mq(sp) {
+      margin-top: 125px;
+    }
+  }
+}
+.introduction-content {
+  margin: auto;
+  margin-top: 113px;
+  max-width: 1110px;
+  padding: 0 14px;
+
+  @include mq(pc) {
+    max-width: 700px;
+  }
+
+  @include mq(sp) {
+    margin-top: 90px;
+  }
+
+  img {
+    max-width: 800px;
+    border-radius: 40px;
+
+    @include mq(sp) {
+      width: min(calc((345 / 375) * 100vw), 500px);
+      border-radius: 20px;
+    }
+
+    @include mq(xs) {
+      width: 310px;
+    }
+  }
+  &__heading {
+    margin-top: 32px;
+
+    color: $textColor;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.2em;
+
+    @include mq(sp) {
+      margin-top: 22px;
+
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
+
+  &__text {
+    margin-top: 16px;
+    @include mq(pc) {
+      text-align: left;
+    }
+    @include mq(sp) {
+      margin-top: 13px;
+      font-size: 16px;
+    }
+  }
+}
+
+// inside(slider)
+.inside {
+  margin-top: 125px;
+  @include mq(sp) {
+    margin-top: 80px;
+  }
+}
+
+// message
+.message {
+  margin-top: 115px;
+  @include mq(sp) {
+    margin-top: 80px;
+  }
+
+  &__container {
+    margin: 0 auto;
+    margin-top: 54px;
+    gap: 32px;
+
+    @include mq(sp) {
+      padding: 15px;
+    }
+
+    @include mq(sp) {
+      width: 100%;
+      margin-top: 34px;
+    }
+  }
+  &__img {
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+
+    @include mq(sp) {
+      width: 200px;
+      height: 266.67px;
+    }
+  }
+  &__text {
+    max-width: 468px;
+    text-align: left;
+    padding-top: 10px;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 0.1em;
+
+    @include mq(sp) {
+      width: 100%;
+      padding-top: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+// about-nursery
+.about-nursery {
+  margin-top: 120px;
+
+  @include mq(sp) {
+    margin-top: 63px;
+  }
+
+  .nursery__container {
+    max-width: 1120px;
+    margin: 0 auto;
+    margin-top: 66px;
+
+    padding: 0 15px;
+
+    @include mq(sp) {
+      width: 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      tr {
+        border-bottom: 1px dashed $textColor;
+
+        @include mq(sp) {
+          border-bottom: none;
+        }
+
+        &.tr-sp-flex {
+          @include mq(sp) {
+            @include centerFlex;
+            flex-wrap: wrap;
+          }
+        }
+      }
+
+      th,
+      td {
+        color: $textColor;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: 0.2em;
+
+        @include mq(sp) {
+          flex-basis: 100%;
+        }
+      }
+
+      th {
+        width: 200px;
+        background-color: $bgColorLight;
+        vertical-align: middle;
+
+        @include mq(sp) {
+          width: 100%;
+          height: 50px;
+          @include centerFlex;
+
+          font-size: 16px;
+        }
+      }
+
+      td {
+        padding: 32px 25px;
+        padding-right: 80px;
+
+        text-align: left;
+        font-size: 16px;
+
+        @include mq(sp) {
+          padding: 20px 12px;
+          line-height: 21px;
+          font-size: 14px;
+        }
+
+        &.wide {
+          line-height: 24px;
+        }
+
+        &.small {
+          font-size: 14px;
+        }
+
+        // 開園日
+        & .days {
+          max-width: 400px;
+          margin-bottom: 6px;
+
+          height: 40px;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          gap: 24px;
+
+          font-size: 16px;
+          letter-spacing: 0;
+          line-height: 20px;
+
+          @include mq(sp) {
+            margin-bottom: 12px;
+
+            gap: 0;
+            justify-content: space-between;
+            letter-spacing: 0.5em;
+          }
+
+          &__desc {
+            @include mq(sp) {
+              font-size: 12px;
+              line-height: 18px;
+            }
+          }
+        }
+
+        &.td-limit {
+          letter-spacing: 0.2em;
+          @include mq(sp) {
+            padding: 24px 0;
+          }
+        }
+
+        .sp-16 {
+          @include mq(sp) {
+            padding: 18px 12px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    // inner-table
+    .inner-table {
+      th,
+      td {
+        display: table-cell;
+        border: 1px solid $textColor;
+
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: 0.2em;
+
+        @include mq(sp) {
+          font-size: 14px;
+        }
+      }
+
+      td {
+        padding: 16px 20px;
+      }
+
+      // 保育時間
+      &.nursery-time {
+        max-width: 600px;
+        background-color: $bgColorLight;
+
+        margin-top: 5px;
+        margin-bottom: 24px;
+
+        // border-collapse: collapse;
+        // border-spacing: 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        th {
+          width: 150px;
+
+          @include mq(sp) {
+            width: 140px;
+          }
+        }
+
+        td {
+          text-align: left;
+
+          @include mq(sp) {
+            line-height: 16.8px;
+          }
+        }
+      }
+
+      // 定員
+      &.limit {
+        max-width: 600px;
+        margin-bottom: 22px;
+
+        @include mq(pc) {
+          margin-bottom: 10px;
+        }
+
+        & * {
+          border: none;
+          background-color: transparent;
+        }
+
+        td {
+          padding: 0;
+        }
+
+        .th-heading {
+          width: 100px;
+          background-color: $secondary;
+          letter-spacing: 0.2em;
+
+          @include mq(sp) {
+            width: 75px;
+          }
+        }
+
+        .limit__group {
+          // padding: 5px 20px;
+
+          @include mq(sp) {
+            table-layout: fixed;
+          }
+
+          &--student {
+            width: 270px;
+
+            @include mq(sp) {
+              max-width: 220px;
+            }
+          }
+
+          &--teacher {
+            width: 310px;
+
+            @include mq(sp) {
+              max-width: 250px;
+            }
+          }
+
+          th,
+          td {
+            letter-spacing: 0;
+            padding: 4px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+}
