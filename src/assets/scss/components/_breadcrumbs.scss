@@ -1,14 +1,6 @@
 @use '../global' as *;
 
 .breadcrumbs {
-  position: absolute;
-  bottom: -35px;
-  left: 0;
-
-  @include mq(sp) {
-    bottom: -28px;
-  }
-
   & p {
     font-size: 16px;
     font-weight: 400;
@@ -22,3 +14,4 @@
     }
   }
 }
+

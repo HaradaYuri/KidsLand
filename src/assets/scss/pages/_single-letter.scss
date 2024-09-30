@@ -1,0 +1,154 @@
+@use '../global' as *;
+.single-letter {
+  width: 100%;
+  padding: 32px;
+  padding-right: 38px;
+  padding-bottom: 64px;
+
+  background-color: $bgColorLight;
+  border-radius: 40px;
+
+  text-align: left;
+
+  @include mq(sp) {
+    // margin-top: 50px;
+    padding: 15px;
+    padding-top: 35px;
+    padding-bottom: 64px;
+
+    border-radius: 30px;
+  }
+
+  & * {
+    color: $textDark;
+  }
+
+  &__brcr{
+    @include mq(sp) {
+      margin-top: 8px;
+    }
+  }
+
+  &__top {
+    justify-content: space-between;
+
+    @include mq(sp) {
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    &-heading {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21.6px;
+      letter-spacing: 0.1em;
+
+      @include mq(sp) {
+        font-size: 16px;
+        line-height: 19.2px;
+      }
+    }
+    &-day {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      letter-spacing: 0.1em;
+
+      @include mq(sp) {
+        font-size: 12px;
+        line-height: 14.4px;
+      }
+    }
+  }
+  &__title {
+    margin-top: 14px;
+    padding-bottom: 8px;
+
+    text-align: left;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 38.4px;
+    letter-spacing: 0.1em;
+
+    border-bottom: 2px solid $textDark;
+
+    @include mq(sp) {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+
+  &__img {
+    display: flex;
+    margin: auto;
+    margin-top: 32px;
+
+    width: 640px;
+    height: 320px;
+    border-radius: 40px;
+
+    @include mq(sp) {
+      margin-top: 22px;
+      width: 315px;
+      height: 240px;
+
+      border-radius: 30px;
+    }
+
+    @include mq(xs) {
+      width: 260px;
+    }
+  }
+
+  &__subtitle,
+  &__text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 0.1em;
+  }
+
+  &__subtitle {
+    position: relative;
+    padding-left: 16px;
+    margin-top: 32px;
+
+    @include mq(sp) {
+      margin-top: 36px;
+    }
+
+    &:first-of-type {
+      @include mq(sp) {
+        margin-top: 24px;
+      }
+    }
+  }
+
+  &__text {
+    margin-top: 8px;
+  }
+
+  &__btn {
+    margin-top: 64px;
+    width: 300px;
+    color: $textColor;
+
+    @include mq(sp) {
+      font-size: 18px;
+      height: 60px;
+    }
+
+    @include mq(xs) {
+      width: 260px;
+    }
+
+    i {
+      color: inherit;
+
+      @include mq(sp) {
+        font-size: 20px;
+      }
+    }
+  }
+}

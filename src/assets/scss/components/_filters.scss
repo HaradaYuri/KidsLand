@@ -1,0 +1,59 @@
+@use '../global' as *;
+
+// filters
+.search__filters {
+  margin-bottom: 10px;
+  width: 100%;
+
+  @include centerFlex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  @include mq(pc) {
+    justify-content: center;
+  }
+
+  @include mq(sp) {
+    margin-bottom: 3px;
+    justify-content: flex-start;
+  }
+
+  &--cats{
+    gap: 10px;
+  }
+
+  .search__filter {
+    @include centerFlex;
+
+    width: 200px;
+    height: 35px;
+
+    border-radius: 8px;
+    border: 1px solid $primary;
+    background-color: $bgColorLight;
+    color: $primary;
+
+    @include mq(sp) {
+      width: 150px;
+      height: 33px;
+    }
+
+    &.active {
+      background-color: $primary;
+      color: $bgColorLight;
+    }
+
+    // for prefecture
+    &--small {
+      width: 150px;
+    }
+
+    // info page cats
+    &--cats {
+      width: auto;
+      height: auto;
+      padding: 8.5px 16px;
+    }
+  }
+}

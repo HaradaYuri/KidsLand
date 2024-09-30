@@ -2,7 +2,7 @@
 .bg {
   &-pink-dash {
     position: relative;
-    margin-top: 108px;
+    margin-top: 80px;
     padding-bottom: 120px;
 
     background-image: url(../images/top-letters__bg.svg);
@@ -11,7 +11,6 @@
     background-repeat: no-repeat;
 
     @include mq(sp) {
-      margin-top: 80px;
       padding-bottom: 80px;
     }
 

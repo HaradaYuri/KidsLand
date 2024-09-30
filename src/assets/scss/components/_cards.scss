@@ -1,7 +1,6 @@
 @use '../global' as *;
 .cards {
   &__container {
-    // max-width: 1080px;
     max-width: 1120px;
     margin: auto;
     padding: 0 20px;
@@ -32,6 +31,8 @@
         width: min(calc((345 / 375) * 100vw), 600px);
         min-width: auto;
         border-radius: 30px;
+        
+        padding: 0;
       }
 
       @include mq(xs) {
