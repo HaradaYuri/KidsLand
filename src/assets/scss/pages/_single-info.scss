@@ -1,0 +1,50 @@
+@use '../global' as *;
+
+.single-info {
+  margin: auto;
+  margin-top: 120px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 120px;
+
+  max-width: 1120px;
+
+  @include mq(sp) {
+    margin-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 80px;
+  }
+
+  // single-letter
+  &__container {
+  }
+
+  .single-letter__subtitle:first-of-type {
+    margin-top: 10px;
+  }
+
+  .single-letter__img {
+    @include mq(sp) {
+      width: 315px;
+      height: 157.5px;
+      border-radius: 20px;
+    }
+
+    @include mq(xs) {
+      width: 260px;
+    }
+  }
+
+  .single-letter__text {
+    @include mq(sp) {
+      font-size: 14px;
+      line-height: 28px;
+    }
+  }
+
+  .single-letter__btn {
+    margin-top: 48px;
+  }
+}

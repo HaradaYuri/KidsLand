@@ -13,3 +13,11 @@
     background-color: $primary;
   }
 }
+
+.triangle {
+  background: $primary;
+  height: calc(tan(60deg) * 16px / 2);
+  width: 18px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: rotate(180deg);
+}

@@ -1,0 +1,187 @@
+@use '../global' as *;
+.motto {
+  margin-top: 120px;
+
+  &__container {
+    margin-top: 60px;
+    padding: 0 60px;
+    align-items: start;
+
+    gap: 32px;
+  }
+
+  &__block {
+    gap: 48px;
+    flex-wrap: nowrap;
+    align-items: start;
+    justify-content: start;
+
+    &:nth-child(2) {
+      flex-direction: row-reverse;
+    }
+
+    &-img {
+      flex: 0 0 auto;
+
+      width: 480px;
+      height: 320px;
+      border-radius: 40px;
+
+      object-fit: cover;
+    }
+
+    &-wrapper {
+      display: block;
+
+      text-align: left;
+    }
+
+    &-title {
+      display: flex;
+      align-items: center;
+      padding-bottom: 11px;
+
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.2em;
+
+      border-bottom: 1px solid $textColor;
+
+      &:nth-child(1) {
+        width: 302px;
+      }
+      &:nth-child(2) {
+        width: 230px;
+      }
+      &:nth-child(3) {
+        width: 350px;
+      }
+    }
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    &-text {
+      margin-top: 24px;
+
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 2;
+      letter-spacing: 0.1em;
+    }
+  }
+}
+
+// requirements
+.requirements {
+  margin-top: 120px;
+
+  &__container {
+  }
+
+  &__block {
+    justify-content: start;
+    flex-wrap: nowrap;
+    gap: 25px;
+    border-bottom: 1px dashed $textColor;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &-heading {
+      flex: 0 0 auto;
+      @include centerFlex;
+
+      width: 200px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: $primary;
+      color: $bgColorLight;
+
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.2em;
+    }
+
+    &-text {
+      padding: 32px 0;
+      padding-right: 8px;
+
+      text-align: left;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.2em;
+
+      &--small {
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.2em;
+      }
+    }
+  }
+}
+
+// FAQ
+.faq {
+  margin-top: 130px;
+
+  &__container {
+  }
+
+  &__item {
+    padding: 0;
+    border: 2px solid $primary;
+    border-radius: 20px;
+
+    text-align: left;
+
+    &-question {
+      margin: 0 32px;
+
+      padding: 32px 0;
+      padding-bottom: 12px;
+
+      justify-content: space-between;
+      border-bottom: 1px dashed #000000;
+
+
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.2em;
+
+      &-text {
+        margin-left: 25px;
+        flex-grow: 100;
+      }
+    }
+
+    &-answer {
+      margin-top: 44px;
+      padding: 32px;
+      padding-top: 0;
+
+      align-items: start;
+      gap: 27px;
+
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.1em;
+    }
+
+    &-QA {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.2em;
+    }
+  }
+}

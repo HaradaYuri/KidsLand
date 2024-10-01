@@ -1,5 +1,19 @@
 @use '../global' as *;
 .bg {
+  &-bgL {
+    margin: 0 auto;
+    margin-top: 60px;
+    padding: 24px;
+
+    max-width: 1080px;
+    border-radius: 40px;
+    background-color: $bgColorLight;
+
+    @include mq(sp) {
+      border-radius: 30px;
+    }
+  }
+
   &-pink-dash {
     position: relative;
     margin-top: 80px;
