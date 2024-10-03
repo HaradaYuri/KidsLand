@@ -20,4 +20,9 @@
   width: 18px;
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
   transform: rotate(180deg);
+
+  @include mq(sp) {
+    height: calc(tan(60deg) * 14px / 2);
+    width: 16px;
+  }
 }

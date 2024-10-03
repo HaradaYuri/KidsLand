@@ -2,12 +2,24 @@
 .motto {
   margin-top: 120px;
 
+  @include mq(sp) {
+    margin-top: 80px;
+  }
+
   &__container {
     margin-top: 60px;
     padding: 0 60px;
     align-items: start;
 
     gap: 32px;
+
+    @include mq(pc) {
+      padding: 0 30px;
+    }
+
+    @include mq(sp) {
+      padding: 0 15px;
+    }
   }
 
   &__block {
@@ -16,8 +28,20 @@
     align-items: start;
     justify-content: start;
 
+    @include mq(pc) {
+      gap: 32px;
+    }
+
+    @include mq(sp) {
+      margin: auto;
+    }
+
     &:nth-child(2) {
       flex-direction: row-reverse;
+
+      @include mq(sp) {
+        flex-direction: column;
+      }
     }
 
     &-img {
@@ -28,6 +52,20 @@
       border-radius: 40px;
 
       object-fit: cover;
+
+      @include mq(pc) {
+        width: 50%;
+        height: 300px;
+      }
+
+      @include mq(sp) {
+        margin: auto;
+
+        width: min(calc((240 / 375) * 100vw), 340px);
+        height: min(calc((160 / 375) * 100vw), 230px);
+
+        border-radius: 20px;
+      }
     }
 
     &-wrapper {
@@ -50,12 +88,25 @@
 
       &:nth-child(1) {
         width: 302px;
+        @include mq(sp) {
+          width: 284px;
+        }
       }
       &:nth-child(2) {
         width: 230px;
+        @include mq(sp) {
+          width: 219px;
+        }
       }
       &:nth-child(3) {
         width: 350px;
+        @include mq(sp) {
+          width: 315px;
+        }
+      }
+
+      @include mq(sp) {
+        font-size: 18px;
       }
     }
 
@@ -72,6 +123,11 @@
       font-weight: 400;
       line-height: 2;
       letter-spacing: 0.1em;
+
+      @include mq(sp) {
+        margin-top: 12px;
+        font-size: 14px;
+      }
     }
   }
 }
@@ -79,8 +135,22 @@
 // requirements
 .requirements {
   margin-top: 120px;
+  padding: 0 30px;
+
+  @include mq(sp) {
+    margin-top: 80px;
+    padding: 0;
+  }
 
   &__container {
+    @include mq(sp) {
+      width: min(calc((345 / 375) * 100vw), 500px);
+      margin-top: 48px;
+    }
+
+    @include mq(xs) {
+      max-width: 310px;
+    }
   }
 
   &__block {
@@ -88,6 +158,12 @@
     flex-wrap: nowrap;
     gap: 25px;
     border-bottom: 1px dashed $textColor;
+
+    @include mq(sp) {
+      align-items: start;
+      gap: 0;
+      border: none;
+    }
 
     &:last-of-type {
       border-bottom: none;
@@ -107,6 +183,11 @@
       font-weight: 400;
       line-height: 1;
       letter-spacing: 0.2em;
+
+      @include mq(sp) {
+        margin: auto;
+        width: 100%;
+      }
     }
 
     &-text {
@@ -119,10 +200,32 @@
       line-height: 24px;
       letter-spacing: 0.2em;
 
+      @include mq(sp) {
+        padding: 24px 14px;
+      }
+
       &--small {
         font-size: 14px;
         line-height: 21px;
         letter-spacing: 0.2em;
+
+        @include mq(sp) {
+          font-size: 14px;
+          line-height: 21px;
+        }
+      }
+
+      &--small-sp {
+        @include mq(sp) {
+          font-size: 14px;
+          line-height: 21px;
+        }
+      }
+      &--xsmall-sp {
+        @include mq(sp) {
+          font-size: 12px;
+          line-height: 18px;
+        }
       }
     }
   }
@@ -131,31 +234,60 @@
 // FAQ
 .faq {
   margin-top: 130px;
+  padding: 0 30px;
+
+  @include mq(sp) {
+    margin-top: 80px;
+    padding: 0;
+  }
 
   &__container {
   }
 
   &__item {
+    margin-top: 24px;
+
+    text-align: left;
     padding: 0;
     border: 2px solid $primary;
     border-radius: 20px;
 
-    text-align: left;
+    @include mq(sp) {
+      width: min(calc((345 / 375) * 100vw), 500px);
+    }
+
+    @include mq(xs) {
+      max-width: 310px;
+    }
+
+    &--first {
+      margin-top: 60px;
+    }
 
     &-question {
       margin: 0 32px;
-
       padding: 32px 0;
-      padding-bottom: 12px;
 
       justify-content: space-between;
-      border-bottom: 1px dashed #000000;
-
 
       font-size: 18px;
       font-weight: 400;
       line-height: 1;
       letter-spacing: 0.2em;
+
+      @include mq(sp) {
+        align-items: start;
+
+        margin: 0 24px;
+
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      &.active {
+        padding-bottom: 12px;
+        border-bottom: 1px dashed #000000;
+      }
 
       &-text {
         margin-left: 25px;
@@ -175,6 +307,15 @@
       font-weight: 400;
       line-height: 24px;
       letter-spacing: 0.1em;
+
+      @include mq(sp) {
+        margin-top: 30px;
+        padding: 24px;
+        padding-top: 0;
+
+        font-size: 14px;
+        line-height: 21px;
+      }
     }
 
     &-QA {
@@ -182,6 +323,13 @@
       font-weight: 400;
       line-height: 1;
       letter-spacing: 0.2em;
+    }
+  }
+
+  .triangle {
+    @include mq(sp) {
+      flex-shrink: 0;
+      margin-top: 18px;
     }
   }
 }
