@@ -481,8 +481,8 @@
       <!-- faq /ends here -->
 
       <!-- recruit form starts here -->
-      <section class="form__container recruit__form-container bg-bgL">
-        <form class="form recruit__form">
+      <section class="form__container recruit__form-container">
+        <form class="form recruit__form bg-bgL">
           <div class="form__group">
             <label class="form__heading">
               お問い合わせ内容
@@ -625,7 +625,7 @@
           <div class="form__group">
             <label class="form__heading">
               性別
-              <span class="form__tag" data-type="required">任意</span>
+              <span class="form__tag" data-type="optional">任意</span>
             </label>
             <div class="form__fields flex-row">
               <div class="form__field">
@@ -832,15 +832,6 @@
                 />
                 事務
               </div>
-              <div class="form__field">
-                <input
-                  type="radio"
-                  name="desired_position"
-                  value="正社員"
-                  class="form__radio"
-                />
-                正社員
-              </div>
             </div>
           </div>
 
@@ -850,6 +841,15 @@
               <span class="form__tag" data-type="required">必須</span>
             </label>
             <div class="form__fields">
+              <div class="form__field form__field--mb">
+                <input
+                  type="radio"
+                  name="employment_type"
+                  value="正社員"
+                  class="form__radio"
+                />
+                正社員
+              </div>
               <div class="form__field form__field--mb">
                 <input
                   type="radio"
@@ -914,8 +914,10 @@
                   class="form__checkbox"
                   required
                 />
-                利用規約と個人情報の取り扱いについて同意する
-                <span class="form__tag" data-type="required">必須</span>
+                <div class="agreement-content flex-rc">
+                  利用規約と個人情報の取り扱いについて同意する
+                  <span class="form__tag" data-type="required">必須</span>
+                </div>
               </div>
             </div>
           </div>
