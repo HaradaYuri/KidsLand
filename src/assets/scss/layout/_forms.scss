@@ -51,8 +51,7 @@
 
     @include mq(sp) {
       flex: 1;
-      margin-right: 0;
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
     }
   }
 
@@ -92,6 +91,10 @@
       display: flex;
       justify-content: start;
       align-items: center;
+
+      & * {
+        color: $textDark;
+      }
 
       &:not(:last-child) {
         margin-bottom: 10px;
@@ -200,6 +203,12 @@
 
     @include mq(sp) {
       height: 60px;
+    }
+
+    .fa-chevron-right{
+      @include mq(sp) {
+        top: 35%;
+      }
     }
   }
 }
