@@ -1,0 +1,102 @@
+@use '../global' as *;
+
+.sitemap {
+  // bg-pink-dash
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-bottom: 80px;
+
+  @include mq(sp) {
+    margin-top: 40px;
+
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  &__title {
+    margin-bottom: 0;
+  }
+
+  &__container {
+    margin-top: 15px;
+    padding: 64px 0;
+
+    @include mq(sp) {
+      margin-top: 35px;
+      padding: 0;
+    }
+  }
+
+  &__list {
+    margin: auto;
+    padding: 0 40px;
+    max-width: 880px;
+    height: 190px;
+
+    justify-content: left;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 0 80px;
+
+    @include mq(pc) {
+      gap: 0 20px;
+      align-items: center;
+    }
+
+    @include mq(sp) {
+      padding: 32px 22px;
+
+      height: auto;
+    }
+  }
+
+  &__item {
+    @include mq(sp) {
+      width: 100%;
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 12px;
+    width: 360px;
+    height: 38px;
+    border-bottom: 1px dashed $textColor;
+
+    @include mq(pc) {
+      width: 300px;
+    }
+
+    @include mq(sp) {
+      width: 100%;
+      height: 32px;
+    }
+  }
+
+  &__text {
+    flex-grow: 1;
+    padding-left: 8px;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    text-align: left;
+
+    @include mq(sp) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  &__circle {
+    // flex: 0 0 20px;
+    width: 12px;
+    height: 12px;
+    background-color: $accentLight;
+    border-radius: 50px;
+  }
+}

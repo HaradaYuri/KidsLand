@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>桜のこもれびキッズランド</title>
+    <meta name="description" content="descriptionが入ります" />
+
+    <!-- favicon -->
+    <!-- TODO: wp化後絶対パス化(EX: https://web.harapaca-craft.com/wordpress/wp-content/themes/ValentineRoseWP/img/favicon.ico) -->
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" />
+    <link rel="icon" href="./assets/images/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/vnd.microsoft.icon"
+      href="./assets/images/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="./assets/images/apple-touch-icon.png"
+      sizes="180x180"
+    />
+
+    <!-- OGP設定 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="titleが入ります" />
+    <meta property="og:description" content="descriptionが入ります" />
+    <meta property="og:url" content="https://website.com" />
+    <meta property="og:image" content="https://website.com/img/ogp-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="p-404">
+    <!-- top back btn -->
+    <a href="#" class="btn-topback">
+      <i class="fa-solid fa-chevron-up"></i>
+    </a>
+
+    <header class="header">
+      <!-- header for PC -->
+      <nav class="header__nav">
+        <ul class="header__list">
+          <li class="header__item">
+            <span class="header__circle"></span>
+            <span class="header__circle"></span>
+            <a href="page-about.html" class="header__link">
+              <img
+                src="./assets/images/icon-cherry-blossom.svg"
+                alt="わたしたちのこと"
+                class="header__icon"
+              />
+              <span class="header__text">わたしたちのこと</span>
+              <span class="header__text-en txts-en">About</span>
+            </a>
+          </li>
+          <li class="header__item">
+            <span class="header__circle"></span>
+            <span class="header__circle"></span>
+            <a href="archive-introduction.html" class="header__link">
+              <img
+                src="./assets/images/icon-tree.svg"
+                alt="各園のご紹介"
+                class="header__icon"
+              />
+              <span class="header__text">各園のご紹介</span>
+              <span class="header__text-en txts-en">Introduction</span>
+            </a>
+          </li>
+          <li class="header__item">
+            <span class="header__circle"></span>
+            <span class="header__circle"></span>
+            <a href="archive-letter.html" class="header__link">
+              <img
+                src="./assets/images/icon-letter.svg"
+                alt="こもれびだより"
+                class="header__icon"
+              />
+              <span class="header__text">こもれびだより</span>
+              <span class="header__text-en txts-en">Letter</span>
+            </a>
+          </li>
+          <li class="header__item header__item--logo">
+            <span class="header__circle"></span>
+            <span class="header__circle"></span>
+            <a href="index.html" class="header__link header__link--logo">
+              <h1>
+                <img
+                  src="./assets/images/logo.png"
+                  alt="桜のこもれびキッズランド"
+                  class="header__logo"
+                />
+              </h1>
+            </a>
+          </li>
+          <li class="header__item">
+            <span class="header__circle"></span>
+            <span class="header__circle"></span>
+            <a href="archive-info.html" class="header__link">
+              <img
+                src="./assets/images/icon-bell-ribbon.svg"
+                alt="お知らせ"
+                class="header__icon"
+              />
+              <span class="header__text">お知らせ</span>
+              <span class="header__text-en txts-en">Info</span>
+            </a>
+          </li>
+          <li class="header__item">
+            <span class="header__circle"></span>
+            <span class="header__circle"></span>
+            <a href="page-recruit.html" class="header__link">
+              <img
+                src="./assets/images/icon-pen.svg"
+                alt="採用情報"
+                class="header__icon"
+              />
+              <span class="header__text">採用情報</span>
+              <span class="header__text-en txts-en">Recruit</span>
+            </a>
+          </li>
+          <li class="header__item">
+            <span class="header__circle"></span>
+            <span class="header__circle"></span>
+            <span class="header__circle--right"></span>
+            <span class="header__circle--right"></span>
+            <a href="page-contact.html" class="header__link">
+              <img
+                src="./assets/images/icon-mail.svg"
+                alt="お問い合わせ"
+                class="header__icon"
+              />
+              <span class="header__text">お問い合わせ</span>
+              <span class="header__text-en txts-en">Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- header for SP -->
+      <h1>
+        <a href="index.html#" class="header__logo-sp">
+          <img src="./assets/images/logo.png" alt="桜のこもれびキッズランド" />
+        </a>
+      </h1>
+      <button class="btn-menu">
+        <div class="btn-menu__icon flex-col">
+          <span class="btn-menu__line"></span>
+          <span class="btn-menu__line"></span>
+          <span class="btn-menu__line"></span>
+          <span class="btn-menu__text txts-en"> menu </span>
+          <span class="btn-menu__text btn-menu__text--closed txts-en"
+            >closed</span
+          >
+        </div>
+      </button>
+    </header>
+
+    <main>
+      <div class="page-fv"></div>
+      <!-- page-heading starts here -->
+      <section class="page-heading">
+        <div class="page-heading__container fadeUpTrigger">
+          <div class="page-heading__text">
+            <h2 class="page-heading__text-jp two-lines">
+              お探しのページが<br class="sp" />見あたりません。
+            </h2>
+            <p class="page-heading__text-en txts-en">page not found</p>
+          </div>
+
+          <!-- breadcrumbs -->
+          <div class="breadcrumbs fadeUpTrigger">
+            <p>
+              TOP
+              <i class="fa-solid fa-chevron-right"></i>
+              404
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- page-heading /ends here -->
+
+      <!-- notfound starts here -->
+      <section class="notfound">
+        <p class="notfound__text">
+          申し訳ございません。 <br />
+          お探しのページは見つかりませんでした。<br />
+          以下の可能性がございます。
+        </p>
+        <ul class="notfound__list">
+          <li class="notfound__item">・URLが変更された</li>
+          <li class="notfound__item">・ページが存在しない</li>
+        </ul>
+
+        <p class="notfound__text">
+          恐れ入りますが、以下のリンクからお探しのページにお入りください。
+        </p>
+      </section>
+      <!-- notfound /ends here -->
+
+      <!-- sitemap starts here -->
+      <section class="sitemap bg-pink-dash">
+        <div class="sitemap__title title-primary">
+          <div class="title-primary__icon fadeUpTrigger">
+            <img
+              loading="lazy"
+              src="./assets/images/icon-chart.svg"
+              alt="サイトマップ"
+            />
+          </div>
+        </div>
+
+        <!-- container -->
+        <div class="sitemap__container bg-bgL">
+          <ul class="sitemap__list flex-col">
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="index.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">TOP</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="page-about.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">わたしたちのこと</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="taxonomy-introduction_type.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">各園のご紹介</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="archive-letter.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">こもれびだより</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="archive-info.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">お知らせ</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="page-recruit.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">採用情報</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="page-contact.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">お問い合わせ</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="page-sitemap.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">サイトマップ</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+            <li class="sitemap__item fadeUpTrigger">
+              <a href="page-privacy-policy.html" class="sitemap__link">
+                <div class="sitemap__circle"></div>
+                <span class="sitemap__text">プライバシーポリシー</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- sitemap /ends here -->
+    </main>
+    <!-- main /ends here -->
+
+    <!-- footer starts here -->
+    <footer class="footer">
+      <img
+        loading="lazy"
+        src="./assets/images/logo.png"
+        alt="桜のこもれびキッズランド"
+        class="footer__logo fadeUpTrigger"
+      />
+
+      <nav class="footer__nav">
+        <ul class="footer__list">
+          <li class="footer__item fadeUpTrigger">
+            <a href="page-about.html" class="footer__link">
+              <span class="footer__text">私たちのこと</span>
+            </a>
+          </li>
+          <li class="footer__item fadeUpTrigger">
+            <a href="taxonomy-introduction_type.html" class="footer__link">
+              <span class="footer__text">各園のご紹介</span>
+            </a>
+          </li>
+          <li class="footer__item fadeUpTrigger">
+            <a href="archive-letter.html" class="footer__link">
+              <span class="footer__text">こもれびだより</span>
+            </a>
+          </li>
+          <li class="footer__item fadeUpTrigger">
+            <a href="page-recruit.html" class="footer__link">
+              <span class="footer__text">採用情報</span>
+            </a>
+          </li>
+          <li class="footer__item fadeUpTrigger">
+            <a href="archive-info.html" class="footer__link">
+              <span class="footer__text">お知らせ</span>
+            </a>
+          </li>
+          <li class="footer__item fadeUpTrigger">
+            <a href="page-contact.html" class="footer__link">
+              <span class="footer__text">お問い合わせ</span>
+            </a>
+          </li>
+          <li class="footer__item fadeUpTrigger">
+            <a href="page-sitemap.html" class="footer__link">
+              <span class="footer__text footer__text--small">サイトマップ</span>
+            </a>
+          </li>
+          <li class="footer__item fadeUpTrigger">
+            <a href="page-privacy-policy.html" class="footer__link">
+              <span class="footer__text footer__text--small"
+                >プライバシーポリシー</span
+              >
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <p class="footer__copyright fadeUpTrigger">
+        <span>&copy;</span>桜のこもれびキッズランド All Rights Reserved.
+      </p>
+    </footer>
+    <!-- footer /ends here -->
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/bb1ec9ad9e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

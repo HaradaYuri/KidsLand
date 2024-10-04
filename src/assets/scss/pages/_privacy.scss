@@ -1,0 +1,198 @@
+@use '../global' as *;
+@counter-style fullwidth-numbers {
+  system: numeric;
+  symbols: '０' '１' '２' '３' '４' '５' '６' '７' '８' '９';
+  range: 0 9999;
+}
+
+.privacy {
+  padding: 0 30px;
+
+  @include mq(sp) {
+    padding: 0 15px;
+  }
+
+  &__container {
+    margin: 80px auto;
+    padding: 48px 36px;
+
+    @include mq(sp) {
+      margin: 60px auto;
+      padding: 32px 15px;
+    }
+  }
+
+  &__group {
+    margin-bottom: 36px;
+    text-align: left;
+
+    @include mq(sp) {
+      margin-bottom: 24px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  // vertical line
+  .vertical-line {
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    transform: translateY(-50%);
+
+    width: 4px;
+    height: calc(100% - 20px);
+    border-radius: 1px;
+  }
+
+  &__heading {
+    position: relative;
+    justify-content: start;
+    gap: 8px;
+
+    margin-bottom: 12px;
+    padding: 11px 24px;
+    padding-left: 35px;
+
+    border: 1px solid $textColor;
+    border-radius: 12px;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.1em;
+
+    @include mq(sp) {
+      margin-bottom: 16px;
+      padding: 10px 24px;
+      padding-left: 35px;
+
+      font-size: 16px;
+      line-height: 19.2px;
+    }
+
+    &--sp-large {
+      @include mq(sp) {
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+
+    .vertical-line {
+      background-color: $textColor;
+    }
+  }
+
+  &__subheading {
+    justify-content: start;
+    gap: 8px;
+
+    margin-bottom: 8px;
+    padding: 0 12px;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+
+    @include mq(sp) {
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    .vertical-line {
+      background-color: $accentLight;
+    }
+  }
+
+  &__text {
+    margin-bottom: 8px;
+    padding: 0 12px;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: $textDark;
+
+    @include mq(sp) {
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    &--sp-large {
+      @include mq(sp) {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    & span {
+      color: $textDark;
+    }
+
+    &--mb-bigger {
+      margin-bottom: 16px;
+    }
+
+    &--right {
+      text-align: right;
+      padding: 0;
+    }
+  }
+
+  .enquiry-counter {
+    justify-content: start;
+    gap: 35px;
+    @include mq(sp) {
+      gap: 0;
+      align-items: start;
+    }
+  }
+
+  // ol
+  .ol__wrapper {
+    padding-left: 37px;
+
+    @include mq(sp) {
+      padding-left: 32px;
+    }
+  }
+
+  &__list {
+    list-style-type: fullwidth-numbers;
+    padding: 0 12px;
+
+    &-item {
+      margin-bottom: 8px;
+
+      // list-style: none;
+      // counter-reset: num;
+
+      // &:before {
+      //   content: counter(num) '. ';
+      //   counter-increment: num;
+      //   display: inline-block;
+      //   width: 2em;
+      // }
+
+      &--inside {
+        list-style-position: inside;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &--mb-smaller {
+        margin-bottom: 4px;
+      }
+
+      &--pl {
+        padding-left: 35px;
+      }
+    }
+  }
+}
