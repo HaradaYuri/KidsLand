@@ -1,0 +1,43 @@
+@use '../global' as *;
+
+.notfound {
+  margin: 120px auto;
+  padding: 0 20px;
+  max-width: 1120px;
+
+  @include mq(sp) {
+    margin: 80px auto;
+    padding: 0 15px;
+  }
+
+  & * {
+    color: $textDark;
+    text-align: left;
+  }
+
+  &__text,
+  &__list {
+    margin-bottom: 24px;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+
+    @include mq(sp) {
+      font-size: 17px;
+    }
+  }
+
+  &__text {
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__list {
+  }
+
+  &__item {
+  }
+}

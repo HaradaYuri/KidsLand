@@ -1,0 +1,22 @@
+@use '../global' as *;
+
+.flex {
+  &-row {
+    @include centerFlex;
+    // flex-wrap: wrap;
+  }
+
+  &-col {
+    @include centerFlex;
+    flex-direction: column;
+  }
+
+  &-rc {
+    @include centerFlex;
+    flex-wrap: wrap;
+
+    @include mq(sp) {
+      flex-direction: column;
+    }
+  }
+}

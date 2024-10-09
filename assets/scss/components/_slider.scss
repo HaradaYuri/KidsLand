@@ -1,0 +1,36 @@
+@use '../global' as *;
+
+.slider {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 66px;
+
+  @include mq(sp) {
+    margin-top: 22px;
+  }
+
+  &__item {
+    padding: 0 6px;
+
+    img {
+      width: 240px;
+      height: auto;
+      border-radius: 20px;
+
+      // object-fit: cover;
+      @include mq(pc) {
+        width: 200px;
+      }
+      @include mq(sp) {
+        width: min(calc((120 / 375) * 100vw), 200px);
+        min-width: 120px;
+        border-radius: 12px;
+      }
+    }
+  }
+}
+
+/* Slick のデフォルトスタイルの一部をオーバーライド */
+// .slick-list {
+//   margin: 0 -10px;
+// }

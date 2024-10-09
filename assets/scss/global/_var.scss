@@ -1,0 +1,25 @@
+// color
+$primary: #ef8f9c;
+$secondary: #ffedf0;
+$accentLight: #fff7b8;
+
+$textColor: #55000c;
+$textDark: #333333;
+
+$bgColorLight: #ffffff;
+
+// font-family
+$font-main: "Kosugi Maru", sans-serif;
+
+$font-en: "Jost", sans-serif;
+
+$font-design: "Yusei Magic", sans-serif;
+
+$breakpoint: (
+  xs: 'screen and (max-width: 374px)',
+  sp: 'screen and (max-width: 767px)',
+  pc: 'screen and (max-width: 1149px)',
+  xl: 'screen and (max-width: 1439px)',
+);
+
+$transition: all 0.3s ease;

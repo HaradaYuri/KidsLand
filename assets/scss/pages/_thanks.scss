@@ -1,0 +1,51 @@
+@use '../global' as *;
+.thanks {
+  padding: 0 30px;
+
+  @include mq(sp) {
+    padding: 0 15px;
+  }
+
+  &__text {
+    margin-top: 80px;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: $textDark;
+
+    @include mq(pc) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    @include mq(sp) {
+      margin-top: 60px;
+
+      text-align: left;
+    }
+  }
+
+  &__button {
+    margin-top: 120px;
+    margin-bottom: 80px;
+
+    width: 300px;
+    height: 60px;
+
+    text-transform: uppercase;
+
+    @include mq(sp) {
+      margin-top: 80px;
+    }
+
+    @include mq(xs) {
+      width: 100%;
+    }
+
+    .fa-chevron-right {
+      top: 36%;
+    }
+  }
+}

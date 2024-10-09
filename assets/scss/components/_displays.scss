@@ -1,0 +1,22 @@
+@use '../global' as *;
+
+.xl {
+  display: none;
+  @include mq(xl) {
+    display: block;
+  }
+}
+
+.pc {
+  display: none;
+  @include mq(pc) {
+    display: block;
+  }
+}
+
+.sp {
+  display: none;
+  @include mq(sp) {
+    display: block;
+  }
+}

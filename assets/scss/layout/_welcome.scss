@@ -1,0 +1,38 @@
+@use '../global' as *;
+
+.welcome {
+  margin-top: 116px;
+
+  @include mq(sp) {
+    margin-top: 88px;
+  }
+
+  &__title {
+    margin-bottom: 64px;
+
+    h2 {
+      @include mq(sp) {
+        font-size: 18px;
+        line-height: 27px;
+      }
+    }
+
+    @include mq(sp) {
+      margin-bottom: 46px;
+    }
+  }
+
+  &__text {
+    @include mq(sp) {
+      font-size: 14px;
+    }
+
+    &:first-of-type {
+      margin-bottom: 16px;
+
+      @include mq(sp) {
+        margin-bottom: 31px;
+      }
+    }
+  }
+}

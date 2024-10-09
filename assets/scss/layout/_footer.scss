@@ -1,0 +1,89 @@
+@use '../global' as *;
+
+.footer {
+  padding-bottom: 12px;
+  background: linear-gradient(180deg, #fffef3 0%, #fff7b8 100%);
+
+  &__logo {
+    width: 240px;
+    margin-top: 48px;
+
+    @include mq(sp) {
+      width: 200px;
+    }
+  }
+
+  &__list {
+    margin: auto;
+    margin-top: 40px;
+    width: min(calc((970 / 1440) * 100vw), 970px);
+
+    @include centerFlex;
+    flex-wrap: wrap;
+    gap: 24px 0;
+
+    @include mq(sp) {
+      width: min(calc((345 / 375) * 100vw), 345px);
+    }
+  }
+
+  &__item {
+    @include mq(sp) {
+      flex-basis: 50%;
+      text-align: left;
+    }
+  }
+
+  &__link {
+    padding: 0 26px;
+    display: block;
+
+    @include mq(sp) {
+      padding: 0;
+      padding-left: 10px;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    letter-spacing: 0.1em;
+
+    @include mq(sp) {
+      font-size: 14px;
+      line-height: 16.8px;
+    }
+
+    &--small {
+      @include mq(sp) {
+        font-size: 12px;
+        line-height: 14.4px;
+      }
+    }
+  }
+
+  &__copyright {
+    margin-top: 48px;
+
+    color: $textDark;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.8px;
+    letter-spacing: 0.1em;
+
+    @include mq(sp) {
+      font-size: 12px;
+      line-height: 14.4px;
+    }
+
+    & span {
+      font-size: 24px;
+      vertical-align: top;
+      color: inherit;
+      @include mq(sp) {
+        font-size: 20px;
+      }
+    }
+  }
+}

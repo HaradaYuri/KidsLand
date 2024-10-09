@@ -1,0 +1,156 @@
+@use '../global' as *;
+
+.btn {
+  &-primary {
+    position: relative;
+    @include centerFlex;
+    cursor: pointer;
+
+    width: 240px;
+    height: 60px;
+    margin: auto;
+
+    background-color: $bgColorLight;
+    border-radius: 30px;
+    border: 2px solid #55000c;
+
+    color: $textColor;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.1em;
+
+    // &:hover,
+    // &:focus {
+    // }
+
+    @include mq(sp) {
+      width: 200px;
+      height: 50px;
+
+      font-size: 16px;
+    }
+
+    i {
+      position: absolute;
+      font-size: 20px;
+      top: 30%;
+      right: 24px;
+
+      @include mq(sp) {
+        font-size: 16px;
+        right: 16px;
+      }
+    }
+  }
+
+  &-topback {
+    opacity: 0;
+
+    width: 72px;
+    height: 72px;
+
+    position: fixed;
+    z-index: 3000;
+    bottom: 30px;
+    right: 2.2%;
+
+    @include centerFlex;
+    cursor: pointer;
+
+    border-radius: 50px;
+    background-color: $bgColorLight;
+    box-shadow: 4px 4px 30px 0px #0000000d;
+
+
+    @include mq(sp) {
+      width: 48px;
+      height: 48px;
+
+      bottom: 14px;
+      right: 3.7%;
+    }
+
+    i {
+      font-size: 36px;
+      color: $textColor;
+
+      @include mq(sp) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  // menu for SP
+  &-menu {
+    display: none;
+
+    @include mq(sp) {
+      display: block;
+
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 10000;
+
+      width: 48px;
+      height: 48px;
+
+      border: 1px solid $textColor;
+      border-radius: 50%;
+      background-color: transparent;
+
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    &__line {
+      width: 25px;
+      height: 2px;
+      background-color: $textColor;
+      margin-top: 4px;
+      transition: all 0.3s ease;
+    }
+
+    &__text {
+      letter-spacing: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &__text--closed {
+      display: none;
+    }
+
+    &.active {
+      font-family: $font-main;
+
+      .btn-menu__line {
+        width: 32px;
+
+        &:nth-child(1) {
+          transform: translateY(5px) rotate(25deg);
+          margin-top: 1px;
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: translateY(-6px) rotate(-25deg);
+          margin-top: 3px;
+        }
+      }
+
+      .btn-menu__text {
+        opacity: 0;
+        display: none;
+
+        &--closed {
+          opacity: 1;
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@use '../global' as *;
+
+.txts-en {
+  font-family: $font-en;
+  font-weight: 900;
+  font-size: 10px;
+  text-align: center;
+  line-height: 12px;
+  letter-spacing: 0.1em;
+}
+
+// .txtl {
+//   font-size: 28px;
+//   font-weight: 600;
+//   line-height: 40px;
+//   letter-spacing: 0.1em;
+
+//   @include mq(sp) {
+//   }
+// }
+
+.txtm {
+  font-family: $font-main;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.2em;
+}
+
+.txts {
+  font-family: $font-main;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  letter-spacing: 0.1em;
+
+  @include mq(sp) {
+    font-size: 14px;
+    line-height: 16.8px;
+  }
+}

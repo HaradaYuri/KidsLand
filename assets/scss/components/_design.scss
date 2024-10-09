@@ -1,0 +1,28 @@
+@use '../global' as *;
+
+.pink-vertical-line {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 4px;
+    height: 100%;
+    border-radius: 2px;
+    background-color: $primary;
+  }
+}
+
+.triangle {
+  background: $primary;
+  height: calc(tan(60deg) * 16px / 2);
+  width: 18px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: rotate(180deg);
+
+  @include mq(sp) {
+    height: calc(tan(60deg) * 14px / 2);
+    width: 16px;
+  }
+}
