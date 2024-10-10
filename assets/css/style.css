@@ -687,6 +687,7 @@ table {
 .cards-letter {
   width: 320px;
   height: 280px;
+  display: block;
   border-radius: 20px;
   background-color: #ffffff;
 }
@@ -703,6 +704,8 @@ table {
 .cards-letter img {
   height: 135px;
   border-radius: 20px 20px 0 0;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .cards-letter .text__block {
   margin: 12px;
@@ -726,6 +729,7 @@ table {
 }
 .cards-letter .text__block-desc {
   margin-bottom: 12px;
+  height: 48px;
   font-size: 16px;
   line-height: 24px;
   text-align: left;
@@ -2631,11 +2635,42 @@ table {
   border: 1px solid #333333;
   color: #333333;
 }
+.p-letter__search .search__chose-btn--prefecture {
+  position: relative;
+}
+.p-letter__search .search__chose-btn--prefecture:after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  right: 18px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #333333;
+  border-bottom: 2px solid #333333;
+  border-radius: 1px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  pointer-events: none;
+}
 .p-letter__search .search__chose-btn--nursery {
+  position: relative;
   width: 200px;
 }
-.p-letter__search .search__chose-btn .fa-chevron-down {
-  font-size: 12px;
+.p-letter__search .search__chose-btn--nursery:after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  right: 14px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #333333;
+  border-bottom: 2px solid #333333;
+  border-radius: 1px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  pointer-events: none;
 }
 .p-letter__search .search__chose-btn--search {
   display: -webkit-box;
@@ -2652,6 +2687,11 @@ table {
   background-color: #55000c;
   color: #ffffff;
   font-size: 20px;
+}
+.p-letter select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
 }
 .p-letter__cards {
   margin-top: 32px;

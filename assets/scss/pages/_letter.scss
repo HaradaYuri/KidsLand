@@ -81,12 +81,45 @@
         border: 1px solid $textDark;
         color: $textDark;
 
-        &--nursery {
-          width: 200px;
+        &--prefecture{
+          position: relative;
+
+          &:after {
+              content: "";
+              position: absolute;
+              z-index: 10;
+              top: 10px;
+              right: 18px;
+              width: 8px;
+              height: 8px;
+
+              border-right: 2px solid $textDark;
+              border-bottom: 2px solid $textDark;
+              border-radius: 1px;
+              transform: rotate(45deg);
+              pointer-events: none;
+            }
         }
 
-        .fa-chevron-down {
-          font-size: 12px;
+        &--nursery {
+          position: relative;
+          width: 200px;
+
+          &:after {
+              content: "";
+              position: absolute;
+              z-index: 10;
+              top: 10px;
+              right: 14px;
+              width: 8px;
+              height: 8px;
+          
+              border-right: 2px solid $textDark;
+              border-bottom: 2px solid $textDark;
+              border-radius: 1px;
+              transform: rotate(45deg);
+              pointer-events: none;
+          }
         }
 
         &--search {
@@ -96,9 +129,18 @@
           background-color: $textColor;
           color: $bgColorLight;
           font-size: 20px;
+
+          
         }
       }
     }
+  }
+
+  // select要素 矢印 none
+  select{
+    -webkit-appearance: none;
+    appearance: none;
+
   }
 
   // cards__container RESET

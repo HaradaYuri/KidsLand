@@ -46,6 +46,7 @@
     width: 320px;
     height: 280px;
 
+    display: block;
     border-radius: 20px;
     background-color: $bgColorLight;
 
@@ -60,6 +61,7 @@
     img {
       height: 135px;
       border-radius: 20px 20px 0 0;
+      object-fit: cover;
     }
 
     .text__block {
@@ -91,6 +93,7 @@
 
       &-desc {
         margin-bottom: 12px;
+        height: 48px;
 
         font-size: 16px;
         line-height: 24px;

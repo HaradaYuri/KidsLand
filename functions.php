@@ -157,68 +157,104 @@ function create_custom_taxonomies()
 }
 add_action('init', 'create_custom_taxonomies');
 
-// Custom Field Suiteのフィールドグループを登録
-// function register_cfs_field_groups()
-// {
-//   if (function_exists('cfs_field_group')) {
-//     // 各園のご紹介用カスタムフィールド
-//     $fields = array(
-//       array(
-//         'type' => 'text',
-//         'label' => '住所',
-//         'name' => 'address',
-//       ),
-//       array(
-//         'type' => 'text',
-//         'label' => '電話番号',
-//         'name' => 'tel',
-//       ),
-//       // 他の必要なフィールドを追加
-//     );
 
-//     cfs_field_group('園の詳細情報', $fields, array(
-//       'post_types' => array('introduction'),
-//     ));
+// カスタム投稿タイプ 'letter' のメインクエリを調整
+function custom_pre_get_posts($query)
+{
+  if (!is_admin() && $query->is_main_query()) {
+    if (is_post_type_archive('letter') || is_tax('prefecture')) {
+      $query->set('posts_per_page', 9);
+      $query->set('meta_key', 'letter_date');
+      $query->set('orderby', 'meta_value');
+      $query->set('order', 'DESC');
 
-//     // こもれびだより用カスタムフィールド
-//     $letter_fields = array(
-//       array(
-//         'type' => 'loop',
-//         'label' => '内容',
-//         'name' => 'content',
-//         'sub_fields' => array(
-//           array(
-//             'type' => 'wysiwyg',
-//             'label' => '段落',
-//             'name' => 'paragraph',
-//           ),
-//         ),
-//       ),
-//     );
+      $meta_query = array();
 
-//     cfs_field_group('こもれびだより詳細', $letter_fields, array(
-//       'post_types' => array('letter'),
-//     ));
+      // 都道府県の絞り込み
+      $prefecture = get_query_var('prefecture');
+      if (!empty($prefecture)) {
+        $query->set('tax_query', array(
+          array(
+            'taxonomy' => 'prefecture',
+            'field'    => 'slug',
+            'terms'    => $prefecture,
+          ),
+        ));
+      }
 
-//     // お知らせ用カスタムフィールド
-//     $info_fields = array(
-//       array(
-//         'type' => 'loop',
-//         'label' => '内容',
-//         'name' => 'content',
-//         'sub_fields' => array(
-//           array(
-//             'type' => 'wysiwyg',
-//             'label' => '段落',
-//             'name' => 'paragraph',
-//           ),
-//         ),
-//       ),
-//     );
+      // 園名での絞り込み
+      $nursery = get_query_var('nursery');
+      if (!empty($nursery)) {
+        $meta_query[] = array(
+          'key'     => 'letter_nursery_name',
+          'value'   => $nursery,
+          'compare' => '=',
+        );
+      }
 
-//     cfs_field_group('お知らせ詳細', $info_fields, array(
-//       'post_types' => array('info'),
-//     ));
-//   }
-// }
-// add_action('init', 'register_cfs_field_groups');
+      // 年月での絞り込み
+      $year = $query->get('year');
+      $monthnum = $query->get('monthnum');
+      if ($year && $monthnum) {
+        $start_date = $year . '-' . sprintf('%02d', $monthnum) . '-01';
+        $end_date = $year . '-' . sprintf('%02d', $monthnum) . '-' . date('t', strtotime($start_date));
+
+        $meta_query[] = array(
+          'key'     => 'letter_date',
+          'value'   => array($start_date, $end_date),
+          'compare' => 'BETWEEN',
+          'type'    => 'DATE'
+        );
+      }
+
+      if (!empty($meta_query)) {
+        $query->set('meta_query', $meta_query);
+      }
+    }
+  }
+}
+add_action('pre_get_posts', 'custom_pre_get_posts');
+
+
+// 'letter' カスタム投稿タイプのページネーションURLを修正
+function custom_pagination_base_url($url)
+{
+  if (is_post_type_archive('letter')) {
+    $url = str_replace('page/', 'letter/page/', $url);
+  }
+  return $url;
+}
+add_filter('get_pagenum_link', 'custom_pagination_base_url');
+
+// カスタムフィールド 'letter_date' を使用した効率的なソート
+function custom_posts_clauses($clauses, $wp_query)
+{
+  global $wpdb;
+  if (!is_admin() && $wp_query->is_main_query() && ($wp_query->is_post_type_archive('letter') || $wp_query->is_tax('prefecture'))) {
+    $clauses['join'] .= " LEFT JOIN (
+            SELECT post_id, meta_value AS letter_date
+            FROM {$wpdb->postmeta}
+            WHERE meta_key = 'letter_date'
+        ) AS letter_date ON ({$wpdb->posts}.ID = letter_date.post_id)";
+    $clauses['orderby'] = "letter_date.letter_date DESC, " . $clauses['orderby'];
+  }
+  return $clauses;
+}
+add_filter('posts_clauses', 'custom_posts_clauses', 10, 2);
+
+// 'prefecture' タクソノミーアーカイブページで 'letter' 投稿タイプを表示
+function custom_taxonomy_archive_query($query)
+{
+  if (!is_admin() && $query->is_main_query() && is_tax('prefecture')) {
+    $query->set('post_type', 'letter');
+  }
+}
+add_action('pre_get_posts', 'custom_taxonomy_archive_query');
+
+// クエリ変数 'nursery' を追加
+function add_query_vars_filter($vars)
+{
+  $vars[] = "nursery";
+  return $vars;
+}
+add_filter('query_vars', 'add_query_vars_filter');
