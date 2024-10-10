@@ -29,7 +29,7 @@
 
 <body <?php body_class(); ?>>
   <!-- top back btn -->
-  <a href="<?php echo esc_url(home_url('/')); ?>" class="btn-topback">
+  <a href="#" class="btn-topback">
     <i class="fa-solid fa-chevron-up"></i>
   </a>
 

@@ -82,80 +82,51 @@
     </div>
 
     <div class="letter__cards cards__container">
-      <article>
-        <div class="cards-letter fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/letter/letter_naha.webp" alt="タイトルが入ります。">
-          <div class="text__block">
-            <h3 class="text__block-title">なは園からのおたより</h3>
-            <p class="text__block-desc">
-              年長さんクラス、美ら海水族館に遠足に行きました！
-            </p>
-            <p class="text__block-date">2024ねん4がつ15にち</p>
-          </div>
-        </div>
-      </article>
-      <article>
-        <div class="cards-letter fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/letter/letter_naha.webp" alt="タイトルが入ります。">
-          <div class="text__block">
-            <h3 class="text__block-title">なは園からのおたより</h3>
-            <p class="text__block-desc">
-              年長さんクラス、美ら海水族館に遠足に行きました！
-            </p>
-            <p class="text__block-date">2024ねん4がつ15にち</p>
-          </div>
-        </div>
-      </article>
-      <article>
-        <div class="cards-letter fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/letter/letter_naha.webp" alt="タイトルが入ります。">
-          <div class="text__block">
-            <h3 class="text__block-title">なは園からのおたより</h3>
-            <p class="text__block-desc">
-              年長さんクラス、美ら海水族館に遠足に行きました！
-            </p>
-            <p class="text__block-date">2024ねん4がつ15にち</p>
-          </div>
-        </div>
-      </article>
-      <article>
-        <div class="cards-letter fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/letter/letter_naha.webp" alt="タイトルが入ります。">
-          <div class="text__block">
-            <h3 class="text__block-title">なは園からのおたより</h3>
-            <p class="text__block-desc">
-              年長さんクラス、美ら海水族館に遠足に行きました！
-            </p>
-            <p class="text__block-date">2024ねん4がつ15にち</p>
-          </div>
-        </div>
-      </article>
-      <article>
-        <div class="cards-letter fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/letter/letter_naha.webp" alt="タイトルが入ります。">
-          <div class="text__block">
-            <h3 class="text__block-title">なは園からのおたより</h3>
-            <p class="text__block-desc">
-              年長さんクラス、美ら海水族館に遠足に行きました！
-            </p>
-            <p class="text__block-date">2024ねん4がつ15にち</p>
-          </div>
-        </div>
-      </article>
-      <article>
-        <div class="cards-letter fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/letter/letter_naha.webp" alt="タイトルが入ります。">
-          <div class="text__block">
-            <h3 class="text__block-title">
-              なは園からのおたよりなは園からのおたよりなは園からのおたより
-            </h3>
-            <p class="text__block-desc">
-              年長さんクラス、美ら海水族館に遠足に行きました！年長さんクラス、美ら海水族館に遠足に行きました！年長さんクラス、美ら海水族館に遠足に行きました！
-            </p>
-            <p class="text__block-date">2024ねん4がつ15にち</p>
-          </div>
-        </div>
-      </article>
+      <?php
+      $args = array(
+        'post_type' => 'letter',
+        'posts_per_page' => 6,
+        'orderby' => 'meta_value',
+        'meta_key' => 'letter_date',
+        'order' => 'DESC'
+      );
+      $letter_query = new WP_Query($args);
+
+      if ($letter_query->have_posts()) :
+        while ($letter_query->have_posts()) : $letter_query->the_post();
+          $letter_thumbnail = CFS()->get('letter_thumbnail');
+          $letter_nursery_name = CFS()->get('letter_nursery_name');
+          $letter_title = CFS()->get('letter_title');
+          $letter_date = CFS()->get('letter_date');
+      ?>
+          <article>
+            <a href="<?php the_permalink(); ?>" class="cards-letter fadeUpTrigger">
+              <?php if ($letter_thumbnail) : ?>
+                <img loading="lazy" src="<?php echo esc_url($letter_thumbnail); ?>" alt="<?php echo esc_attr($letter_title); ?>">
+              <?php endif; ?>
+              <div class="text__block">
+                <h3 class="text__block-title"><?php echo esc_html($letter_nursery_name); ?>からのおたより</h3>
+                <p class="text__block-desc">
+                  <?php echo esc_html($letter_title); ?>
+                </p>
+                <p class="text__block-date">
+                  <?php
+                  if ($letter_date) {
+                    $timestamp = strtotime($letter_date);
+                    echo esc_html(date('Y', $timestamp) . 'ねん' . date('n', $timestamp) . 'がつ' . date('j', $timestamp) . 'にち');
+                  }
+                  ?>
+                </p>
+              </div>
+            </a>
+          </article>
+      <?php
+        endwhile;
+        wp_reset_postdata();
+      else :
+        echo '<p>まだおたよりがありません。</p>';
+      endif;
+      ?>
     </div>
 
     <a href="#" class="letter__btn btn-primary fadeUpTrigger">

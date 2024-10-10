@@ -177,18 +177,19 @@ $current_nursery = isset($_GET['nursery']) ? sanitize_text_field($_GET['nursery'
           endif;
           ?>
         </div>
+
         <!-- pagination -->
         <div class="pagination fadeUpTrigger">
           <?php
-          $big = 999999999; // need an unlikely integer
-          echo paginate_links(array(
-            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-            'format' => '?paged=%#%',
-            'current' => max(1, get_query_var('paged')),
-            'total' => $query->max_num_pages,
-            'prev_text' => '<i class="fa-solid fa-chevron-left"></i>',
-            'next_text' => '<i class="fa-solid fa-chevron-right"></i>',
-          ));
+          $total_pages = $query->max_num_pages;
+          if ($total_pages > 1) :
+            echo paginate_links(array(
+              'total' => $total_pages,
+              'current' => max(1, get_query_var('paged')),
+              'prev_text' => '<i class="fa-solid fa-chevron-left"></i>',
+              'next_text' => '<i class="fa-solid fa-chevron-right"></i>',
+            ));
+          endif;
           ?>
         </div>
       </div>

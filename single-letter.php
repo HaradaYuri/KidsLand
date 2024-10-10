@@ -25,7 +25,7 @@ get_header();
           <i class="fa-solid fa-chevron-right"></i>
           <a href="<?php echo esc_url(get_post_type_archive_link('letter')); ?>">こもれびだより</a>
           <i class="fa-solid fa-chevron-right"></i>
-          <span class="single-letter__brcr">
+          <span class="s-letter__brcr">
             <?php echo esc_html(get_the_title()); ?>
           </span>
         </p>
@@ -39,13 +39,13 @@ get_header();
     <div class="p-letter__container flex-rc">
       <!-- flex left -->
       <div class="p-letter__main">
-        <div class="single-letter fadeUpTrigger">
-          <div class="single-letter__top flex-rc">
-            <p class="single-letter__top-heading">
+        <div class="s-letter fadeUpTrigger">
+          <div class="s-letter__top flex-rc">
+            <p class="s-letter__top-heading">
               <i class="fa-solid fa-pencil"></i>
               <?php echo esc_html(CFS()->get('letter_nursery_name')); ?>からのおたより
             </p>
-            <p class="single-letter__top-day">
+            <p class="s-letter__top-day">
               <?php
               $date = CFS()->get('letter_date');
               if ($date) {
@@ -55,26 +55,27 @@ get_header();
               ?>
             </p>
           </div>
-          <h2 class="single-letter__title">
+          <h2 class="s-letter__title">
             <?php echo esc_html(get_the_title()); ?>
           </h2>
 
           <?php
           $thumbnail = CFS()->get('letter_thumbnail');
-          if ($thumbnail) :
+          $no_img = get_template_directory_uri() . '/img/no-image.webp';
+          $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
+          $img_alt = "桜のこもれびキッズランド";
           ?>
-            <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" class="single-letter__img">
-          <?php endif; ?>
+          <img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img">
 
           <?php
           $letter_loop = CFS()->get('letter_loop');
           if (is_array($letter_loop)) :
             foreach ($letter_loop as $letter_item) :
           ?>
-              <h3 class="single-letter__subtitle pink-vertical-line">
+              <h3 class="s-letter__subtitle pink-vertical-line">
                 <?php echo esc_html($letter_item['letter_subtitle']); ?>
               </h3>
-              <p class="single-letter__text">
+              <p class="s-letter__text">
                 <?php echo nl2br(esc_html($letter_item['letter_text'])); ?>
               </p>
           <?php
@@ -82,7 +83,7 @@ get_header();
           endif;
           ?>
 
-          <a href="<?php echo esc_url(get_post_type_archive_link('letter')); ?>" class="single-letter__btn btn-primary">
+          <a href="<?php echo esc_url(get_post_type_archive_link('letter')); ?>" class="s-letter__btn btn-primary">
             こもれびだより一覧へ
             <i class="fa-solid fa-chevron-right"></i>
           </a>

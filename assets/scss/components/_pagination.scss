@@ -4,7 +4,7 @@
   @include centerFlex;
   gap: 8px;
 
-  &__item {
+  .page-numbers {
     @include centerFlex;
     width: 36px;
     height: 36px;
@@ -19,7 +19,7 @@
     line-height: 19.2px;
     letter-spacing: 0.1em;
 
-    &.active {
+    &.current {
       background-color: $primary;
       color: $bgColorLight;
     }

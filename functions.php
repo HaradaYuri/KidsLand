@@ -158,6 +158,21 @@ function create_custom_taxonomies()
 add_action('init', 'create_custom_taxonomies');
 
 
+// ビジュアルエディタを無効化
+function disable_visual_editor($can)
+{
+  global $post;
+  if (isset($post)) {
+    $custom_post_types = array('introduction', 'letter', 'info');
+    if (in_array($post->post_type, $custom_post_types)) {
+      return false;
+    }
+  }
+  return $can;
+}
+add_filter('user_can_richedit', 'disable_visual_editor');
+
+
 // カスタム投稿タイプ 'letter' のメインクエリを調整
 function custom_pre_get_posts($query)
 {
@@ -258,3 +273,37 @@ function add_query_vars_filter($vars)
   return $vars;
 }
 add_filter('query_vars', 'add_query_vars_filter');
+
+
+/**
+ * info
+ */
+// カスタム投稿タイプ 'info' のメインクエリを調整
+function custom_info_pre_get_posts($query)
+{
+  if (!is_admin() && $query->is_main_query()) {
+    if (is_post_type_archive('info') || is_tax('info_category')) {
+      $query->set('posts_per_page', 10);
+      $query->set('meta_key', 'info_date');
+      $query->set('orderby', 'meta_value');
+      $query->set('order', 'DESC');
+    }
+  }
+}
+add_action('pre_get_posts', 'custom_info_pre_get_posts');
+
+// カスタムフィールド 'info_date' を使用した効率的なソート
+function custom_info_posts_clauses($clauses, $wp_query)
+{
+  global $wpdb;
+  if (!is_admin() && $wp_query->is_main_query() && ($wp_query->is_post_type_archive('info') || $wp_query->is_tax('info_category'))) {
+    $clauses['join'] .= " LEFT JOIN (
+            SELECT post_id, meta_value AS info_date
+            FROM {$wpdb->postmeta}
+            WHERE meta_key = 'info_date'
+        ) AS info_date ON ({$wpdb->posts}.ID = info_date.post_id)";
+    $clauses['orderby'] = "info_date.info_date DESC, " . $clauses['orderby'];
+  }
+  return $clauses;
+}
+add_filter('posts_clauses', 'custom_info_posts_clauses', 10, 2);
