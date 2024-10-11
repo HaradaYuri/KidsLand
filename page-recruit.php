@@ -12,11 +12,9 @@
 
       <!-- breadcrumbs -->
       <div class="breadcrumbs fadeUpTrigger">
-        <p>
-          TOP
-          <i class="fa-solid fa-chevron-right"></i>
-          採用情報
-        </p>
+        <?php if (function_exists('yoast_breadcrumb')) : ?>
+          <?php yoast_breadcrumb('<p id="breadcrumbs">', '</p>'); ?>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -26,7 +24,7 @@
   <section class="motto">
     <div class="motto__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-colored-cherry-blossom.webp" alt="たいせつにしていること">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-colored-cherry-blossom.webp" alt="たいせつにしていること">
       </div>
       <h2 class="fadeUpTrigger">たいせつにしていること</h2>
       <p class="fadeUpTrigger">motto</p>
@@ -34,10 +32,10 @@
 
     <div class="motto__container flex-col">
       <div class="motto__block fadeUpTrigger flex-rc">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/recruit__motto1.webp" alt="タンポポを母親に渡す子供" class="motto__block-img">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/yp3.webp" alt="タンポポを母親に渡す子供" class="motto__block-img">
         <div class="motto__block-wrapper">
           <h3 class="motto__block-title">
-            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-pink-cherry-blossm.webp" alt="alt" class="motto__block-icon">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-pink-cherry-blossm.webp" alt="alt" class="motto__block-icon">
             子ども主体の保育
           </h3>
           <p class="motto__block-text">
@@ -50,10 +48,10 @@
       </div>
 
       <div class="motto__block fadeUpTrigger flex-rc">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/slider/slider5.webp" alt="綺麗で遊び心のある教室" class="motto__block-img">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/slider5.webp" alt="綺麗で遊び心のある教室" class="motto__block-img">
         <div class="motto__block-wrapper">
           <h3 class="motto__block-title">
-            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-pink-cherry-blossm.webp" alt="alt" class="motto__block-icon">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-pink-cherry-blossm.webp" alt="alt" class="motto__block-icon">
             自由な風土
           </h3>
           <p class="motto__block-text">
@@ -65,10 +63,10 @@
         </div>
       </div>
       <div class="motto__block fadeUpTrigger flex-rc">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/recruit__motto.webp" alt="園児と親に笑顔で話しかける保育園の先生" class="motto__block-img">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/recruit__motto.webp" alt="園児と親に笑顔で話しかける保育園の先生" class="motto__block-img">
         <div class="motto__block-wrapper">
           <h3 class="motto__block-title">
-            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-pink-cherry-blossm.webp" alt="alt" class="motto__block-icon">
+            <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-pink-cherry-blossm.webp" alt="alt" class="motto__block-icon">
             ワークライフバランス
           </h3>
           <p class="motto__block-text">
@@ -87,7 +85,7 @@
   <section class="requirements">
     <div class="requirements__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-light-bolb.svg" alt="募集要項">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-light-bolb.svg" alt="募集要項">
       </div>
       <h2 class="fadeUpTrigger">募集要項</h2>
       <p class="fadeUpTrigger">requirements</p>
@@ -183,7 +181,7 @@
   <section class="faq">
     <div class="faq__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-question.svg" alt="よくある質問">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-question.svg" alt="よくある質問">
       </div>
       <h2 class="fadeUpTrigger">よくある質問</h2>
       <p class="fadeUpTrigger">FAQ</p>
@@ -238,7 +236,7 @@
   <!-- faq /ends here -->
 
   <!-- recruit form starts here -->
-  <section class="form__container recruit__form-container">
+  <section class="form__container recruit__form-container" id="recruitForm">
     <form class="form recruit__form bg-bgL">
       <div class="form__group">
         <label class="form__heading">

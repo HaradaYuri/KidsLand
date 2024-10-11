@@ -172,6 +172,7 @@
     padding: 12px;
     border-radius: 20px;
 
+    display: block;
     background-color: $secondary;
 
     // color depends on the data-type
@@ -184,7 +185,7 @@
     &[data-type='small-scale-a'] {
       background-color: #edf4ff;
     }
-
+    
     img {
       width: 296px;
       height: 180px;
@@ -228,6 +229,11 @@
           font-weight: 400;
           line-height: 1;
           letter-spacing: 0.1em;
+
+          &:hover{
+            opacity: 0.8;
+            cursor: pointer;
+          }
         }
       }
     }

@@ -1,16 +1,8 @@
 <?php
-
-/**
- * Template Name: こもれびだより Archive
- * Template Post Type: archive
- */
+$current_prefecture = get_query_var('term');
+$current_nursery = isset($_GET['nursery']) ? sanitize_text_field($_GET['nursery']) : '';
 
 get_header();
-
-// 現在の都道府県を取得
-$current_prefecture = get_query_var('prefecture');
-// 現在の園を取得
-$current_nursery = isset($_GET['nursery']) ? sanitize_text_field($_GET['nursery']) : '';
 ?>
 
 <main>
@@ -138,6 +130,7 @@ $current_nursery = isset($_GET['nursery']) ? sanitize_text_field($_GET['nursery'
 
           $query = new WP_Query($args);
 
+
           if ($query->have_posts()) :
             while ($query->have_posts()) : $query->the_post();
           ?>
@@ -145,10 +138,11 @@ $current_nursery = isset($_GET['nursery']) ? sanitize_text_field($_GET['nursery'
                 <a href="<?php the_permalink(); ?>" class="cards-letter fadeUpTrigger">
                   <?php
                   $thumbnail = CFS()->get('letter_thumbnail');
-                  if ($thumbnail) :
+                  $no_img = get_template_directory_uri() . '/assets/images/no-image.webp';
+                  $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
+                  $img_alt = $thumbnail ? esc_attr(CFS()->get('letter_title')) : "桜のこもれびキッズランド";
                   ?>
-                    <img loading="lazy" src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr(CFS()->get('letter_title')); ?>">
-                  <?php endif; ?>
+                  <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>">
                   <div class="text__block">
                     <h3 class="text__block-title"><?php echo esc_html(CFS()->get('letter_nursery_name')); ?>からのおたより</h3>
                     <p class="text__block-desc">

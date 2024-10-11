@@ -31,7 +31,6 @@ function theme_enqueue_assets()
   // Stickyfill
   wp_enqueue_script('stickyfill', 'https://cdn.jsdelivr.net/npm/stickyfill@2.1.0/dist/stickyfill.min.js', ['jquery'], '2.1.0', true);
 
-
   // Scripts(module)
   $scripts = array(
     'common' => '/assets/js/common.js',
@@ -39,6 +38,7 @@ function theme_enqueue_assets()
     'navigation' => '/assets/js/components/navigation.js',
     'slider' => '/assets/js/components/slider.js',
     'accordion' => '/assets/js/components/accordion.js',
+    'cardLinks' => '/assets/js/components/card-links.js',
     'form' => '/assets/js/layout/form.js',
     'home' => '/assets/js/pages/home.js',
   );
@@ -51,7 +51,6 @@ function theme_enqueue_assets()
   wp_enqueue_script_module('main-script', get_theme_file_uri('/assets/js/main.js'));
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
-
 
 /**
  * Custom title for Yoast SEO
@@ -81,7 +80,9 @@ add_filter('wpseo_metadesc', 'custom_wpseo_metadesc');
 add_filter('wpseo_opengraph_desc', 'custom_wpseo_metadesc');
 
 
-// カスタム投稿タイプの登録
+/**
+ * Register custom post types
+ */
 function create_custom_post_types()
 {
   // 各園のご紹介
@@ -122,7 +123,9 @@ function create_custom_post_types()
 }
 add_action('init', 'create_custom_post_types');
 
-// タクソノミーの登録
+/**
+ * Register custom taxonomies
+ */
 function create_custom_taxonomies()
 {
   // 園の種類
@@ -157,45 +160,40 @@ function create_custom_taxonomies()
 }
 add_action('init', 'create_custom_taxonomies');
 
-
-// ビジュアルエディタを無効化
-function disable_visual_editor($can)
-{
-  global $post;
-  if (isset($post)) {
-    $custom_post_types = array('introduction', 'letter', 'info');
-    if (in_array($post->post_type, $custom_post_types)) {
-      return false;
-    }
-  }
-  return $can;
-}
-add_filter('user_can_richedit', 'disable_visual_editor');
-
-
-// カスタム投稿タイプ 'letter' のメインクエリを調整
+/**
+ * Modify main query for custom post types
+ */
 function custom_pre_get_posts($query)
 {
   if (!is_admin() && $query->is_main_query()) {
-    if (is_post_type_archive('letter') || is_tax('prefecture')) {
+    $post_type = $query->get('post_type');
+    $taxonomy = $query->get('taxonomy');
+    $term = $query->get('term');
+
+    if ($taxonomy == 'prefecture') {
+      $post_type = isset($_GET['post_type']) ? $_GET['post_type'] : 'introduction';
+      $query->set('post_type', $post_type);
+    }
+
+    if ($taxonomy && $term) {
+      if ($post_type == 'introduction' || $post_type == 'letter') {
+        $query->set('tax_query', array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field'    => 'slug',
+            'terms'    => $term,
+          ),
+        ));
+      }
+    }
+
+    if ($post_type == 'letter' || ($taxonomy == 'prefecture' && $post_type == 'letter')) {
       $query->set('posts_per_page', 9);
       $query->set('meta_key', 'letter_date');
       $query->set('orderby', 'meta_value');
       $query->set('order', 'DESC');
 
       $meta_query = array();
-
-      // 都道府県の絞り込み
-      $prefecture = get_query_var('prefecture');
-      if (!empty($prefecture)) {
-        $query->set('tax_query', array(
-          array(
-            'taxonomy' => 'prefecture',
-            'field'    => 'slug',
-            'terms'    => $prefecture,
-          ),
-        ));
-      }
 
       // 園名での絞り込み
       $nursery = get_query_var('nursery');
@@ -226,84 +224,165 @@ function custom_pre_get_posts($query)
         $query->set('meta_query', $meta_query);
       }
     }
+
+    if ($post_type == 'info' || is_tax('info_category')) {
+      $query->set('posts_per_page', 10);
+      $query->set('meta_key', 'info_date');
+      $query->set('orderby', 'meta_value');
+      $query->set('order', 'DESC');
+
+      // カテゴリーフィルタリングの処理
+      if (isset($_GET['category'])) {
+        $query->set('tax_query', array(
+          array(
+            'taxonomy' => 'info_category',
+            'field'    => 'slug',
+            'terms'    => $_GET['category'],
+          ),
+        ));
+      }
+    }
   }
 }
 add_action('pre_get_posts', 'custom_pre_get_posts');
 
-
-// 'letter' カスタム投稿タイプのページネーションURLを修正
-function custom_pagination_base_url($url)
-{
-  if (is_post_type_archive('letter')) {
-    $url = str_replace('page/', 'letter/page/', $url);
-  }
-  return $url;
-}
-add_filter('get_pagenum_link', 'custom_pagination_base_url');
-
-// カスタムフィールド 'letter_date' を使用した効率的なソート
+/**
+ * Modify query clauses for efficient sorting
+ */
 function custom_posts_clauses($clauses, $wp_query)
 {
   global $wpdb;
-  if (!is_admin() && $wp_query->is_main_query() && ($wp_query->is_post_type_archive('letter') || $wp_query->is_tax('prefecture'))) {
-    $clauses['join'] .= " LEFT JOIN (
-            SELECT post_id, meta_value AS letter_date
-            FROM {$wpdb->postmeta}
-            WHERE meta_key = 'letter_date'
-        ) AS letter_date ON ({$wpdb->posts}.ID = letter_date.post_id)";
-    $clauses['orderby'] = "letter_date.letter_date DESC, " . $clauses['orderby'];
+  if (!is_admin() && $wp_query->is_main_query()) {
+    $post_type = $wp_query->get('post_type');
+
+    if ($post_type == 'letter' || $wp_query->is_tax('prefecture')) {
+      $clauses['join'] .= " LEFT JOIN (
+              SELECT post_id, meta_value AS letter_date
+              FROM {$wpdb->postmeta}
+              WHERE meta_key = 'letter_date'
+          ) AS letter_date ON ({$wpdb->posts}.ID = letter_date.post_id)";
+      $clauses['orderby'] = "letter_date.letter_date DESC, " . $clauses['orderby'];
+    } elseif ($post_type == 'info' || $wp_query->is_tax('info_category')) {
+      $clauses['join'] .= " LEFT JOIN (
+              SELECT post_id, meta_value AS info_date
+              FROM {$wpdb->postmeta}
+              WHERE meta_key = 'info_date'
+          ) AS info_date ON ({$wpdb->posts}.ID = info_date.post_id)";
+      $clauses['orderby'] = "info_date.info_date DESC, " . $clauses['orderby'];
+    }
   }
   return $clauses;
 }
 add_filter('posts_clauses', 'custom_posts_clauses', 10, 2);
 
-// 'prefecture' タクソノミーアーカイブページで 'letter' 投稿タイプを表示
-function custom_taxonomy_archive_query($query)
-{
-  if (!is_admin() && $query->is_main_query() && is_tax('prefecture')) {
-    $query->set('post_type', 'letter');
-  }
-}
-add_action('pre_get_posts', 'custom_taxonomy_archive_query');
-
-// クエリ変数 'nursery' を追加
+/**
+ * Add custom query vars
+ */
 function add_query_vars_filter($vars)
 {
   $vars[] = "nursery";
+  $vars[] = "post_type";
+  $vars[] = "taxonomy";
+  $vars[] = "term";
   return $vars;
 }
 add_filter('query_vars', 'add_query_vars_filter');
 
+/**
+ * Custom rewrite rules
+ */
+function add_custom_rewrite_rules()
+{
+  // シンプルなアーカイブURLのためのルール
+  add_rewrite_rule(
+    '^introduction/?$',
+    'index.php?post_type=introduction',
+    'top'
+  );
+  add_rewrite_rule(
+    '^letter/?$',
+    'index.php?post_type=letter',
+    'top'
+  );
+
+  // タクソノミーを含むURLのためのルール（ページネーション対応）
+  add_rewrite_rule(
+    'introduction/([^/]+)/([^/]+)(/page/([0-9]+))?/?$',
+    'index.php?post_type=introduction&taxonomy=$matches[1]&term=$matches[2]&paged=$matches[4]',
+    'top'
+  );
+  add_rewrite_rule(
+    'letter/([^/]+)/([^/]+)(/page/([0-9]+))?/?$',
+    'index.php?post_type=letter&taxonomy=$matches[1]&term=$matches[2]&paged=$matches[4]',
+    'top'
+  );
+
+  // シンプルなアーカイブのページネーション
+  add_rewrite_rule(
+    'introduction/page/([0-9]+)/?$',
+    'index.php?post_type=introduction&paged=$matches[1]',
+    'top'
+  );
+  add_rewrite_rule(
+    'letter/page/([0-9]+)/?$',
+    'index.php?post_type=letter&paged=$matches[1]',
+    'top'
+  );
+}
 
 /**
- * info
+ * Modify permalink structure
  */
-// カスタム投稿タイプ 'info' のメインクエリを調整
-function custom_info_pre_get_posts($query)
+function custom_post_type_link($post_link, $post)
 {
-  if (!is_admin() && $query->is_main_query()) {
-    if (is_post_type_archive('info') || is_tax('info_category')) {
-      $query->set('posts_per_page', 10);
-      $query->set('meta_key', 'info_date');
-      $query->set('orderby', 'meta_value');
-      $query->set('order', 'DESC');
+  if (is_object($post) && ($post->post_type == 'introduction' || $post->post_type == 'letter')) {
+    $terms = wp_get_object_terms($post->ID, 'prefecture');
+    if ($terms) {
+      return str_replace('%prefecture%', $terms[0]->slug, $post_link);
     }
   }
+  return $post_link;
 }
-add_action('pre_get_posts', 'custom_info_pre_get_posts');
+add_filter('post_type_link', 'custom_post_type_link', 10, 2);
 
-// カスタムフィールド 'info_date' を使用した効率的なソート
-function custom_info_posts_clauses($clauses, $wp_query)
+/**
+ * Custom template for taxonomy archives
+ */
+function custom_taxonomy_template($template)
 {
-  global $wpdb;
-  if (!is_admin() && $wp_query->is_main_query() && ($wp_query->is_post_type_archive('info') || $wp_query->is_tax('info_category'))) {
-    $clauses['join'] .= " LEFT JOIN (
-            SELECT post_id, meta_value AS info_date
-            FROM {$wpdb->postmeta}
-            WHERE meta_key = 'info_date'
-        ) AS info_date ON ({$wpdb->posts}.ID = info_date.post_id)";
-    $clauses['orderby'] = "info_date.info_date DESC, " . $clauses['orderby'];
+  $post_type = get_query_var('post_type');
+  $prefecture = get_query_var('prefecture');
+  $term = get_query_var('term');
+
+  if ($prefecture && $term) {
+    if ($post_type == 'introduction') {
+      $new_template = locate_template(array('archive-introduction.php'));
+      if (!empty($new_template)) {
+        return $new_template;
+      }
+    } elseif ($post_type == 'letter') {
+      $new_template = locate_template(array('archive-letter.php'));
+      if (!empty($new_template)) {
+        return $new_template;
+      }
+    }
   }
-  return $clauses;
+  return $template;
 }
-add_filter('posts_clauses', 'custom_info_posts_clauses', 10, 2);
+add_filter('template_include', 'custom_taxonomy_template', 99);
+
+/**
+ * Disable visual editor for custom post types
+ */
+function disable_visual_editor($can)
+{
+  global $post;
+  if (isset($post)) {
+    $custom_post_types = array('introduction', 'letter', 'info');
+    if (in_array($post->post_type, $custom_post_types)) {
+      return false;
+    }
+  }
+  return $can;
+}
+add_filter('user_can_richedit', 'disable_visual_editor');

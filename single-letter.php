@@ -61,11 +61,12 @@ get_header();
 
           <?php
           $thumbnail = CFS()->get('letter_thumbnail');
-          $no_img = get_template_directory_uri() . '/img/no-image.webp';
+          $letter_title = CFS()->get('letter_title');
+          $no_img = get_template_directory_uri() . '/assets/images/no-image.webp';
           $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
-          $img_alt = "桜のこもれびキッズランド";
+          $img_alt = $thumbnail ? esc_attr($letter_title) : "桜のこもれびキッズランド";
           ?>
-          <img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img">
+          <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img">
 
           <?php
           $letter_loop = CFS()->get('letter_loop');

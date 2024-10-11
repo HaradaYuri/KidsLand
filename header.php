@@ -8,7 +8,6 @@
   <meta name="description" content="descriptionが入ります">
 
   <!-- favicon -->
-  <!-- TODO: wp化後絶対パス化(EX: https://web.harapaca-craft.com/wordpress/wp-content/themes/ValentineRoseWP/img/favicon.ico) -->
   <link rel="shortcut icon" href="https://web.harapaca-craft.com/wordpress/wp-content/themes/KidsLandWP/assets/images/favicon.ico">
   <link rel="icon" href="https://web.harapaca-craft.com/wordpress/wp-content/themes/KidsLandWP/assets/images/favicon.ico">
   <link rel="icon" type="image/vnd.microsoft.icon" href="https://web.harapaca-craft.com/wordpress/wp-content/themes/KidsLandWP/assets/images/favicon.ico">
@@ -49,7 +48,8 @@
         <li class="header__item">
           <span class="header__circle"></span>
           <span class="header__circle"></span>
-          <a href="" class="header__link">
+          <a href="<?php echo esc_url(home_url('/introduction')); ?>"
+            class="header__link">
             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-tree.svg" alt="各園のご紹介" class="header__icon">
             <span class="header__text">各園のご紹介</span>
             <span class="header__text-en txts-en">Introduction</span>

@@ -86,11 +86,12 @@
   }
 
   &__subheading {
+    position: relative;
     justify-content: start;
     gap: 8px;
 
     margin-bottom: 8px;
-    padding: 0 12px;
+    padding: 0 24px;
 
     font-size: 16px;
     font-weight: 400;
@@ -104,6 +105,12 @@
 
     .vertical-line {
       background-color: $accentLight;
+      height: 24px;
+      left: 14px;
+
+      @include mq(sp) {
+        height: 21px;
+      }
     }
   }
 

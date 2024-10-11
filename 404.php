@@ -14,18 +14,16 @@
 
       <!-- breadcrumbs -->
       <div class="breadcrumbs fadeUpTrigger">
-        <p>
-          TOP
-          <i class="fa-solid fa-chevron-right"></i>
-          404
-        </p>
+        <?php if (function_exists('yoast_breadcrumb')) : ?>
+          <?php yoast_breadcrumb('<p id="breadcrumbs">', '</p>'); ?>
+        <?php endif; ?>
       </div>
     </div>
   </section>
   <!-- page-heading /ends here -->
 
   <!-- notfound starts here -->
-  <section class="notfound">
+  <section class="notfound fadeUpTrigger">
     <p class="notfound__text">
       申し訳ございません。 <br>
       お探しのページは見つかりませんでした。<br>

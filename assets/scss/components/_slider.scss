@@ -14,16 +14,18 @@
 
     img {
       width: 240px;
-      height: auto;
+      height: 160px;
       border-radius: 20px;
+      object-fit: cover;
 
-      // object-fit: cover;
       @include mq(pc) {
         width: 200px;
+        height: 133px;
       }
       @include mq(sp) {
         width: min(calc((120 / 375) * 100vw), 200px);
         min-width: 120px;
+        height: min(calc((80 / 375) * 100vw), 133px);
         border-radius: 12px;
       }
     }

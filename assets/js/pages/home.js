@@ -1,6 +1,6 @@
 export function initializeHomePage($) {
   // .fv__news FVが過ぎたら非表示
-  var fvHeight = $('.fv').outerHeight() - 300;
+  var fvHeight = $('.fv').outerHeight() - 50;
   var $fvNews = $('.fv .fv__news');
   var isFvNewsVisible = true;
 

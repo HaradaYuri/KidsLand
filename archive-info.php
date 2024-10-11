@@ -20,10 +20,10 @@
   </section>
   <!-- page-heading /ends here -->
 
-  <!-- archive-info starts here -->
-  <section class="archive-info">
-    <div class="archive-info__container flex-col">
-      <div class="archive-info__cats search__filters search__filters--cats fadeUpTrigger">
+  <!-- a-info starts here -->
+  <section class="a-info">
+    <div class="a-info__container flex-col">
+      <div class="a-info__cats search__filters search__filters--cats fadeUpTrigger">
         <a href="<?php echo esc_url(remove_query_arg('category')); ?>" class="search__filter search__filter--cats <?php echo !isset($_GET['category']) ? 'active' : ''; ?> txts">
           すべて
         </a>
@@ -36,47 +36,36 @@
         }
         ?>
       </div>
-      <div class="archive-info__infos">
+      <div class="a-info__infos">
         <?php
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-        $args = array(
-          'post_type' => 'info',
-          'posts_per_page' => 10,
-          'paged' => $paged
-        );
-
-        // カテゴリーが指定されている場合、クエリに追加
-        if (isset($_GET['category'])) {
-          $args['tax_query'] = array(
-            array(
-              'taxonomy' => 'info_category',
-              'field' => 'slug',
-              'terms' => $_GET['category'],
-            ),
-          );
-        }
-
-        $query = new WP_Query($args);
-        if ($query->have_posts()) :
-          while ($query->have_posts()) : $query->the_post();
+        if (have_posts()) :
+          while (have_posts()) : the_post();
             $categories = wp_get_post_terms(get_the_ID(), 'info_category');
             $category_name = !empty($categories) ? $categories[0]->name : 'お知らせ';
             $category_slug = !empty($categories) ? $categories[0]->slug : 'info';
         ?>
             <article class="info-item">
-              <a href="<?php the_permalink(); ?>" class="archive-info__item fadeUpTrigger">
+              <a href="<?php the_permalink(); ?>" class="a-info__item fadeUpTrigger">
                 <!-- icon -->
-                <div class="archive-info__item-icon flex-col" data-type="<?php echo $category_slug; ?>">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-white-bell-ribbon.svg" alt="">
+                <div class="a-info__item-icon flex-col" data-type="<?php echo $category_slug; ?>">
+                  <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-white-bell-ribbon.svg" alt="">
                   <span><?php echo $category_name; ?></span>
                 </div>
 
                 <!-- text -->
-                <p class="archive-info__item-day"><?php echo get_the_date('Y.m.d'); ?></p>
-                <p class="archive-info__item-title">
+                <p class="a-info__item-day">
+                  <?php
+                  $date_string = CFS()->get('info_date');
+                  $date = DateTime::createFromFormat('Y-m-d', $date_string);
+                  $formatted_date = $date ? $date->format('Y.m.d') : '';
+
+                  echo esc_html($formatted_date);
+                  ?>
+                </p>
+                <p class="a-info__item-title">
                   <?php echo CFS()->get('info_title'); ?>
                 </p>
-                <p class="archive-info__item-text">
+                <p class="a-info__item-text">
                   <?php echo wp_trim_words(CFS()->get('info_text'), 60, '...'); ?>
                 </p>
               </a>
@@ -86,27 +75,29 @@
         else:
           echo '<p>該当する記事がありません。</p>';
         endif;
-        wp_reset_postdata();
         ?>
       </div>
 
       <!-- pagination -->
       <div class="pagination fadeUpTrigger">
         <?php
-        $big = 999999999;
-        echo paginate_links(array(
-          'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-          'format' => '?paged=%#%',
-          'current' => max(1, get_query_var('paged')),
-          'total' => $query->max_num_pages,
-          'prev_text' => '<i class="fa-solid fa-chevron-left"></i>',
-          'next_text' => '<i class="fa-solid fa-chevron-right"></i>',
-        ));
+        global $wp_query;
+        $total_pages = $wp_query->max_num_pages;
+        if ($total_pages > 1) :
+          echo paginate_links(array(
+            'base' => get_pagenum_link(1) . '%_%',
+            'format' => 'page/%#%',
+            'current' => max(1, get_query_var('paged')),
+            'total' => $total_pages,
+            'prev_text' => '<i class="fa-solid fa-chevron-left"></i>',
+            'next_text' => '<i class="fa-solid fa-chevron-right"></i>',
+          ));
+        endif;
         ?>
       </div>
     </div>
   </section>
-  <!-- archive-info /ends here -->
+  <!-- a-info /ends here -->
 </main>
 <!-- main /ends here -->
 

@@ -13,13 +13,43 @@
       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Vector.svg" alt="" class="fv__title-image fadeUpTrigger">
     </div>
 
-    <article>
-      <a href="#" class="fv__news fadeUpTrigger">
-        <h2 class="fv__news-header">お知らせ</h2>
-        <p class="fv__news-title">タイトルが入ります。タイトルが入ります。</p>
-        <p class="fv__news-date">2024ねん4がつ1にち</p>
-      </a>
-    </article>
+    <?php
+    $args = array(
+      'post_type' => 'info',
+      'posts_per_page' => 1,
+    );
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) :
+      while ($query->have_posts()) : $query->the_post();
+        $categories = get_the_category();
+        $category_name = !empty($categories) ? $categories[0]->name : 'お知らせ';
+        $category_slug = !empty($categories) ? $categories[0]->slug : 'info';
+    ?>
+        <article>
+          <a href="<?php the_permalink(); ?>" class="fv__news fadeUpTrigger">
+            <h2 class="fv__news-header"><?php echo esc_html($category_name); ?></h2>
+            <p class="fv__news-title"><?php the_title(); ?></p>
+            <p class="fv__news-date">
+
+              <?php
+              $date_string = CFS()->get('info_date');
+              $date = DateTime::createFromFormat('Y-m-d', $date_string);
+              $formatted_date = $date ? $date->format('Yがつnにちj') : '';
+
+              echo esc_html($formatted_date);
+              ?>
+            </p>
+          </a>
+        </article>
+    <?php
+      endwhile;
+      wp_reset_postdata();
+    else:
+      echo '<p>お知らせはありません。</p>';
+    endif;
+    ?>
   </section>
   <!-- fv /ends here -->
 
@@ -56,15 +86,25 @@
     </div>
 
     <div class="introduction__prefectures">
-      <a href="#" class="introduction__block fadeUpTrigger">東京都</a>
-      <a href="#" class="introduction__block fadeUpTrigger">神奈川県</a>
-      <a href="#" class="introduction__block fadeUpTrigger">埼玉県</a>
-      <a href="#" class="introduction__block fadeUpTrigger">千葉県</a>
-      <a href="#" class="introduction__block fadeUpTrigger">大阪府</a>
-      <a href="#" class="introduction__block fadeUpTrigger">京都府</a>
+      <?php
+      $prefecture_slugs = ['tokyo', 'kanagawa', 'saitama', 'chiba', 'osaka', 'kyoto'];
+      $prefecture_names = ['東京都', '神奈川県', '埼玉県', '千葉県', '大阪府', '京都府'];
+
+      foreach ($prefecture_slugs as $index => $slug) {
+        $term = get_term_by('slug', $slug, 'prefecture');
+        if ($term) {
+          $link = home_url("/introduction/?taxonomy=prefecture&term={$slug}");
+      ?>
+          <a href="<?php echo esc_url($link); ?>" class="introduction__block fadeUpTrigger">
+            <?php echo esc_html($prefecture_names[$index]); ?>
+          </a>
+      <?php
+        }
+      }
+      ?>
     </div>
 
-    <a href="#" class="btn-primary fadeUpTrigger">
+    <a href="<?php echo esc_url('/introduction'); ?>" class="btn-primary fadeUpTrigger">
       一覧ページへ
       <i class="fa-solid fa-chevron-right"></i>
     </a>
@@ -129,7 +169,7 @@
       ?>
     </div>
 
-    <a href="#" class="letter__btn btn-primary fadeUpTrigger">
+    <a href="<?php echo esc_url('/letter'); ?>" class="letter__btn btn-primary fadeUpTrigger">
       もっと見る
       <i class="fa-solid fa-chevron-right"></i>
     </a>
@@ -153,12 +193,12 @@
       </p>
 
       <div class="recruit__btn-wrapper flex-rc">
-        <a href="#" class="recruit__btn btn-primary fadeUpTrigger">
+        <a href="<?php echo esc_url('/recruit'); ?>" class="recruit__btn btn-primary fadeUpTrigger">
           採用情報
           <i class="fa-solid fa-chevron-right"></i>
         </a>
 
-        <a href="#" class="recruit__btn btn-primary fadeUpTrigger">
+        <a href="<?php echo esc_url('/recruit#recruitForm'); ?>" class="recruit__btn btn-primary fadeUpTrigger">
           エントリー
           <i class="fa-solid fa-chevron-right"></i>
         </a>

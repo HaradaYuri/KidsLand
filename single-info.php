@@ -20,9 +20,9 @@
   </section>
   <!-- page-heading /ends here -->
 
-  <!-- single-info (s-letter) starts here -->
-  <section class="single-info">
-    <div class="s-letter single-info__container">
+  <!-- s-info (s-letter) starts here -->
+  <section class="s-info">
+    <div class="s-letter s-info__container">
       <?php
       if (have_posts()) :
         while (have_posts()) : the_post();
@@ -34,20 +34,20 @@
           $date = DateTime::createFromFormat('Y-m-d', $date_string);
           $formatted_date = $date ? $date->format('Y.m.d') : '';
       ?>
-          <div class="s-letter__top">
+          <div class="s-letter__top fadeUpTrigger">
             <p class="s-letter__top-day"><?php echo esc_html($formatted_date); ?></p>
           </div>
-          <h2 class="s-letter__title">
+          <h2 class="s-letter__title fadeUpTrigger">
             <?php echo CFS()->get('info_title'); ?>
           </h2>
 
           <?php
           $thumbnail = CFS()->get('info_thumbnail');
-          $no_img = get_template_directory_uri() . '/img/no-image.webp';
+          $no_img = get_template_directory_uri() . '/assets/images/no-image.webp';
           $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
           $img_alt = esc_attr(CFS()->get('info_title'));
           ?>
-          <img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img">
+          <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img fadeUpTrigger">
 
           <?php
           $content_loop = CFS()->get('info_loop');
@@ -55,12 +55,12 @@
             foreach ($content_loop as $content) :
           ?>
               <?php if (!empty($content['info_subtitle'])) : ?>
-                <h3 class="s-letter__subtitle pink-vertical-line">
+                <h3 class="s-letter__subtitle pink-vertical-line fadeUpTrigger">
                   <?php echo $content['info_subtitle']; ?>
                 </h3>
               <?php endif; ?>
               <?php if (!empty($content['info_text'])) : ?>
-                <p class="s-letter__text">
+                <p class="s-letter__text fadeUpTrigger">
                   <?php echo nl2br($content['info_text']); ?>
                 </p>
               <?php endif; ?>
@@ -69,7 +69,7 @@
           endif;
           ?>
 
-          <a href="<?php echo get_post_type_archive_link('info'); ?>" class="s-letter__btn btn-primary">
+          <a href="<?php echo get_post_type_archive_link('info'); ?>" class="s-letter__btn btn-primary fadeUpTrigger">
             お知らせ一覧へ
             <i class="fa-solid fa-chevron-right"></i>
           </a>
