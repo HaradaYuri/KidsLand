@@ -244,6 +244,10 @@ function custom_pre_get_posts($query)
     $term = $query->get('term');
     $prefecture = $query->get('prefecture');
 
+    if ($query->is_singular('introduction')) {
+      $query->set('post_type', 'introduction');
+    }
+
     // Handling prefecture for introduction and letter
     if ($prefecture) {
       if ($post_type == 'introduction' || (empty($post_type) && $query->is_single())) {
@@ -270,6 +274,8 @@ function custom_pre_get_posts($query)
         ));
       }
     }
+
+
 
     // letter query
     if ($post_type == 'letter' || ($taxonomy == 'prefecture' && $post_type == 'letter')) {
@@ -335,13 +341,13 @@ add_action('pre_get_posts', 'custom_pre_get_posts');
 function custom_rewrite_rules()
 {
   add_rewrite_rule(
-    'introduction/([^/]+)/([^/]+)/?$',
-    'index.php?post_type=introduction&prefecture=$matches[1]&name=$matches[2]',
+    'introduction/page/([0-9]+)/?$',
+    'index.php?post_type=introduction&paged=$matches[1]',
     'top'
   );
   add_rewrite_rule(
-    'introduction/page/([0-9]+)/?$',
-    'index.php?post_type=introduction&paged=$matches[1]',
+    'introduction/([^/]+)/([^/]+)/?$',
+    'index.php?post_type=introduction&prefecture=$matches[1]&name=$matches[2]',
     'top'
   );
   add_rewrite_rule(
