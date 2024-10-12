@@ -4,14 +4,14 @@
   <div class="page-fv"></div>
   <!-- page-heading starts here -->
   <section class="page-heading">
-    <div class="page-heading__container fadeUpTrigger">
+    <div class="page-heading__container fadeUpTrigger fadeUpTriggerFV">
       <div class="page-heading__text">
         <h2 class="page-heading__text-jp">お知らせ</h2>
         <p class="page-heading__text-en txts-en">info</p>
       </div>
 
       <!-- breadcrumbs -->
-      <div class="breadcrumbs fadeUpTrigger">
+      <div class="breadcrumbs fadeUpTrigger fadeUpTriggerFV">
         <?php if (function_exists('yoast_breadcrumb')) : ?>
           <?php yoast_breadcrumb('<p id="breadcrumbs">', '</p>'); ?>
         <?php endif; ?>
@@ -48,7 +48,23 @@
               <a href="<?php the_permalink(); ?>" class="a-info__item fadeUpTrigger">
                 <!-- icon -->
                 <div class="a-info__item-icon flex-col" data-type="<?php echo $category_slug; ?>">
-                  <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-white-bell-ribbon.svg" alt="">
+                  <?php
+                  $icon_src = '';
+                  switch ($category_slug) {
+                    case 'info':
+                      $icon_src = 'icon-white-bell-ribbon.svg';
+                      break;
+                    case 'activity':
+                      $icon_src = 'icon-white-speech-bubble.svg';
+                      break;
+                    case 'media':
+                      $icon_src = 'icon-white-tv.svg';
+                      break;
+                    default:
+                      $icon_src = 'icon-white-bell-ribbon.svg';
+                  }
+                  ?>
+                  <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo $icon_src; ?>" alt="">
                   <span><?php echo $category_name; ?></span>
                 </div>
 

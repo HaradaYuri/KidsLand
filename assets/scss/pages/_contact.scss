@@ -72,6 +72,8 @@
   }
 
   .agreement-content {
-    flex-direction: column-reverse;
+    @include mq(sp) {
+      flex-direction: column-reverse;
+    }
   }
 }

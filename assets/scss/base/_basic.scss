@@ -45,11 +45,6 @@ a {
   text-decoration: none;
   transition: $transition;
   color: $textColor;
-
-  &:hover,
-  &:focus {
-    opacity: 0.8;
-  }
 }
 
 h1,
@@ -59,4 +54,14 @@ p,
 a,
 span {
   color: $textColor;
+}
+
+@media (any-hover: hover) {
+  a:hover {
+    opacity: 0.75;
+  }
+
+  a:hover * {
+    opacity: 0.75;
+  }
 }

@@ -4,7 +4,7 @@
   <div class="page-fv"></div>
   <!-- page-heading starts here -->
   <section class="page-heading">
-    <div class="page-heading__container fadeUpTrigger">
+    <div class="page-heading__container fadeUpTrigger fadeUpTriggerFV">
       <div class="page-heading__text">
         <h2 class="page-heading__text-jp">桜のこもれびキッズランド</h2>
         <h3 class="page-heading__text-jp-sub">
@@ -23,7 +23,7 @@
       </div>
 
       <!-- breadcrumbs -->
-      <div class="breadcrumbs fadeUpTrigger">
+      <div class="breadcrumbs fadeUpTrigger fadeUpTriggerFV">
         <?php if (function_exists('yoast_breadcrumb')) : ?>
           <?php yoast_breadcrumb('<p id="breadcrumbs">', '</p>'); ?>
         <?php endif; ?>

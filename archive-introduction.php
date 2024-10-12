@@ -10,20 +10,26 @@ if (empty($current_term)) {
 
 // カスタムクエリの設定
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$taxonomy = get_query_var('taxonomy', 'nursery_type');
+$term = get_query_var('term', '');
+
 $args = array(
   'post_type' => 'introduction',
-  'tax_query' => array(
-    array(
-      'taxonomy' => $current_taxonomy,
-      'field'    => 'slug',
-      'terms'    => $current_term,
-    ),
-  ),
   'posts_per_page' => 9,
   'paged' => $paged,
 );
-$custom_query = new WP_Query($args);
 
+if ($term) {
+  $args['tax_query'] = array(
+    array(
+      'taxonomy' => $taxonomy,
+      'field'    => 'slug',
+      'terms'    => $term,
+    ),
+  );
+}
+
+$custom_query = new WP_Query($args);
 get_header();
 ?>
 
@@ -31,14 +37,14 @@ get_header();
   <div class="page-fv"></div>
   <!-- page-heading starts here -->
   <section class="page-heading">
-    <div class="page-heading__container fadeUpTrigger">
+    <div class="page-heading__container fadeUpTrigger fadeUpTriggerFV">
       <div class="page-heading__text">
         <h2 class="page-heading__text-jp">各園のご紹介</h2>
         <p class="page-heading__text-en txts-en">introduction</p>
       </div>
 
       <!-- breadcrumbs -->
-      <div class="breadcrumbs fadeUpTrigger">
+      <div class="breadcrumbs fadeUpTrigger fadeUpTriggerFV">
         <?php if (function_exists('yoast_breadcrumb')) : ?>
           <?php yoast_breadcrumb('<p id="breadcrumbs">', '</p>'); ?>
         <?php endif; ?>
@@ -79,9 +85,6 @@ get_header();
 
           foreach ($terms as $term) {
             $order = trim(substr($term->description, 0, 2));
-            if ($current_taxonomy === 'prefecture' && empty($order)) {
-              continue; // 番号が空の場合はスキップ
-            }
             $sorted_terms[] = array(
               'term' => $term,
               'order' => is_numeric($order) ? intval($order) : PHP_INT_MAX // 数字でない場合は最後にソート
@@ -145,30 +148,28 @@ get_header();
       endif;
       ?>
 
-
       <div class="pagination fadeUpTrigger">
-        <?php
-        $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-        $taxonomy = get_query_var('taxonomy');
-        $term = get_query_var('term');
+        <?php if ($custom_query->max_num_pages > 1) : ?>
+          <div class="pagination fadeUpTrigger">
+            <?php
+            $big = 999999999;
+            echo paginate_links(array(
+              'base' => add_query_arg('paged', '%#%'),
+              'format' => '',
+              'current' => max(1, get_query_var('paged')),
+              'total' => $custom_query->max_num_pages,
+              'prev_text' => '<i class="fa-solid fa-chevron-left"></i>',
+              'next_text' => '<i class="fa-solid fa-chevron-right"></i>',
+              'add_args' => array(
+                'taxonomy' => $taxonomy,
+                'term' => $term
+              )
+            ));
+            ?>
+          </div>
+        <?php endif; ?>
 
-        // ベースURLを設定
-        if ($taxonomy && $term) {
-          $base = home_url("/introduction/{$taxonomy}/{$term}/page/%#%/");
-        } else {
-          $base = home_url("/introduction/page/%#%/");
-        }
-
-        echo paginate_links(array(
-          'base' => $base,
-          'format' => '',
-          'current' => $paged,
-          'total' => $custom_query->max_num_pages,
-          'prev_text' => '<i class="fa-solid fa-chevron-left"></i>',
-          'next_text' => '<i class="fa-solid fa-chevron-right"></i>',
-          'add_fragment' => ''
-        ));
-        ?>
+        <?php wp_reset_postdata(); ?>
       </div>
     </div>
   </section>

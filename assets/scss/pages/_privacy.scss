@@ -23,11 +23,11 @@
   }
 
   &__group {
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     text-align: left;
 
     @include mq(sp) {
-      margin-bottom: 24px;
+      margin-bottom: 27px;
     }
 
     &:last-of-type {

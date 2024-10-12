@@ -1,25 +1,16 @@
-<?php
-
-/**
- * Template Name: こもれびだより Single
- * Template Post Type: letter
- */
-
-get_header();
-?>
-
+<?php get_header();  ?>
 <main>
   <div class="page-fv"></div>
   <!-- page-heading starts here -->
   <section class="page-heading">
-    <div class="page-heading__container fadeUpTrigger">
+    <div class="page-heading__container fadeUpTrigger fadeUpTriggerFV">
       <div class="page-heading__text">
         <h2 class="page-heading__text-jp">こもれびだより</h2>
         <p class="page-heading__text-en txts-en">letter</p>
       </div>
 
       <!-- breadcrumbs -->
-      <div class="breadcrumbs fadeUpTrigger">
+      <div class="breadcrumbs fadeUpTrigger fadeUpTriggerFV">
         <p>
           <a href="<?php echo esc_url(home_url('/')); ?>">TOP</a>
           <i class="fa-solid fa-chevron-right"></i>

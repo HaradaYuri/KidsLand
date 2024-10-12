@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>桜のこもれびキッズランド</title>
-  <meta name="description" content="descriptionが入ります">
+  <title>桜のこもれびキッズランド｜日本全国の認証・認可保育園</title>
+  <meta name="description" content="桜のこもれびキッズランドは関東、関西など日本全国各地で保育園を運営しています。子供たちが楽しく学び、成長するための保育環境を提供しています。さまざまな情報やイベント情報をお届けします。">
 
   <!-- favicon -->
   <link rel="shortcut icon" href="https://web.harapaca-craft.com/wordpress/wp-content/themes/KidsLandWP/assets/images/favicon.ico">
@@ -13,12 +13,11 @@
   <link rel="icon" type="image/vnd.microsoft.icon" href="https://web.harapaca-craft.com/wordpress/wp-content/themes/KidsLandWP/assets/images/favicon.ico">
   <link rel="apple-touch-icon" href="https://web.harapaca-craft.com/wordpress/wp-content/themes/KidsLandWP/assets/images/apple-touch-icon.png" sizes="180x180">
 
-  <!-- OGP設定 -->
+  <!-- OGP設定(title, descriptionはfunctions.php) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="titleが入ります">
-  <meta property="og:description" content="descriptionが入ります">
-  <meta property="og:url" content="https://website.com">
-  <meta property="og:image" content="https://website.com/img/ogp-image.jpg">
+  <meta property="og:url" content="https://web.harapaca-craft.com" />
+  <meta property="og:image" content="https://web.harapaca-craft.com/wordpress/wp-content/themes/KidsLandWP/assets/images/ogp-img.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 

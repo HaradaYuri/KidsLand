@@ -7,10 +7,10 @@
     <div class="fv__image"></div>
 
     <div class="fv__title">
-      <h2 class="fv__title-text fadeUpTrigger">
+      <h2 class="fv__title-text fadeUpTrigger fadeUpTriggerFV">
         一人ひとり<span>の</span>輝きが、<br>未来<span>を</span>彩る
       </h2>
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Vector.svg" alt="" class="fv__title-image fadeUpTrigger">
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Vector.svg" alt="" class="fv__title-image fadeUpTrigger fadeUpTriggerFV">
     </div>
 
     <?php
@@ -28,7 +28,7 @@
         $category_slug = !empty($categories) ? $categories[0]->slug : 'info';
     ?>
         <article>
-          <a href="<?php the_permalink(); ?>" class="fv__news fadeUpTrigger">
+          <a href="<?php the_permalink(); ?>" class="fv__news fadeUpTrigger fadeUpTriggerFV">
             <h2 class="fv__news-header"><?php echo esc_html($category_name); ?></h2>
             <p class="fv__news-title"><?php the_title(); ?></p>
             <p class="fv__news-date">

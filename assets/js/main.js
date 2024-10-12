@@ -13,7 +13,6 @@ jQuery(document).ready(function ($) {
   initializeCommon($);
   initializeAnimation($);
   initializeNavigation($);
-  initializeNavigation($);
   initializeCardLinks($);
 
   // Pages
@@ -22,8 +21,11 @@ jQuery(document).ready(function ($) {
   } else if (document.body.classList.contains('single-introduction')) {
     initializeSlider($);
   } else if (document.body.classList.contains('page-id-147')) {
-    //page-recruit
+    //recruit
     initializeAccordion($);
+    initializeForm($);
+  } else if (document.body.classList.contains('page-id-111')) {
+    // contact
     initializeForm($);
   }
 });

@@ -23,6 +23,14 @@
     }
   }
 
+  // CF7
+  select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+
   &__group {
     max-width: 800px;
     margin: auto;
@@ -111,12 +119,20 @@
     }
 
     &-agreement {
+      width: fit-content;
+      margin: 0 auto;
+
       @include centerFlex;
       gap: 12px;
       text-align: center;
 
       @include mq(sp) {
         // flex-wrap: wrap;
+      }
+
+      /* CF7 */
+      .wpcf7-list-item {
+        @include centerFlex;
       }
     }
   }
@@ -155,7 +171,7 @@
 
   &__input,
   &__textarea {
-    padding: 10px;
+    padding: 8px;
 
     width: 100%;
     height: 40px;
@@ -185,13 +201,35 @@
   }
 
   &__radio {
-    width: 16px;
-    height: 16px;
+    
+    
+    /* CF7 */
+    input{
+      width: 16px;
+      height: 16px;
+    }
+
+    &--column{
+      .wpcf7-list-item {
+        width: 100%;
+      }
+    }
   }
 
   &__checkbox {
-    width: 20px;
-    height: 20px;
+    input{
+      width: 20px;
+      height: 20px;
+    }
+
+    &--circle{
+      input{
+        border-radius: 50px;
+        width: 16px;
+        height: 16px;
+
+      }
+    }
   }
 
   &__submit {
@@ -211,4 +249,43 @@
       }
     }
   }
+
+}
+
+
+// CF7
+.form__checkbox--circle input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+  position: relative;
+  top: 4px;
+}
+
+.form__checkbox--circle input:checked {
+  border-color: #007bff;
+}
+
+.form__checkbox--circle input:checked::before {
+  content: '';
+  display: block;
+  width: 9.6px;
+  height: 9.6px;
+  background-color: #007bff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form__checkbox--circle input+span {
+  font-size: 16px;
+  line-height: 20px;
 }

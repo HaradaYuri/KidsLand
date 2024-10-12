@@ -9,14 +9,14 @@ get_header();
   <div class="page-fv"></div>
   <!-- page-heading starts here -->
   <section class="page-heading">
-    <div class="page-heading__container fadeUpTrigger">
+    <div class="page-heading__container fadeUpTrigger fadeUpTriggerFV">
       <div class="page-heading__text">
         <h2 class="page-heading__text-jp">こもれびだより</h2>
         <p class="page-heading__text-en txts-en">letter</p>
       </div>
 
       <!-- breadcrumbs -->
-      <div class="breadcrumbs fadeUpTrigger">
+      <div class="breadcrumbs fadeUpTrigger fadeUpTriggerFV">
         <?php if (function_exists('yoast_breadcrumb')) : ?>
           <?php yoast_breadcrumb('<p id="breadcrumbs">', '</p>'); ?>
         <?php endif; ?>
