@@ -98,6 +98,62 @@ add_filter('wpseo_metadesc', 'custom_wpseo_metadesc');
 add_filter('wpseo_opengraph_desc', 'custom_wpseo_metadesc');
 
 /**
+ * custom breadcrumbs
+ */
+function custom_breadcrumb_items($breadcrumbs)
+{
+  // Check if we're on the introduction archive page
+  if (is_post_type_archive('introduction')) {
+    $taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'nursery_type';
+
+    // Create the breadcrumb structure
+    $breadcrumbs = array(
+      array(
+        'url' => home_url(),
+        'text' => 'TOP',
+      ),
+      array(
+        'url' => get_post_type_archive_link('introduction'),
+        'text' => '各園のご紹介',
+      ),
+    );
+
+    if ($taxonomy === 'prefecture') {
+      $breadcrumbs[] = array(
+        'url' => add_query_arg('taxonomy', 'prefecture', get_post_type_archive_link('introduction')),
+        'text' => '都道府県から探す',
+      );
+    } else {
+      $breadcrumbs[] = array(
+        'url' => add_query_arg('taxonomy', 'nursery_type', get_post_type_archive_link('introduction')),
+        'text' => '園の種類から探す',
+      );
+    }
+  } elseif (is_singular('letter')) {
+    // Get custom field values
+    $nursery_name = CFS()->get('letter_nursery_name');
+    $letter_title = CFS()->get('letter_title');
+
+    $breadcrumbs = array(
+      array(
+        'url' => home_url(),
+        'text' => 'TOP',
+      ),
+      array(
+        'url' => get_post_type_archive_link('letter'),
+        'text' => 'こもれびだより',
+      ),
+      array(
+        'text' => $nursery_name . 'からのおたより『' . $letter_title . '』',
+      ),
+    );
+  }
+
+  return $breadcrumbs;
+}
+add_filter('wpseo_breadcrumb_links', 'custom_breadcrumb_items');
+
+/**
  * Register custom post types
  */
 function create_custom_post_types()
@@ -186,7 +242,18 @@ function custom_pre_get_posts($query)
     $post_type = $query->get('post_type');
     $taxonomy = $query->get('taxonomy');
     $term = $query->get('term');
+    $prefecture = $query->get('prefecture');
 
+    // Handling prefecture for introduction and letter
+    if ($prefecture) {
+      if ($post_type == 'introduction' || (empty($post_type) && $query->is_single())) {
+        $query->set('post_type', 'introduction');
+      } elseif ($post_type == 'letter') {
+        $query->set('post_type', 'letter');
+      }
+    }
+
+    // Handling taxonomy queries
     if ($taxonomy == 'prefecture') {
       $post_type = isset($_GET['post_type']) ? $_GET['post_type'] : 'introduction';
       $query->set('post_type', $post_type);
@@ -243,6 +310,7 @@ function custom_pre_get_posts($query)
       }
     }
 
+    // info query
     if ($post_type == 'info' || is_tax('info_category')) {
       $query->set('posts_per_page', 10);
       $query->set('meta_key', 'info_date');
@@ -267,6 +335,11 @@ add_action('pre_get_posts', 'custom_pre_get_posts');
 function custom_rewrite_rules()
 {
   add_rewrite_rule(
+    'introduction/([^/]+)/([^/]+)/?$',
+    'index.php?post_type=introduction&prefecture=$matches[1]&name=$matches[2]',
+    'top'
+  );
+  add_rewrite_rule(
     'introduction/page/([0-9]+)/?$',
     'index.php?post_type=introduction&paged=$matches[1]',
     'top'
@@ -281,8 +354,19 @@ function custom_rewrite_rules()
     'index.php?post_type=introduction&term=$matches[1]',
     'top'
   );
+
+  // letter
+  add_rewrite_rule(
+    'letter/([^/]+)/([^/]+)/?$',
+    'index.php?post_type=letter&prefecture=$matches[1]&name=$matches[2]',
+    'top'
+  );
+  add_rewrite_rule(
+    'letter/([^/]+)/?$',
+    'index.php?post_type=letter&prefecture=$matches[1]',
+    'top'
+  );
 }
-add_action('init', 'custom_rewrite_rules');
 
 function clean_pagination_links($link)
 {
@@ -344,6 +428,7 @@ function add_query_vars_filter($vars)
   $vars[] = "post_type";
   $vars[] = "taxonomy";
   $vars[] = "term";
+  $vars[] = "prefecture";
   return $vars;
 }
 add_filter('query_vars', 'add_query_vars_filter');
@@ -366,10 +451,17 @@ add_filter('get_pagenum_link', 'custom_pagination_base');
  */
 function custom_post_type_link($post_link, $post)
 {
-  if (is_object($post) && ($post->post_type == 'introduction' || $post->post_type == 'letter')) {
-    $terms = wp_get_object_terms($post->ID, 'prefecture');
-    if ($terms) {
-      return str_replace('%prefecture%', $terms[0]->slug, $post_link);
+  if (is_object($post)) {
+    if ($post->post_type == 'introduction') {
+      $terms = wp_get_object_terms($post->ID, 'prefecture');
+      if ($terms) {
+        return home_url('/introduction/' . $post->post_name . '/');
+      }
+    } elseif ($post->post_type == 'letter') {
+      $terms = wp_get_object_terms($post->ID, 'prefecture');
+      if ($terms) {
+        return home_url('/letter/' . $post->post_name . '/');
+      }
     }
   }
   return $post_link;

@@ -114,33 +114,44 @@ get_header();
       <?php
       if ($custom_query->have_posts()) :
         while ($custom_query->have_posts()) : $custom_query->the_post();
+          $post_nursery_types = get_the_terms(get_the_ID(), 'nursery_type');
+          $post_prefectures = get_the_terms(get_the_ID(), 'prefecture');
+
+          if (
+            $current_taxonomy !== 'nursery_type' ||
+            ($post_nursery_types && $current_term === $post_nursery_types[0]->slug)
+          ) :
       ?>
-          <article class="cards-introduction fadeUpTrigger" data-type="<?php echo get_the_terms(get_the_ID(), 'nursery_type')[0]->slug; ?>">
-            <a href="<?php the_permalink(); ?>" class="card-link">
-              <?php
-              $thumbnail = CFS()->get('thumbnail');
-              $no_img = get_template_directory_uri() . '/assets/images/no-image.webp';
-              $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
-              $img_alt = $thumbnail ? esc_attr(CFS()->get('nursery_name')) : "桜のこもれびキッズランド";
-              ?>
-              <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>">
-            </a>
+            <article class="cards-introduction fadeUpTrigger" data-type="<?php echo $post_nursery_types ? esc_attr($post_nursery_types[0]->slug) : ''; ?>">
+              <a href="<?php echo get_permalink(); ?>" class="card-link">
+                <?php
+                $thumbnail = CFS()->get('thumbnail');
+                $no_img = get_template_directory_uri() . '/assets/images/no-image.webp';
+                $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
+                $img_alt = $thumbnail ? esc_attr(CFS()->get('nursery_name')) : "桜のこもれびキッズランド";
+                ?>
+                <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>">
+              </a>
 
-            <!-- content -->
-            <div class="card__content">
-              <div class="card__infos">
-                <a href="<?php echo add_query_arg(['taxonomy' => 'nursery_type', 'term' => get_the_terms(get_the_ID(), 'nursery_type')[0]->slug], get_post_type_archive_link('introduction')); ?>" class="card__info card__info--type">
-                  <?php echo get_the_terms(get_the_ID(), 'nursery_type')[0]->name; ?>
-                </a>
-                <a href="<?php echo add_query_arg(['taxonomy' => 'prefecture', 'term' => get_the_terms(get_the_ID(), 'prefecture')[0]->slug], get_post_type_archive_link('introduction')); ?>" class="card__info card__info--prefecture">
-                  <?php echo get_the_terms(get_the_ID(), 'prefecture')[0]->name; ?>
-                </a>
+              <!-- content -->
+              <div class="card__content">
+                <div class="card__infos">
+                  <?php if ($post_nursery_types) : ?>
+                    <a href="<?php echo esc_url(add_query_arg(['taxonomy' => 'nursery_type', 'term' => $post_nursery_types[0]->slug], get_post_type_archive_link('introduction'))); ?>" class="card__info card__info--type">
+                      <?php echo esc_html($post_nursery_types[0]->name); ?>
+                    </a>
+                  <?php endif; ?>
+                  <?php if ($post_prefectures) : ?>
+                    <a href="<?php echo esc_url(add_query_arg(['taxonomy' => 'prefecture', 'term' => $post_prefectures[0]->slug], get_post_type_archive_link('introduction'))); ?>" class="card__info card__info--prefecture">
+                      <?php echo esc_html($post_prefectures[0]->name); ?>
+                    </a>
+                  <?php endif; ?>
+                </div>
+                <h3 class="card__content-title"><?php the_title(); ?></h3>
               </div>
-              <h3 class="card__content-title"><?php the_title(); ?></h3>
-            </div>
-
-          </article>
+            </article>
       <?php
+          endif;
         endwhile;
         wp_reset_postdata();
       else :

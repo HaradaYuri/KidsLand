@@ -11,15 +11,9 @@
 
       <!-- breadcrumbs -->
       <div class="breadcrumbs fadeUpTrigger fadeUpTriggerFV">
-        <p>
-          <a href="<?php echo esc_url(home_url('/')); ?>">TOP</a>
-          <i class="fa-solid fa-chevron-right"></i>
-          <a href="<?php echo esc_url(get_post_type_archive_link('letter')); ?>">こもれびだより</a>
-          <i class="fa-solid fa-chevron-right"></i>
-          <span class="s-letter__brcr">
-            <?php echo esc_html(get_the_title()); ?>
-          </span>
-        </p>
+        <?php if (function_exists('yoast_breadcrumb')) : ?>
+          <?php yoast_breadcrumb('<p id="breadcrumbs">', '</p>'); ?>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -47,7 +41,7 @@
             </p>
           </div>
           <h2 class="s-letter__title">
-            <?php echo esc_html(get_the_title()); ?>
+            <?php echo esc_html(CFS()->get('letter_title')); ?>
           </h2>
 
           <?php
