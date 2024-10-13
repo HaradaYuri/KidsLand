@@ -17,15 +17,15 @@
     padding-bottom: 80px;
   }
 
-  // single-letter
+  // s-letter
   &__container {
   }
 
-  .single-letter__subtitle:first-of-type {
+  .s-letter__subtitle:first-of-type {
     margin-top: 10px;
   }
 
-  .single-letter__img {
+  .s-letter__img {
     @include mq(sp) {
       width: 315px;
       height: 157.5px;
@@ -37,14 +37,14 @@
     }
   }
 
-  .single-letter__text {
+  .s-letter__text {
     @include mq(sp) {
       font-size: 14px;
       line-height: 28px;
     }
   }
 
-  .single-letter__btn {
+  .s-letter__btn {
     margin-top: 48px;
   }
 }

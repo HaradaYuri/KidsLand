@@ -35,4 +35,36 @@ export function initializeForm($) {
       toggleAgreement($(this));
     }
   });
+
+  // confirm date format
+  function formatDate(dateString) {
+    // YYYYを抜いた部分を-から/に置換
+    return dateString.replace(
+      /(\d{4})-(\d{1,2})-(\d{1,2})/,
+      function (match, year, month, day) {
+        return year + '年' + parseInt(month) + '月' + parseInt(day) + '日';
+      }
+    );
+  }
+
+  function updateDateFormat() {
+    $('input.wpcf7-date').each(function () {
+      var $input = $(this);
+      var originalValue = $input.val();
+      console.log('Original value:', originalValue);
+      var formattedValue = formatDate(originalValue);
+      console.log('Formatted value:', formattedValue);
+    });
+
+    $('.form__fields.birthdate').each(function () {
+      var $field = $(this);
+      var originalText = $field.text().trim();
+      console.log('Original text:', originalText);
+      var formattedText = formatDate(originalText);
+      console.log('Formatted text:', formattedText);
+      $field.text(formattedText);
+    });
+  }
+
+  updateDateFormat();
 }

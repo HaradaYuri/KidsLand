@@ -14,15 +14,12 @@
     border-radius: 30px;
     border: 2px solid #55000c;
 
+    font-family: $font-main;
     color: $textColor;
     font-size: 18px;
     font-weight: 400;
     line-height: 1;
     letter-spacing: 0.1em;
-
-    // &:hover,
-    // &:focus {
-    // }
 
     @include mq(sp) {
       width: 200px;
@@ -86,6 +83,7 @@
     display: none;
 
     @include mq(sp) {
+      pointer-events: auto;
       display: block;
 
       position: fixed;

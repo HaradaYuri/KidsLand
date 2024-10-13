@@ -7,14 +7,24 @@
   }
 
   .letter {
+    margin-top: 137px;
+    padding-bottom: 100px;
+
     @include mq(sp) {
       margin-top: 125px;
+      padding-bottom: 70px;
+    }
+  }
+
+  .cards-letter{
+    @include mq(sp) {
+      width: 320px;
     }
   }
 }
 .introduction-content {
   margin: auto;
-  margin-top: 113px;
+  margin-top: 75px;
   max-width: 1110px;
   padding: 0 14px;
 
@@ -23,7 +33,7 @@
   }
 
   @include mq(sp) {
-    margin-top: 90px;
+    margin-top: 60px;
   }
 
   img {
@@ -87,8 +97,10 @@
     margin: 0 auto;
     margin-top: 54px;
     gap: 32px;
+    align-items: start;
 
     @include mq(sp) {
+      align-items: center;
       padding: 15px;
     }
 
@@ -142,6 +154,10 @@
 
     @include mq(sp) {
       width: 100%;
+    }
+
+    address{
+      font-style: normal;
     }
 
     table {
@@ -287,8 +303,6 @@
         margin-top: 5px;
         margin-bottom: 24px;
 
-        // border-collapse: collapse;
-        // border-spacing: 0;
 
         &:last-child {
           margin-bottom: 0;

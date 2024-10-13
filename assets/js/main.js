@@ -24,6 +24,9 @@ jQuery(document).ready(function ($) {
     //recruit
     initializeAccordion($);
     initializeForm($);
+  } else if (document.body.classList.contains('page-id-149')) {
+    // recruit confirm
+    initializeForm($);
   } else if (document.body.classList.contains('page-id-111')) {
     // contact
     initializeForm($);

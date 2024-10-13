@@ -1,6 +1,12 @@
 @use '../global' as *;
 
 .letter {
+  margin-top: 110px;
+
+  @include mq(sp) {
+    margin-top: 80px;
+  }
+
   &__title {
     margin-bottom: 42px;
 

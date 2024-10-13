@@ -143,7 +143,6 @@
 
       @include mq(sp) {
         padding-right: 0;
-        -webkit-line-clamp: 2;
       }
     }
 
@@ -156,6 +155,7 @@
       letter-spacing: 0.04em;
 
       @include mq(sp) {
+        -webkit-line-clamp: 2;
         font-size: 18px;
         line-height: 27px;
       }
@@ -173,7 +173,6 @@
 
       @include mq(sp) {
         -webkit-line-clamp: 3;
-
         font-size: 14px;
         line-height: 21px;
       }

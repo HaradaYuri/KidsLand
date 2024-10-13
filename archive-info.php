@@ -29,6 +29,25 @@
         </a>
         <?php
         $categories = get_terms('info_category');
+
+        // カテゴリーを説明欄の内容でソート
+        usort($categories, function ($a, $b) {
+          $a_description = trim($a->description);
+          $b_description = trim($b->description);
+
+          if (empty($a_description) && empty($b_description)) {
+            return 0;
+          }
+          if (empty($a_description)) {
+            return 1;
+          }
+          if (empty($b_description)) {
+            return -1;
+          }
+          return (int)$a_description - (int)$b_description;
+        });
+
+        // ソートされたカテゴリーを表示
         foreach ($categories as $category) {
           $category_link = add_query_arg('category', $category->slug);
           $is_active = isset($_GET['category']) && $_GET['category'] === $category->slug ? 'active' : '';
@@ -81,9 +100,21 @@
                 <p class="a-info__item-title">
                   <?php echo CFS()->get('info_title'); ?>
                 </p>
-                <p class="a-info__item-text">
-                  <?php echo wp_trim_words(CFS()->get('info_text'), 60, '...'); ?>
-                </p>
+
+                <?php
+                $info_loop = CFS()->get('info_loop');
+                if ($info_loop && is_array($info_loop) && !empty($info_loop)) {
+                  $first_item = reset($info_loop);
+                  if (isset($first_item['info_text'])) {
+                    $text = strip_tags($first_item['info_text']);
+                    $text = trim($text);
+                    echo '<p class="a-info__item-text" title="' . esc_attr($text) . '">';
+                    echo esc_html($text);
+                    echo '</p>';
+                  }
+                }
+                ?>
+
               </a>
             </article>
         <?php

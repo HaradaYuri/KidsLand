@@ -166,6 +166,7 @@
 
   // introduction starts here
   &-introduction {
+    cursor: pointer;
     width: 320px;
     height: 272px;
 
@@ -185,7 +186,7 @@
     &[data-type='small-scale-a'] {
       background-color: #edf4ff;
     }
-    
+
     img {
       width: 296px;
       height: 180px;

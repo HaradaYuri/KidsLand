@@ -198,8 +198,7 @@ get_header();
       </div>
 
       <p class="recruit__text txtm fadeUpTrigger">
-        桜のこもれびキッズランドで<br class="sp">
-        働いてみませんか？
+        桜のこもれびキッズランドで<br class="sp">働いてみませんか？
       </p>
 
       <div class="recruit__btn-wrapper flex-rc">

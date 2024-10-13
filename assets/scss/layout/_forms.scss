@@ -28,13 +28,16 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+
+    background-color: $bgColorLight;
+    font-family: $font-main;
   }
 
 
   &__group {
     max-width: 800px;
     margin: auto;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 
     @include centerFlex;
     text-align: left;
@@ -66,6 +69,9 @@
   // fields
   &__fields {
     flex: 1;
+    & * {
+      color: $textDark;
+    }
 
     @include mq(sp) {
       width: 100%;
@@ -87,12 +93,19 @@
 
   // field
   &__field {
+
     @include mq(sp) {
       text-wrap: nowrap;
     }
 
     &--mb {
       margin-bottom: 10px;
+
+      // .wpcf7-list-item{
+      //   &:not(:last-of-type){
+      //     margin-bottom: 8px;
+      //   }
+      // }
     }
 
     &--with-text {
@@ -126,10 +139,6 @@
       gap: 12px;
       text-align: center;
 
-      @include mq(sp) {
-        // flex-wrap: wrap;
-      }
-
       /* CF7 */
       .wpcf7-list-item {
         @include centerFlex;
@@ -138,6 +147,7 @@
   }
 
   .agreement-content {
+    cursor: pointer;
     gap: 12px;
     text-wrap: wrap;
 
@@ -178,6 +188,8 @@
 
     border: 1px solid $textDark;
     border-radius: 4px;
+
+    font-family: $font-main;
   }
 
   &__input {
@@ -185,6 +197,9 @@
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
+      cursor: text;
+      background-color: $bgColorLight;
+      text-align: left;
     }
 
     &::-webkit-calendar-picker-indicator {
@@ -201,8 +216,6 @@
   }
 
   &__radio {
-    
-    
     /* CF7 */
     input{
       width: 16px;
@@ -210,13 +223,28 @@
     }
 
     &--column{
+
+      @include mq(sp) {
+        display: flex;
+        flex-direction: column;
+
+      }
+
       .wpcf7-list-item {
         width: 100%;
+        margin-bottom: 8px;
+
+        @include mq(sp) {
+          
+        }
       }
     }
   }
 
   &__checkbox {
+    width: 20px;
+    height: 20px;
+
     input{
       width: 20px;
       height: 20px;
@@ -233,6 +261,22 @@
   }
 
   &__submit {
+    width: fit-content;
+    margin: auto;
+    position: relative;
+
+    .fa-chevron-right{
+      position: absolute;
+      font-size: 20px;
+      top: 22%;
+      right: 9%;
+  
+      @include mq(sp) {
+        top: 26%;
+        font-size: 16px;
+        right: 16px;
+      }
+    }
   }
 
   &__button {
@@ -266,6 +310,7 @@
   transition: border-color 0.2s ease-in-out;
   position: relative;
   top: 4px;
+  margin-right: 14px;
 }
 
 .form__checkbox--circle input:checked {
@@ -288,4 +333,32 @@
 .form__checkbox--circle input+span {
   font-size: 16px;
   line-height: 20px;
+}
+
+.wpcf7-list-item {
+  cursor: pointer;
+  display: inline-block;
+
+  margin-left: 0;
+  
+}
+
+.form__fields.flex-row{
+  .wpcf7-list-item {
+    &:not(:first-of-type) {
+      margin-left: 5px;
+    }
+  }
+}
+
+.wpcf7-list-item-label {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.wpcf7-list-item input[type="radio"] {
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 14px;
 }

@@ -38,7 +38,14 @@
       <img loading="lazy" src="<?php echo esc_url($thumbnail); ?>" alt="保育所の立地" class="fadeUpTrigger">
     <?php endif; ?>
     <h4 class="introduction-content__heading fadeUpTrigger">
-      <?php echo nl2br(esc_html(CFS()->get('introduction_heading'))); ?>
+      <?php
+      // echo nl2br(esc_html(CFS()->get('introduction_heading')));
+      $introduction_heading = CFS()->get('introduction_heading');
+      $lines = explode('　', $introduction_heading);
+      $formatted_text = implode('<br class="sp">', array_map('esc_html', $lines));
+      echo $formatted_text;
+
+      ?>
     </h4>
     <p class="introduction-content__text txtm fadeUpTrigger">
       <?php echo nl2br(esc_html(CFS()->get('introduction_text'))); ?>
@@ -58,7 +65,7 @@
 
     <!-- slider -->
     <div class="slider fadeUpTrigger">
-      <?php for ($i = 1; $i <= 6; $i++) : ?>
+      <?php for ($i = 1; $i <= 7; $i++) : ?>
         <?php if ($slider_image = CFS()->get('slider_image_' . $i)) : ?>
           <div class="slider__item">
             <img loading="lazy" src="<?php echo esc_url($slider_image); ?>" alt="園の様子 <?php echo $i; ?>">
@@ -106,11 +113,20 @@
         <tbody>
           <tr class="tr-sp-flex">
             <th>所在地</th>
-            <td><?php echo esc_html(CFS()->get('adress')); ?></td>
+            <td>
+              <address>
+                <?php echo esc_html(CFS()->get('adress')); ?>
+              </address>
+            </td>
           </tr>
           <tr class="tr-sp-flex">
             <th>TEL / FAX</th>
-            <td class="sp-16"><?php echo esc_html(CFS()->get('tel')); ?> / <?php echo esc_html(CFS()->get('fax')); ?></td>
+            <td class="sp-16">
+              <a href="tel:<?php echo esc_attr(CFS()->get('tel')); ?>">
+                <?php echo esc_html(CFS()->get('tel')); ?></a>
+              /
+              <?php echo esc_html(CFS()->get('fax')); ?>
+            </td>
           </tr>
           <tr class="tr-sp-flex">
             <th>対象</th>

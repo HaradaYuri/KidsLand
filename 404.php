@@ -44,7 +44,7 @@
   <section class="sitemap bg-pink-dash">
     <div class="sitemap__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-chart.svg" alt="サイトマップ">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-chart.svg" alt="サイトマップ">
       </div>
     </div>
 
@@ -52,63 +52,63 @@
     <div class="sitemap__container bg-bgL">
       <ul class="sitemap__list flex-col">
         <li class="sitemap__item fadeUpTrigger">
-          <a href="index.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">TOP</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="page-about.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/about')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">わたしたちのこと</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="taxonomy-introduction_type.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/introduction')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">各園のご紹介</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="archive-letter.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/letter')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">こもれびだより</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="archive-info.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/info')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">お知らせ</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="page-recruit.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/recruit')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">採用情報</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="page-contact.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/contact')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">お問い合わせ</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="page-sitemap.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/sitemap')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">サイトマップ</span>
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
         <li class="sitemap__item fadeUpTrigger">
-          <a href="page-privacy-policy.html" class="sitemap__link">
+          <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" class="sitemap__link">
             <div class="sitemap__circle"></div>
             <span class="sitemap__text">プライバシーポリシー</span>
             <i class="fa-solid fa-chevron-right"></i>

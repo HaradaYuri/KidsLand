@@ -21,6 +21,10 @@
     }
   }
 
+  .form__group{
+    margin-bottom: 16px;
+  }
+
   .form__heading {
     @include mq(sp) {
       margin-bottom: 8px;

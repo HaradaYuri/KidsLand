@@ -31,7 +31,7 @@
     <i class="fa-solid fa-chevron-up"></i>
   </a>
 
-  <header class="header">
+  <header class="header fadeUpTrigger fadeUpTriggerFV">
     <!-- header for PC -->
     <nav class="header__nav">
       <ul class="header__list">
@@ -103,11 +103,13 @@
         </li>
       </ul>
     </nav>
+
     <!-- header for SP -->
     <h1>
       <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.webp" alt="桜のこもれびキッズランド" class="header__logo-sp">
     </h1>
-    <button class="btn-menu">
+    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-sp.webp" alt="" class="header__img-sp">
+    <button class="btn-menu fadeUpTrigger fadeUpTriggerFV">
       <div class="btn-menu__icon flex-col">
         <span class="btn-menu__line"></span>
         <span class="btn-menu__line"></span>

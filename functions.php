@@ -144,7 +144,7 @@ function custom_breadcrumb_items($breadcrumbs)
         'text' => 'こもれびだより',
       ),
       array(
-        'text' => $nursery_name . 'からのおたより『' . $letter_title . '』',
+        'text' => '<br class="sp" />' . $nursery_name . 'からのおたより『' . $letter_title . '』',
       ),
     );
   }
@@ -527,6 +527,7 @@ function add_prefecture_choices()
   return ob_get_clean();
 }
 wpcf7_add_form_tag('prefecture_choices', 'add_prefecture_choices');
+
 
 /**
  * Disable visual editor for custom post types
