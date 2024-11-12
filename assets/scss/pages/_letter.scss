@@ -33,7 +33,7 @@
   // search
   &__search {
     text-align: left;
-    border-bottom: 2px solid $textDark;
+    border-bottom: 2px solid $textColor;
 
     .search__title {
       margin-bottom: 8px;
@@ -42,6 +42,7 @@
       font-weight: 400;
       line-height: 28.8px;
       letter-spacing: 0.1em;
+      color: $textColor;
 
       @include mq(sp) {
         font-size: 20px;

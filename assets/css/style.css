@@ -455,6 +455,7 @@ table {
 @media screen and (max-width: 767px) {
   .bg-pink-dash {
     padding-bottom: 80px;
+    background-position: center 40px;
   }
 }
 .bg-pink-dash::before, .bg-pink-dash::after {
@@ -470,7 +471,6 @@ table {
 }
 .bg-pink-dash::before {
   top: 49px;
-  z-index: -1;
 }
 @media screen and (max-width: 767px) {
   .bg-pink-dash::before {
@@ -1002,9 +1002,9 @@ table {
 @media screen and (max-width: 767px) {
   .search__filters {
     margin-bottom: 3px;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    -webkit-box-pack: left;
+        -ms-flex-pack: left;
+            justify-content: left;
   }
 }
 .search__filters--cats {
@@ -1086,14 +1086,6 @@ table {
 .pagination .page-numbers.current {
   background-color: #ef8f9c;
   color: #ffffff;
-}
-@media screen and (max-width: 767px) {
-  .pagination .page-numbers:not(.sp-no-change) {
-    width: 24px;
-    height: 24px;
-    font-size: 14px;
-    line-height: 16.8px;
-  }
 }
 .pagination .page-numbers i {
   vertical-align: middle;
@@ -1220,7 +1212,7 @@ table {
 }
 @media screen and (max-width: 767px) {
   .page-heading__container {
-    width: min(92vw, 500px);
+    width: min(92vw, 600px);
     min-width: 300px;
   }
 }
@@ -1247,7 +1239,9 @@ table {
 @media screen and (max-width: 767px) {
   .page-heading__text {
     background-image: url(../images/page-heading-sp.svg);
-    height: 120px;
+    background-size: contain;
+    max-width: 600px;
+    padding: 17.3913043478% 0;
   }
 }
 .page-heading__text-jp {
@@ -1348,9 +1342,12 @@ table {
   background: -webkit-gradient(linear, left top, left bottom, from(#fffef3), to(#fff7b8));
   background: linear-gradient(180deg, #fffef3 0%, #fff7b8 100%);
 }
+.footer__logo-link {
+  margin-top: 48px;
+  display: inline-block;
+}
 .footer__logo {
   width: 240px;
-  margin-top: 48px;
 }
 @media screen and (max-width: 767px) {
   .footer__logo {
@@ -1718,6 +1715,7 @@ table {
   font-size: 20px;
   top: 22%;
   right: 9%;
+  color: #55000c;
 }
 @media screen and (max-width: 767px) {
   .form__submit .fa-chevron-right {
@@ -1734,6 +1732,14 @@ table {
   .form__button {
     height: 60px;
   }
+}
+@media screen and (max-width: 374px) {
+  .form__button {
+    width: 260px;
+  }
+}
+.form__button .fa-chevron-right {
+  color: #55000c;
 }
 @media screen and (max-width: 767px) {
   .form__button .fa-chevron-right {
@@ -1807,7 +1813,7 @@ table {
   margin: 0 auto;
   margin-top: 200px;
   max-width: 1440px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 @media screen and (max-width: 767px) {
   .fv {
@@ -1815,6 +1821,7 @@ table {
   }
 }
 .fv__image {
+  overflow: hidden;
   margin: auto;
   width: min(88.8888888889vw, 1280px);
   height: 540px;
@@ -2419,8 +2426,9 @@ table {
 }
 @media screen and (max-width: 767px) {
   .philosophy__text {
-    margin: 50px 15px;
-    padding: 0;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 0 15px;
     text-align: left;
     font-size: 16px;
   }
@@ -2435,6 +2443,7 @@ table {
 @media screen and (max-width: 767px) {
   .yprogram__cards {
     margin-top: 32px;
+    padding-top: 60px;
   }
 }
 .yprogram__desc {
@@ -2615,7 +2624,7 @@ table {
 }
 .a-info__item-text {
   grid-area: text;
-  padding-bottom: 5px;
+  margin-bottom: 5px;
   color: #333333;
   font-size: 16px;
   font-weight: 400;
@@ -2773,7 +2782,7 @@ table {
 }
 .p-letter__search {
   text-align: left;
-  border-bottom: 2px solid #333333;
+  border-bottom: 2px solid #55000c;
 }
 .p-letter__search .search__title {
   margin-bottom: 8px;
@@ -2781,6 +2790,7 @@ table {
   font-weight: 400;
   line-height: 28.8px;
   letter-spacing: 0.1em;
+  color: #55000c;
 }
 @media screen and (max-width: 767px) {
   .p-letter__search .search__title {

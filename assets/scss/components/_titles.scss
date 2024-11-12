@@ -68,7 +68,7 @@
     min-width: 750px;
 
     @include mq(sp) {
-      width: min(calc((345 / 375) * 100vw), 500px);
+      width: min(calc((345 / 375) * 100vw), 600px);
       min-width: 300px;
     }
   }
@@ -87,8 +87,9 @@
 
     @include mq(sp) {
       background-image: url(../images/page-heading-sp.svg);
-
-      height: 120px;
+      background-size: contain;
+      max-width: 600px;
+      padding: calc(120 / 345 * 50%) 0;
     }
 
     &-jp {

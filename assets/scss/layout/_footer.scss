@@ -4,9 +4,13 @@
   padding-bottom: 12px;
   background: linear-gradient(180deg, #fffef3 0%, #fff7b8 100%);
 
+  &__logo-link{
+    margin-top: 48px;
+    display: inline-block;
+  }
+
   &__logo {
     width: 240px;
-    margin-top: 48px;
 
     @include mq(sp) {
       width: 200px;

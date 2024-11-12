@@ -24,15 +24,15 @@
       color: $bgColorLight;
     }
 
-    &:not(.sp-no-change) {
-      @include mq(sp) {
-        width: 24px;
-        height: 24px;
+    // &:not(.sp-no-change) {
+    //   @include mq(sp) {
+    //     width: 24px;
+    //     height: 24px;
 
-        font-size: 14px;
-        line-height: 16.8px;
-      }
-    }
+    //     font-size: 14px;
+    //     line-height: 16.8px;
+    //   }
+    // }
 
     i {
       vertical-align: middle;

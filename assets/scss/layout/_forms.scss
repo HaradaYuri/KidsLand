@@ -270,6 +270,7 @@
       font-size: 20px;
       top: 22%;
       right: 9%;
+      color: $textColor;
   
       @include mq(sp) {
         top: 26%;
@@ -287,7 +288,12 @@
       height: 60px;
     }
 
+    @include mq(xs) {
+      width: 260px;
+    }
+
     .fa-chevron-right{
+        color: $textColor;
       @include mq(sp) {
         top: 35%;
       }

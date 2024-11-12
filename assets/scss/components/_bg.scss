@@ -27,6 +27,7 @@
 
     @include mq(sp) {
       padding-bottom: 80px;
+      background-position: center 40px;
     }
 
     &::before,
@@ -46,7 +47,6 @@
 
     &::before {
       top: 49px;
-      z-index: -1;
 
       @include mq(sp) {
         top: 40px;

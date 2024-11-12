@@ -5,13 +5,15 @@
   margin: 0 auto;
   margin-top: 200px;
   max-width: 1440px;
-  overflow-x: hidden;
+  
+  overflow: hidden;
 
   @include mq(sp) {
     margin-top: 126px;
   }
 
   &__image {
+    overflow: hidden;
     margin: auto;
     width: min(calc((1280 / 1440) * 100vw), 1280px);
     height: 540px;

@@ -1,6 +1,8 @@
 <!-- footer starts here -->
 <footer class="footer">
-  <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.webp" alt="桜のこもれびキッズランド" class="footer__logo fadeUpTrigger">
+  <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo-link">
+    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.webp" alt="桜のこもれびキッズランド" class="footer__logo fadeUpTrigger">
+  </a>
 
   <nav class="footer__nav">
     <ul class="footer__list">
