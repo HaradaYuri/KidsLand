@@ -83,7 +83,7 @@
                       $icon_src = 'icon-white-bell-ribbon.svg';
                   }
                   ?>
-                  <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo $icon_src; ?>" alt="">
+                  <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/<?php echo $icon_src; ?>" alt="" width="48" height="48">
                   <span><?php echo $category_name; ?></span>
                 </div>
 

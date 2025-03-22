@@ -31,6 +31,7 @@ body {
 }
 
 img {
+  max-width: 100%;
   width: 100%;
   height: auto;
   vertical-align: middle;
@@ -54,6 +55,11 @@ p,
 a,
 span {
   color: #55000c;
+}
+
+/* reCAPTCHAバッジ非表示 */
+.grecaptcha-badge {
+  visibility: hidden;
 }
 
 @media (any-hover: hover) {
@@ -539,6 +545,9 @@ table {
     right: 16px;
   }
 }
+.btn-primary:hover {
+  background-color: #ffedf0;
+}
 .btn-topback {
   opacity: 0;
   width: 72px;
@@ -561,6 +570,9 @@ table {
   background-color: #ffffff;
   -webkit-box-shadow: 4px 4px 30px 0px rgba(0, 0, 0, 0.0509803922);
           box-shadow: 4px 4px 30px 0px rgba(0, 0, 0, 0.0509803922);
+}
+.btn-topback:hover {
+  opacity: 0.8 !important;
 }
 @media screen and (max-width: 767px) {
   .btn-topback {
@@ -800,11 +812,14 @@ table {
 .cards-introduction[data-type=authorized] {
   background-color: #ffedf0;
 }
-.cards-introduction[data-type=small-scale] {
+.cards-introduction[data-type=small-scale-nursery] {
   background-color: #fff7b8;
 }
-.cards-introduction[data-type=small-scale-a] {
+.cards-introduction[data-type=small-scale-nursery-service-a] {
   background-color: #edf4ff;
+}
+.cards-introduction:hover {
+  opacity: 0.8;
 }
 .cards-introduction img {
   width: 296px;
@@ -1027,6 +1042,9 @@ table {
   background-color: #ffffff;
   color: #ef8f9c;
 }
+.search__filters .search__filter:hover {
+  background-color: #ffedf0;
+}
 @media screen and (max-width: 767px) {
   .search__filters .search__filter {
     width: 150px;
@@ -1082,6 +1100,9 @@ table {
   font-weight: 400;
   line-height: 19.2px;
   letter-spacing: 0.1em;
+}
+.pagination .page-numbers:hover {
+  background-color: #ffedf0;
 }
 .pagination .page-numbers.current {
   background-color: #ef8f9c;
@@ -1582,6 +1603,7 @@ table {
   }
 }
 .form__field-agreement {
+  cursor: pointer;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -1609,6 +1631,12 @@ table {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.form__field-agreement:hover {
+  opacity: 0.7;
+}
+.form__field-agreement:hover .form__checkbox {
+  outline: 2px solid #007bff;
 }
 .form .agreement-content {
   cursor: pointer;
@@ -1691,6 +1719,7 @@ table {
   margin-bottom: 8px;
 }
 .form__checkbox {
+  cursor: pointer;
   width: 20px;
   height: 20px;
 }
@@ -1746,6 +1775,15 @@ table {
     top: 35%;
   }
 }
+.form__recaptcha {
+  text-align: center;
+  font-size: 80%;
+  line-height: 1.5;
+  color: #333333;
+}
+.form__recaptcha * {
+  color: #333333;
+}
 
 .form__checkbox--circle input {
   -webkit-appearance: none;
@@ -1791,9 +1829,19 @@ table {
   display: inline-block;
   margin-left: 0;
 }
-
-.form__fields.flex-row .wpcf7-list-item:not(:first-of-type) {
-  margin-left: 5px;
+.wpcf7-list-item label:hover {
+  opacity: 0.7;
+}
+.wpcf7-list-item label:hover input::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  z-index: -1;
 }
 
 .wpcf7-list-item-label {
@@ -1802,10 +1850,59 @@ table {
   vertical-align: middle;
 }
 
+.form__fields.flex-row .wpcf7-list-item:not(:first-of-type) {
+  margin-left: 6px;
+}
+
+.wpcf7-not-valid-tip {
+  color: rgb(255, 0, 0);
+}
+
+.wpcf7 form .wpcf7-response-output {
+  margin: 0;
+  border: none;
+  color: rgb(255, 0, 0);
+}
+
 .wpcf7-list-item input[type=radio] {
   cursor: pointer;
-  vertical-align: middle;
+  vertical-align: baseline;
   margin-right: 14px;
+}
+.wpcf7-list-item input[type=radio]:hover input {
+  outline: 2px solid #007bff;
+}
+
+input[type=radio] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  outline: none;
+  -webkit-transition: border-color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
+  position: relative;
+  top: 4px;
+  margin-right: 14px;
+}
+input[type=radio]:checked {
+  border-color: #007bff;
+}
+input[type=radio]:checked::after {
+  content: "";
+  display: block;
+  width: 9.6px;
+  height: 9.6px;
+  background-color: #007bff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .fv {
@@ -2264,6 +2361,9 @@ table {
   line-height: 1;
   letter-spacing: 0.1em;
 }
+.introduction__block:hover {
+  opacity: 0.8 !important;
+}
 @media screen and (max-width: 767px) {
   .introduction__block {
     width: 240px;
@@ -2365,8 +2465,14 @@ table {
 .recruit__btn:first-child {
   background-color: #ffedf0;
 }
+.recruit__btn:first-child:hover {
+  background-color: #ffffff;
+}
 .recruit__btn:last-child {
   background-color: #fff7b8;
+}
+.recruit__btn:last-child:hover {
+  background-color: #ffffff;
 }
 
 .welcome {
@@ -2741,6 +2847,9 @@ table {
     margin-bottom: 8px;
   }
 }
+.contact__form .form__field-agreement:hover input {
+  outline: 2px solid #007bff;
+}
 @media screen and (max-width: 767px) {
   .contact__form .agreement-content {
     -webkit-box-orient: vertical;
@@ -2831,6 +2940,9 @@ table {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 8px;
+}
+.p-letter__search .search__chose-btn > * {
+  cursor: pointer;
 }
 .p-letter__search .search__chose-btn select {
   width: 240px;
@@ -3008,10 +3120,16 @@ table {
   line-height: 1;
   letter-spacing: 0.1em;
 }
+.p-letter__archive .archive__month-wrapper .archive__month:hover {
+  background-color: #ffedf0;
+}
 @media screen and (max-width: 767px) {
   .p-letter__archive .archive__month-wrapper .archive__month {
     font-size: 12px;
   }
+}
+.p-letter__archive .archive__month-wrapper .archive__month.active {
+  background-color: #ffedf0;
 }
 
 .notfound {
@@ -3613,6 +3731,10 @@ table {
         flex-shrink: 0;
     margin-top: 18px;
   }
+}
+.faq .faq__item-question.active .triangle {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
 }
 
 .recruit__formt .form {
@@ -4344,6 +4466,7 @@ table {
   }
 }
 .p-introduction .search__tabs .search__tab {
+  cursor: pointer;
   padding-top: 7px;
   width: 149px;
   height: 50px;
@@ -4352,6 +4475,9 @@ table {
   border-bottom: none;
   background-color: #ffffff;
   color: #ef8f9c;
+}
+.p-introduction .search__tabs .search__tab:hover {
+  background-color: #ffedf0;
 }
 @media screen and (max-width: 767px) {
   .p-introduction .search__tabs .search__tab {
@@ -4384,6 +4510,11 @@ table {
   .p-introduction .introduction__cards {
     padding: 24px 12px;
   }
+}
+.p-introduction .introduction__cards .search__filters {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .p-introduction .pagination {
   margin-top: 6px;

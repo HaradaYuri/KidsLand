@@ -10,7 +10,7 @@
       <h2 class="fv__title-text fadeUpTrigger fadeUpTriggerFV">
         一人ひとり<span>の</span>輝きが、<br>未来<span>を</span>彩る
       </h2>
-      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Vector.svg" alt="" class="fv__title-image fadeUpTrigger fadeUpTriggerFV">
+      <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Vector.svg" alt="" class="fv__title-image fadeUpTrigger fadeUpTriggerFV" width="516" height="413.61">
     </div>
 
     <?php
@@ -57,7 +57,7 @@
   <section class="welcome">
     <div class="welcome__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-colored-cherry-blossom.webp" alt="桜のこもれびキッズランドへようこそ">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-colored-cherry-blossom.webp" alt="桜のこもれびキッズランドへようこそ" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">
         桜のこもれびキッズランドへ<br>ようこそ
@@ -79,7 +79,7 @@
   <section class="introduction">
     <div class="introduction__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-tree.svg" alt="各園のご紹介">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-tree.svg" alt="各園のご紹介" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">各園のご紹介</h2>
       <p class="fadeUpTrigger">introduction</p>
@@ -115,7 +115,7 @@
   <section class="letter bg-pink-dash">
     <div class="letter__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-letter.svg" alt="こもれびだより">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-letter.svg" alt="こもれびだより" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">こもれびだより</h2>
       <p class="fadeUpTrigger">letter</p>
@@ -142,13 +142,29 @@
           <article>
             <a href="<?php the_permalink(); ?>" class="cards-letter fadeUpTrigger">
               <?php if ($letter_thumbnail) : ?>
-                <img loading="lazy" src="<?php echo esc_url($letter_thumbnail); ?>" alt="<?php echo esc_attr($letter_title); ?>">
+                <?php
+                $attachment_id = attachment_url_to_postid($letter_thumbnail);
+                if ($attachment_id) {
+                  $image_data = wp_get_attachment_metadata($attachment_id);
+                  $image_width = isset($image_data['width']) ? $image_data['width'] : '';
+                  $image_height = isset($image_data['height']) ? $image_data['height'] : '';
+                } else {
+                  $image_width = '';
+                  $image_height = '';
+                }
+                ?>
+                <img
+                  loading="lazy"
+                  src="<?php echo esc_url($letter_thumbnail); ?>"
+                  alt="<?php echo esc_attr($letter_title); ?>の画像"
+                  width="<?php echo esc_attr($image_width); ?>"
+                  height="<?php echo esc_attr($image_height); ?>"
+                  srcset="<?php echo esc_attr(wp_get_attachment_image_srcset($attachment_id)); ?>"
+                  sizes="(max-width: 768px) 100vw, 768px">
               <?php endif; ?>
               <div class="text__block">
                 <h3 class="text__block-title"><?php echo esc_html($letter_nursery_name); ?>からのおたより</h3>
-                <p class="text__block-desc">
-                  <?php echo esc_html($letter_title); ?>
-                </p>
+                <p class="text__block-desc"><?php echo esc_html($letter_title); ?></p>
                 <p class="text__block-date">
                   <?php
                   if ($letter_date) {
@@ -181,7 +197,7 @@
     <div class="recruit__container fadeUpTrigger">
       <div class="recruit__title title-primary">
         <div class="title-primary__icon fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-pen.svg" alt="採用情報">
+          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-pen.svg" alt="採用情報" width="72" height="72">
         </div>
         <h2 class="fadeUpTrigger">採用情報</h2>
         <p class="fadeUpTrigger">recruit</p>

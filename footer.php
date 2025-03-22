@@ -1,7 +1,7 @@
 <!-- footer starts here -->
 <footer class="footer">
   <a href="<?php echo esc_url(home_url('/')); ?>" class="footer__logo-link">
-    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.webp" alt="桜のこもれびキッズランド" class="footer__logo fadeUpTrigger">
+    <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.webp" alt="桜のこもれびキッズランド" class="footer__logo fadeUpTrigger" width="240" height="76.28">
   </a>
 
   <nav class="footer__nav">

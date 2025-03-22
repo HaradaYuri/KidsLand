@@ -17,7 +17,6 @@
   @include mq(sp) {
     margin-bottom: 3px;
     justify-content: left;
-    
   }
 
   &--cats{
@@ -34,6 +33,10 @@
     border: 1px solid $primary;
     background-color: $bgColorLight;
     color: $primary;
+
+    &:hover{
+      background-color: $secondary;
+    }
 
     @include mq(sp) {
       width: 150px;

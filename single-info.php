@@ -47,7 +47,7 @@
           $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
           $img_alt = esc_attr(CFS()->get('info_title'));
           ?>
-          <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img fadeUpTrigger">
+          <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img fadeUpTrigger" width="640" height="320">
 
           <?php
           $content_loop = CFS()->get('info_loop');

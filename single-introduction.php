@@ -35,7 +35,7 @@
   <!-- introduction-content starts here -->
   <section class="introduction-content">
     <?php if ($thumbnail = CFS()->get('thumbnail')) : ?>
-      <img loading="lazy" src="<?php echo esc_url($thumbnail); ?>" alt="保育所の立地" class="fadeUpTrigger">
+      <img src="<?php echo esc_url($thumbnail); ?>" alt="保育所の立地" class="fadeUpTrigger" width="800" height="450">
     <?php endif; ?>
     <h4 class="introduction-content__heading fadeUpTrigger">
       <?php
@@ -57,7 +57,7 @@
   <section class="inside bg-pink-dash">
     <div class="inside__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-camera.svg" alt="園の様子">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-camera.svg" alt="園の様子" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">園の様子</h2>
       <p class="fadeUpTrigger">inside</p>
@@ -68,7 +68,7 @@
       <?php for ($i = 1; $i <= 7; $i++) : ?>
         <?php if ($slider_image = CFS()->get('slider_image_' . $i)) : ?>
           <div class="slider__item">
-            <img loading="lazy" src="<?php echo esc_url($slider_image); ?>" alt="園の様子 <?php echo $i; ?>">
+            <img loading="lazy" src="<?php echo esc_url($slider_image); ?>" alt="園の様子 <?php echo $i; ?>" width="240" height="160">
           </div>
         <?php endif; ?>
       <?php endfor; ?>
@@ -80,7 +80,7 @@
   <section class="message">
     <div class="message__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-message.svg" alt="園長からのメッセージ">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-message.svg" alt="園長からのメッセージ" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">園長からのメッセージ</h2>
       <p class="fadeUpTrigger">message</p>
@@ -88,7 +88,7 @@
 
     <div class="message__container flex-rc">
       <?php if ($president_image = CFS()->get('president_image')) : ?>
-        <img loading="lazy" src="<?php echo esc_url($president_image); ?>" alt="笑顔の保育園の先生" class="message__img fadeUpTrigger">
+        <img loading="lazy" src="<?php echo esc_url($president_image); ?>" alt="笑顔の保育園の先生" class="message__img fadeUpTrigger" width="300" height="400">
       <?php endif; ?>
       <p class="message__text fadeUpTrigger">
         <?php echo nl2br(esc_html(CFS()->get('president_message'))); ?>
@@ -101,7 +101,7 @@
   <section class="about-nursery">
     <div class="about-nursery__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-bell.svg" alt="園の概要">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-bell.svg" alt="園の概要" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">園の概要</h2>
       <p class="fadeUpTrigger">about nursery</p>
@@ -263,7 +263,7 @@
   <section class="letter bg-pink-dash">
     <div class="letter__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-letter.svg" alt="こもれびだより">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-letter.svg" alt="こもれびだより" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">こもれびだより</h2>
       <p class="fadeUpTrigger">letter</p>
@@ -291,7 +291,7 @@
               $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
               $img_alt = $thumbnail ? esc_attr(CFS()->get('letter_title')) : "桜のこもれびキッズランド";
               ?>
-              <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>">
+              <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" width="320" height="135">
               <div class="text__block">
                 <h3 class="text__block-title"><?php echo esc_html(CFS()->get('letter_nursery_name')); ?>からのおたより</h3>
                 <p class="text__block-desc">
@@ -333,7 +333,7 @@
     <div class="contact__container fadeUpTrigger">
       <div class="contact__title title-primary">
         <div class="title-primary__icon fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-mail.svg" alt="お問い合わせ">
+          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-mail.svg" alt="お問い合わせ" width="72" height="72">
         </div>
         <h2 class="fadeUpTrigger">お問い合わせ</h2>
         <p class="fadeUpTrigger">contact</p>

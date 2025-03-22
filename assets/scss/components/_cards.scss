@@ -180,11 +180,15 @@
     &[data-type='authorized'] {
       background-color: $secondary;
     }
-    &[data-type='small-scale'] {
+    &[data-type='small-scale-nursery'] {
       background-color: $accentLight;
     }
-    &[data-type='small-scale-a'] {
+    &[data-type='small-scale-nursery-service-a'] {
       background-color: #edf4ff;
+    }
+
+    &:hover {
+      opacity: 0.8;
     }
 
     img {

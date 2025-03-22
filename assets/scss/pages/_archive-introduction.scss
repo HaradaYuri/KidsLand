@@ -21,6 +21,7 @@
     }
 
     .search__tab {
+      cursor: pointer;
       padding-top: 7px;
       width: 149px;
       height: 50px;
@@ -30,6 +31,10 @@
       border-bottom: none;
       background-color: $bgColorLight;
       color: $primary;
+
+      &:hover{
+        background-color: $secondary;
+      }
 
       @include mq(sp) {
         width: 120px;
@@ -65,6 +70,10 @@
     padding: 60px 40px;
     @include mq(sp) {
       padding: 24px 12px;
+    }
+
+    .search__filters{
+      justify-content: center;
     }
   }
 

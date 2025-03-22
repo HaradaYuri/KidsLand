@@ -24,7 +24,7 @@
   <section class="sitemap bg-pink-dash">
     <div class="sitemap__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-chart.svg" alt="サイトマップ">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/icon-chart.svg" alt="サイトマップ" width="72" height="72">
       </div>
     </div>
 

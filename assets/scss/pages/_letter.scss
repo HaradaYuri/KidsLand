@@ -74,6 +74,10 @@
         align-items: center;
         border-radius: 8px;
 
+        & > *{
+        cursor: pointer;
+        }
+
         // select
         select {
           width: 240px;
@@ -265,8 +269,16 @@
         line-height: 1;
         letter-spacing: 0.1em;
 
+        &:hover{
+          background-color: $secondary;
+        }
+
         @include mq(sp) {
           font-size: 12px;
+        }
+
+        &.active{
+          background-color: $secondary;
         }
       }
     }

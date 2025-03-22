@@ -32,6 +32,7 @@ body {
 }
 
 img {
+  max-width: 100%; //レイアウトシフト対策
   width: 100%;
   height: auto;
   vertical-align: middle;
@@ -54,6 +55,11 @@ p,
 a,
 span {
   color: $textColor;
+}
+
+/* reCAPTCHAバッジ非表示 */
+.grecaptcha-badge {
+  visibility: hidden;
 }
 
 @media (any-hover: hover) {

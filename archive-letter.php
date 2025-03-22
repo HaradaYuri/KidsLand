@@ -59,12 +59,26 @@ get_header();
                   <select name="nursery" class="txts">
                     <option value="">園をえらぶ</option>
                     <?php
-                    $nurseries = get_posts(array(
+                    $nursery_args = array(
                       'post_type' => 'letter',
                       'posts_per_page' => -1,
                       'fields' => 'ids',
-                    ));
+                    );
+
+                    // If prefecture is selected, filter nurseries by prefecture
+                    if (!empty($current_prefecture)) {
+                      $nursery_args['tax_query'] = array(
+                        array(
+                          'taxonomy' => 'prefecture',
+                          'field' => 'slug',
+                          'terms' => $current_prefecture,
+                        )
+                      );
+                    }
+
+                    $nurseries = get_posts($nursery_args);
                     $nursery_names = array();
+
                     foreach ($nurseries as $nursery_id) {
                       $nursery_name = CFS()->get('letter_nursery_name', $nursery_id);
                       if (!in_array($nursery_name, $nursery_names)) {
@@ -97,13 +111,17 @@ get_header();
           );
 
           // アーカイブ
-          $year = get_query_var('year');
-          $monthnum = get_query_var('monthnum');
-          if ($year && $monthnum) {
+          $letter_year = get_query_var('letter_year');
+          $letter_month = get_query_var('letter_month');
+
+          if ($letter_year && $letter_month) {
+            $start_date = $letter_year . '-' . $letter_month . '-01';
+            $end_date = date('Y-m-t', strtotime($start_date));
+
             $args['meta_query'] = array(
               array(
                 'key' => 'letter_date',
-                'value' => array($year . '-' . sprintf('%02d', $monthnum) . '-01', $year . '-' . sprintf('%02d', $monthnum) . '-31'),
+                'value' => array($start_date, $end_date),
                 'compare' => 'BETWEEN',
                 'type' => 'DATE'
               )
@@ -130,7 +148,6 @@ get_header();
 
           $query = new WP_Query($args);
 
-
           if ($query->have_posts()) :
             while ($query->have_posts()) : $query->the_post();
           ?>
@@ -142,7 +159,7 @@ get_header();
                   $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
                   $img_alt = $thumbnail ? esc_attr(CFS()->get('letter_title')) : "桜のこもれびキッズランド";
                   ?>
-                  <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>">
+                  <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" width="300" height="135">
                   <div class="text__block">
                     <h3 class="text__block-title"><?php echo esc_html(CFS()->get('letter_nursery_name')); ?>からのおたより</h3>
                     <p class="text__block-desc">
@@ -219,15 +236,27 @@ get_header();
             <div class="archive__year pink-vertical-line"><?php echo esc_html($year); ?>ねん</div>
             <div class="archive__month-wrapper">
               <?php
+
               ksort($months[$year]);
               foreach ($months[$year] as $month => $value) :
-                $archive_link = add_query_arg(array(
-                  'post_type' => 'letter',
-                  'year' => $year,
-                  'monthnum' => $month
-                ), home_url('/'));
+                $archive_link = home_url('/letter/date/' . $year . '/' . sprintf('%02d', $month) . '/');
+
+                // Add current filters to the archive link
+                $query_args = array();
+                if (!empty($current_prefecture)) {
+                  $query_args['prefecture'] = $current_prefecture;
+                }
+                if (!empty($current_nursery)) {
+                  $query_args['nursery'] = $current_nursery;
+                }
+
+                if (!empty($query_args)) {
+                  $archive_link = add_query_arg($query_args, $archive_link);
+                }
+
+                $is_active = ($letter_year == $year && $letter_month == $month) ? 'active' : '';
               ?>
-                <a href="<?php echo esc_url($archive_link); ?>" class="archive__month"><?php echo esc_html($month); ?>がつ</a>
+                <a href="<?php echo esc_url($archive_link); ?>" class="archive__month <?php echo $is_active; ?>"><?php echo esc_html($month); ?>がつ</a>
               <?php endforeach; ?>
             </div>
         <?php

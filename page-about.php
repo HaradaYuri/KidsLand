@@ -24,7 +24,7 @@
   <section class="philosophy">
     <div class="philosophy__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-colored-cherry-blossom.webp" alt="わたしたちの想い">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-colored-cherry-blossom.webp" alt="わたしたちの想い" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">わたしたちの想い</h2>
       <p class="fadeUpTrigger">philosophy</p>
@@ -40,7 +40,7 @@
   <section class="yprogram">
     <div class="yprogram__title title-primary">
       <div class="title-primary__icon fadeUpTrigger">
-        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-tree.svg" alt="年間行事">
+        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-tree.svg" alt="年間行事" width="72" height="72">
       </div>
       <h2 class="fadeUpTrigger">年間行事予定</h2>
       <p class="fadeUpTrigger">yearly program</p>
@@ -49,7 +49,7 @@
     <div class="yprogram__cards cards__container cards__container--bgL fadeUpTrigger">
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp4.webp" alt="綺麗で広い園内の様子">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp4.webp" alt="綺麗で広い園内の様子">
           <div class="text__block">
             <h3 class="text__block-month">4がつ</h3>
             <p class="text__block-desc">進級・入園おめでとうの会</p>
@@ -58,7 +58,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp5.webp" alt="散歩する園児">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp5.webp" alt="散歩する園児">
           <div class="text__block">
             <h3 class="text__block-month">5がつ</h3>
             <p class="text__block-desc">親子遠足</p>
@@ -67,7 +67,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp6.webp" alt="運動会の様子">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp6.webp" alt="運動会の様子">
           <div class="text__block">
             <h3 class="text__block-month">6がつ</h3>
             <p class="text__block-desc">運動会</p>
@@ -76,7 +76,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp7.webp" alt="七夕の願い事">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp7.webp" alt="七夕の願い事">
           <div class="text__block">
             <h3 class="text__block-month">7がつ</h3>
             <p class="text__block-desc">たなばた会</p>
@@ -85,7 +85,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp8.webp" alt="水遊びする男の子">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp8.webp" alt="水遊びする男の子">
           <div class="text__block">
             <h3 class="text__block-month">8がつ</h3>
             <p class="text__block-desc">夏のお楽しみ会</p>
@@ -94,7 +94,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp9.webp" alt="滑り台で遊ぶ男の子">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp9.webp" alt="滑り台で遊ぶ男の子">
           <div class="text__block">
             <h3 class="text__block-month">9がつ</h3>
             <p class="text__block-desc">親子レクリエーション</p>
@@ -103,7 +103,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp10.webp" alt="ハロウィンで仮装する園児">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp10.webp" alt="ハロウィンで仮装する園児">
           <div class="text__block">
             <h3 class="text__block-month">10がつ</h3>
             <p class="text__block-desc">ハロウィン</p>
@@ -112,7 +112,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp11.webp" alt="自然の中を歩く園児">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp11.webp" alt="自然の中を歩く園児">
           <div class="text__block">
             <h3 class="text__block-month">11がつ</h3>
             <p class="text__block-desc">秋の収穫体験遠足</p>
@@ -121,7 +121,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp12.webp" alt="クリスマス会の様子">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp12.webp" alt="クリスマス会の様子">
           <div class="text__block">
             <h3 class="text__block-month">12がつ</h3>
             <p class="text__block-desc">クリスマス会</p>
@@ -130,7 +130,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp1.webp" alt="新年お楽しみ会の様子">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp1.webp" alt="新年お楽しみ会の様子">
           <div class="text__block">
             <h3 class="text__block-month">1がつ</h3>
             <p class="text__block-desc">新年お楽しみ会</p>
@@ -139,7 +139,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp2.webp" alt="おゆうぎ会の様子">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp2.webp" alt="おゆうぎ会の様子">
           <div class="text__block">
             <h3 class="text__block-month">2がつ</h3>
             <p class="text__block-desc">おゆうぎ会</p>
@@ -148,7 +148,7 @@
       </article>
       <article>
         <div class="cards-yprogram fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp3.webp" alt="親にお花を渡す子供">
+          <img loading="lazy" width="296" height="180" src="<?php echo get_template_directory_uri(); ?>/./assets/images/yp3.webp" alt="親にお花を渡す子供">
           <div class="text__block">
             <h3 class="text__block-month">3がつ</h3>
             <p class="text__block-desc">ひな祭り会・巣立ちの会</p>
@@ -167,7 +167,7 @@
     <div class="contact__container fadeUpTrigger">
       <div class="contact__title title-primary">
         <div class="title-primary__icon fadeUpTrigger">
-          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-mail.svg" alt="お問い合わせ">
+          <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/./assets/images/icon-mail.svg" alt="お問い合わせ" width="72" height="72">
         </div>
         <h2 class="fadeUpTrigger">お問い合わせ</h2>
         <p class="fadeUpTrigger">contact</p>

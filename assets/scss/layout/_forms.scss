@@ -100,12 +100,6 @@
 
     &--mb {
       margin-bottom: 10px;
-
-      // .wpcf7-list-item{
-      //   &:not(:last-of-type){
-      //     margin-bottom: 8px;
-      //   }
-      // }
     }
 
     &--with-text {
@@ -132,6 +126,7 @@
     }
 
     &-agreement {
+      cursor: pointer;
       width: fit-content;
       margin: 0 auto;
 
@@ -142,6 +137,14 @@
       /* CF7 */
       .wpcf7-list-item {
         @include centerFlex;
+      }
+
+      &:hover {
+        opacity: 0.7;
+
+        .form__checkbox{
+          outline: 2px solid #007bff;
+        }
       }
     }
   }
@@ -235,13 +238,13 @@
         margin-bottom: 8px;
 
         @include mq(sp) {
-          
         }
       }
     }
   }
 
   &__checkbox {
+    cursor: pointer;
     width: 20px;
     height: 20px;
 
@@ -300,6 +303,17 @@
     }
   }
 
+  &__recaptcha{
+    text-align: center;
+    font-size: 80%;
+    line-height: 1.5;
+    color: $textDark;
+
+    & *{
+      color: $textDark;
+    }
+  }
+
 }
 
 
@@ -341,18 +355,27 @@
   line-height: 20px;
 }
 
+
 .wpcf7-list-item {
   cursor: pointer;
   display: inline-block;
-
   margin-left: 0;
   
-}
+  label{
+    &:hover{
+      opacity: 0.7;
 
-.form__fields.flex-row{
-  .wpcf7-list-item {
-    &:not(:first-of-type) {
-      margin-left: 5px;
+      input::before{
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #007bff;
+        border-radius: 50%;
+        z-index: -1;
+      }
     }
   }
 }
@@ -363,8 +386,66 @@
   vertical-align: middle;
 }
 
+.form__fields.flex-row{
+  .wpcf7-list-item {
+    &:not(:first-of-type) {
+      margin-left: 6px;
+    }
+  }
+}
+
+// エラーメッセージ
+.wpcf7-not-valid-tip {
+  color: rgb(255, 0, 0);
+}
+
+.wpcf7 form .wpcf7-response-output {
+  margin: 0;
+  border: none;
+  color: rgb(255, 0, 0);
+}
+
+
 .wpcf7-list-item input[type="radio"] {
   cursor: pointer;
-  vertical-align: middle;
+  vertical-align: baseline;
   margin-right: 14px;
+  
+  &:hover {
+      input {
+        outline: 2px solid #007bff;
+      }
+    }
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+  position: relative;
+  top: 4px;
+  margin-right: 14px;
+
+  &:checked {
+    border-color: #007bff;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 9.6px;
+      height: 9.6px;
+      background-color: #007bff;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }

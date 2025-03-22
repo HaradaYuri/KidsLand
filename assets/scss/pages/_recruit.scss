@@ -330,6 +330,11 @@
       margin-top: 18px;
     }
   }
+
+  // triangle rotate
+  .faq__item-question.active .triangle {
+    transform: rotate(0);
+  }
 }
 
 .recruit__formt{
@@ -337,3 +342,4 @@
     margin-top: 85px;
   }
 }
+

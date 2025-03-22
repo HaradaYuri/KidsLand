@@ -60,9 +60,17 @@
 
     &:first-child {
       background-color: $secondary;
+
+      &:hover{
+        background-color: $bgColorLight;
+      }
     }
     &:last-child {
       background-color: $accentLight;
+
+      &:hover {
+          background-color: $bgColorLight;
+        }
     }
   }
 }

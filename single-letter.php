@@ -1,4 +1,4 @@
-<?php get_header();  ?>
+<?php get_header(); ?>
 <main>
   <div class="page-fv"></div>
   <!-- page-heading starts here -->
@@ -51,7 +51,7 @@
           $img_src = $thumbnail ? esc_url($thumbnail) : esc_url($no_img);
           $img_alt = $thumbnail ? esc_attr($letter_title) : "桜のこもれびキッズランド";
           ?>
-          <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img">
+          <img loading="lazy" src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" class="s-letter__img" width="300" height="135">
 
           <?php
           $letter_loop = CFS()->get('letter_loop');

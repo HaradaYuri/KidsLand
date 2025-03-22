@@ -6,6 +6,8 @@ import { initializeCardLinks } from './components/card-links.js';
 
 import { initializeForm } from './layout/form.js';
 import { initializeHomePage } from './pages/home.js';
+import { initializeIntroductionPage } from './pages/introduction.js';
+import { initializeLetterPage } from './pages/letter.js';
 import { initializeCommon } from './common.js';
 
 jQuery(document).ready(function ($) {
@@ -18,6 +20,12 @@ jQuery(document).ready(function ($) {
   // Pages
   if (document.body.classList.contains('home')) {
     initializeHomePage($);
+  } else if (document.body.classList.contains('post-type-archive-letter')) {
+    initializeLetterPage($);
+  } else if (
+    document.body.classList.contains('post-type-archive-introduction')
+  ) {
+    initializeIntroductionPage($);
   } else if (document.body.classList.contains('single-introduction')) {
     initializeSlider($);
   } else if (document.body.classList.contains('page-id-147')) {
