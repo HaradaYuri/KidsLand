@@ -107,15 +107,45 @@
             <div class="archive__year pink-vertical-line"><?php echo esc_html($year); ?>ねん</div>
             <div class="archive__month-wrapper">
               <?php
-              krsort($months[$year]);
+
+              // アーカイブ
+              $letter_year = get_query_var('letter_year');
+              $letter_month = get_query_var('letter_month');
+
+              if ($letter_year && $letter_month) {
+                $start_date = $letter_year . '-' . $letter_month . '-01';
+                $end_date = date('Y-m-t', strtotime($start_date));
+
+                $args['meta_query'] = array(
+                  array(
+                    'key' => 'letter_date',
+                    'value' => array($start_date, $end_date),
+                    'compare' => 'BETWEEN',
+                    'type' => 'DATE'
+                  )
+                );
+              }
+
+              ksort($months[$year]);
               foreach ($months[$year] as $month => $value) :
-                $archive_link = add_query_arg(array(
-                  'post_type' => 'letter',
-                  'year' => $year,
-                  'monthnum' => $month
-                ), home_url('/'));
+                $archive_link = home_url('/letter/date/' . $year . '/' . sprintf('%02d', $month) . '/');
+
+                // Add current filters to the archive link
+                $query_args = array();
+                if (!empty($current_prefecture)) {
+                  $query_args['prefecture'] = $current_prefecture;
+                }
+                if (!empty($current_nursery)) {
+                  $query_args['nursery'] = $current_nursery;
+                }
+
+                if (!empty($query_args)) {
+                  $archive_link = add_query_arg($query_args, $archive_link);
+                }
+
+                $is_active = ($letter_year == $year && $letter_month == $month) ? 'active' : '';
               ?>
-                <a href="<?php echo esc_url($archive_link); ?>" class="archive__month"><?php echo esc_html($month); ?>がつ</a>
+                <a href="<?php echo esc_url($archive_link); ?>" class="archive__month <?php echo $is_active; ?>"><?php echo esc_html($month); ?>がつ</a>
               <?php endforeach; ?>
             </div>
         <?php
